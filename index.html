@@ -1,0 +1,3473 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+<title>نظام إدارة الموارد البشرية — v5.0</title>
+<style>
+/* ═══════════════════════════════════════════════════════════
+   MAKSAB HR v5.0 — Hybrid Glassmorphism Design System
+   ═══════════════════════════════════════════════════════════ */
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&display=swap');
+
+/* ── LIGHT MODE VARIABLES ─────────────────────────────────── */
+:root {
+  /* Background layers */
+  --bg-base:        #F0EEE9;
+  --bg-mesh-a:      rgba(99,102,241,.06);
+  --bg-mesh-b:      rgba(16,185,129,.04);
+
+  /* Glass card */
+  --glass-bg:       rgba(255,255,255,.55);
+  --glass-border:   rgba(255,255,255,.7);
+  --glass-shadow:   0 4px 24px rgba(0,0,0,.06), 0 1px 4px rgba(0,0,0,.04);
+  --glass-hover-shadow: 0 12px 40px rgba(0,0,0,.10), 0 2px 8px rgba(0,0,0,.06);
+  --glass-blur:     blur(20px);
+
+  /* Typography */
+  --text:           #111318;
+  --text2:          #64748B;
+  --text-display:   #0A0D14;
+
+  /* Brand */
+  --navy:           #1E3A5F;
+  --blue:           #2563EB;
+  --blue2:          #1D4ED8;
+  --lblue:          rgba(37,99,235,.08);
+  --blue-glow:      rgba(37,99,235,.2);
+
+  /* Semantic */
+  --green:          #059669;--lgreen:rgba(5,150,105,.1);--green2:#047857;
+  --red:            #DC2626;--lred:rgba(220,38,38,.1);  --red2:#B91C1C;
+  --gold:           #D97706;--lgold:rgba(217,119,6,.1);  --gold2:#B45309;
+  --orange:         #EA580C;--lorange:rgba(234,88,12,.1);
+  --purple:         #7C3AED;--lpurple:rgba(124,58,237,.1);
+  --teal:           #0F766E;--lteal:rgba(15,118,110,.1);--teal2:#115E59;
+  --pink:           #BE185D;--lpink:rgba(190,24,93,.1);
+  --indigo:         #4338CA;--lindigo:rgba(67,56,202,.1);
+  --gray:           #475569;--lgray:rgba(0,0,0,.04);--mgray:rgba(0,0,0,.08);--dgray:#94A3B8;
+  --white:#ffffff;--black:#0A0D14;
+
+  /* Surfaces */
+  --card:           var(--glass-bg);
+  --border:         rgba(255,255,255,.6);
+  --sidebar-bg:     rgba(255,255,255,.7);
+  --topbar-bg:      rgba(15,23,42,.92);
+
+  --shadow:         var(--glass-shadow);
+  --shadow-md:      0 8px 32px rgba(0,0,0,.08);
+  --shadow-lg:      0 20px 60px rgba(0,0,0,.14);
+  --radius:         16px;
+  --radius-sm:      10px;
+  --transition:     all .3s cubic-bezier(.4,0,.2,1);
+}
+
+/* ── DARK MODE VARIABLES ──────────────────────────────────── */
+[data-theme="dark"] {
+  --bg-base:        #090C14;
+  --bg-mesh-a:      rgba(99,102,241,.08);
+  --bg-mesh-b:      rgba(16,185,129,.05);
+
+  --glass-bg:       rgba(255,255,255,.04);
+  --glass-border:   rgba(255,255,255,.08);
+  --glass-shadow:   0 4px 24px rgba(0,0,0,.4), 0 1px 4px rgba(0,0,0,.3);
+  --glass-hover-shadow: 0 0 0 1px rgba(255,255,255,.12), 0 16px 48px rgba(0,0,0,.5), 0 0 40px rgba(37,99,235,.08);
+
+  --text:           #E2E8F0;
+  --text2:          #64748B;
+  --text-display:   #F8FAFC;
+
+  --navy:           #93C5FD;
+  --blue:           #3B82F6;
+  --blue2:          #60A5FA;
+  --lblue:          rgba(59,130,246,.12);
+  --blue-glow:      rgba(59,130,246,.25);
+
+  --green:          #34D399;--lgreen:rgba(52,211,153,.1);--green2:#10B981;
+  --red:            #F87171;--lred:rgba(248,113,113,.1);  --red2:#EF4444;
+  --gold:           #FCD34D;--lgold:rgba(252,211,77,.1);  --gold2:#F59E0B;
+  --orange:         #FB923C;--lorange:rgba(251,146,60,.1);
+  --purple:         #A78BFA;--lpurple:rgba(167,139,250,.1);
+  --teal:           #2DD4BF;--lteal:rgba(45,212,191,.1);  --teal2:#14B8A6;
+  --pink:           #F472B6;--lpink:rgba(244,114,182,.1);
+  --indigo:         #818CF8;--lindigo:rgba(129,140,248,.1);
+  --gray:           #94A3B8;--lgray:rgba(255,255,255,.04);--mgray:rgba(255,255,255,.08);--dgray:#475569;
+  --white:rgba(255,255,255,.06);--black:#F8FAFC;
+
+  --card:           var(--glass-bg);
+  --border:         var(--glass-border);
+  --sidebar-bg:     rgba(255,255,255,.03);
+  --topbar-bg:      rgba(9,12,20,.85);
+}
+
+/* ── RESET ────────────────────────────────────────────────── */
+*{margin:0;padding:0;box-sizing:border-box}
+
+body {
+  font-family:'Tajawal',Tahoma,sans-serif;
+  background: var(--bg-base);
+  background-image:
+    radial-gradient(ellipse 80% 60% at 20% 10%, var(--bg-mesh-a), transparent),
+    radial-gradient(ellipse 60% 80% at 80% 90%, var(--bg-mesh-b), transparent);
+  background-attachment: fixed;
+  color: var(--text);
+  direction: rtl;
+  font-size: 14px;
+  line-height: 1.6;
+  transition: background .4s ease, color .3s ease;
+  min-height: 100vh;
+}
+a{text-decoration:none}
+
+/* ── SCROLLBAR ────────────────────────────────────────────── */
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:rgba(128,128,128,.25);border-radius:10px}
+::-webkit-scrollbar-thumb:hover{background:rgba(128,128,128,.4)}
+
+/* ── TOP BAR ─────────────────────────────────────────────── */
+.top-bar {
+  background: var(--topbar-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  color: #fff;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 58px;
+  position: sticky;
+  top: 0;
+  z-index: 300;
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.top-bar h1 {
+  font-size: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  letter-spacing: -.2px;
+}
+.top-bar .right{display:flex;align-items:center;gap:10px}
+.clock{font-size:12px;opacity:.5;font-variant-numeric:tabular-nums;letter-spacing:.5px}
+.version-badge {
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.12);
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .5px;
+}
+.icon-btn {
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.1);
+  color: rgba(255,255,255,.85);
+  cursor: pointer;
+  font-size: 15px;
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  backdrop-filter: blur(8px);
+}
+.icon-btn:hover {
+  background: rgba(255,255,255,.15);
+  border-color: rgba(255,255,255,.2);
+  transform: translateY(-1px);
+}
+.notif-dot{position:absolute;top:7px;right:7px;width:6px;height:6px;background:#EF4444;border-radius:50%;border:1.5px solid #111}
+
+.search-trigger {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 10px;
+  padding: 6px 14px;
+  cursor: pointer;
+  color: rgba(255,255,255,.55);
+  font-size: 12px;
+  font-family: inherit;
+  transition: var(--transition);
+}
+.search-trigger:hover{background:rgba(255,255,255,.12);color:rgba(255,255,255,.8)}
+.search-trigger kbd {
+  background: rgba(255,255,255,.12);
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-size: 10px;
+  font-family: inherit;
+  border: 1px solid rgba(255,255,255,.15);
+}
+
+.hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:6px}
+.hamburger span{display:block;width:20px;height:2px;background:#fff;border-radius:2px;transition:var(--transition)}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(4px,4px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(4px,-4px)}
+
+/* ── LAYOUT ───────────────────────────────────────────────── */
+.layout{display:flex;min-height:calc(100vh - 58px)}
+
+/* ── SIDEBAR ─────────────────────────────────────────────── */
+.sidebar {
+  width: 226px;
+  background: var(--sidebar-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border-left: 1px solid var(--glass-border);
+  flex-shrink: 0;
+  overflow-y: auto;
+  position: sticky;
+  top: 58px;
+  height: calc(100vh - 58px);
+  display: flex;
+  flex-direction: column;
+  transition: transform .3s cubic-bezier(.4,0,.2,1);
+}
+.sidebar-body{flex:1}
+.nav-section {
+  font-size: 9px;
+  font-weight: 800;
+  color: var(--text2);
+  padding: 18px 20px 5px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  opacity: .6;
+}
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text2);
+  transition: var(--transition);
+  border-right: 3px solid transparent;
+  white-space: nowrap;
+  position: relative;
+  user-select: none;
+  margin: 1px 8px;
+  border-radius: 10px;
+  border-right: none;
+}
+.nav-item:hover {
+  background: var(--lblue);
+  color: var(--blue);
+  transform: translateX(-2px);
+}
+.nav-item.active {
+  background: var(--lblue);
+  color: var(--blue);
+  font-weight: 700;
+}
+.nav-item.active::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 20%;
+  height: 60%;
+  width: 3px;
+  background: var(--blue);
+  border-radius: 0 3px 3px 0;
+}
+.nav-icon{font-size:16px;width:22px;text-align:center;flex-shrink:0}
+.nav-badge{margin-right:auto;background:var(--red);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:20px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.6}}
+
+.sidebar-user{border-top:1px solid var(--glass-border);padding:14px 16px;display:flex;align-items:center;gap:10px}
+.sidebar-user-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--teal));display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:800;flex-shrink:0;box-shadow:0 0 0 2px rgba(37,99,235,.3)}
+.sidebar-user-info{font-size:11px;color:var(--text2);line-height:1.5}
+.sidebar-user-name{font-size:12px;font-weight:700;color:var(--text)}
+
+.sidebar-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:249;top:58px;backdrop-filter:blur(2px)}
+.sidebar-overlay.open{display:block}
+
+/* ── MAIN CONTENT ─────────────────────────────────────────── */
+.main{flex:1;padding:24px;overflow-x:hidden;min-width:0}
+.page{display:none;animation:fadeIn .3s ease}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ── PAGE TITLE ───────────────────────────────────────────── */
+.page-title{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:22px;flex-wrap:wrap;gap:10px}
+.page-title-left h2{
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text-display);
+  letter-spacing: -.5px;
+  line-height: 1.2;
+}
+[data-theme="dark"] .page-title-left h2{color:var(--text-display)}
+.page-title-left p{font-size:12px;color:var(--text2);margin-top:4px;font-weight:400}
+.btn-row{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ── GLASS CARD (core) ────────────────────────────────────── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-shadow);
+  transition: box-shadow .35s cubic-bezier(.4,0,.2,1),
+              transform .35s cubic-bezier(.4,0,.2,1),
+              border-color .35s ease;
+}
+.glass:hover {
+  box-shadow: var(--glass-hover-shadow);
+  transform: translateY(-3px) scale(1.003);
+  border-color: rgba(255,255,255,.9);
+}
+[data-theme="dark"] .glass:hover{border-color:rgba(255,255,255,.14)}
+
+/* ── KPI GRID ─────────────────────────────────────────────── */
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:14px;margin-bottom:22px}
+.kpi-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 18px 16px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--glass-shadow);
+  transition: box-shadow .35s cubic-bezier(.4,0,.2,1), transform .35s cubic-bezier(.4,0,.2,1);
+  cursor: default;
+}
+.kpi-card:hover {
+  box-shadow: var(--glass-hover-shadow);
+  transform: translateY(-4px) scale(1.01);
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 3px; height: 100%;
+  background: var(--accent, var(--blue));
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+.kpi-card::after {
+  content: '';
+  position: absolute;
+  top: -30px; left: -30px;
+  width: 90px; height: 90px;
+  background: radial-gradient(circle, var(--accent, var(--blue)), transparent 70%);
+  opacity: .05;
+  pointer-events: none;
+}
+.kpi-label{font-size:11px;color:var(--text2);margin-bottom:6px;display:flex;align-items:center;gap:5px;font-weight:500}
+.kpi-value{font-size:28px;font-weight:900;color:var(--accent,var(--blue));line-height:1;letter-spacing:-1px}
+.kpi-sub{font-size:11px;color:var(--text2);margin-top:5px;font-weight:400}
+.kpi-trend{position:absolute;top:14px;left:14px;font-size:10px;font-weight:700;padding:2px 7px;border-radius:20px}
+.trend-up{background:var(--lgreen);color:var(--green)}
+.trend-dn{background:var(--lred);color:var(--red)}
+.trend-neu{background:var(--lgold);color:var(--gold)}
+.kpi-icon{position:absolute;bottom:8px;left:12px;font-size:32px;opacity:.09;transform:rotate(-10deg)}
+
+/* ── CARDS ────────────────────────────────────────────────── */
+.card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-shadow);
+  overflow: hidden;
+  margin-bottom: 18px;
+  transition: box-shadow .35s cubic-bezier(.4,0,.2,1), transform .35s cubic-bezier(.4,0,.2,1);
+}
+.card:hover{box-shadow:var(--glass-hover-shadow);transform:translateY(-2px)}
+.card-header {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: rgba(255,255,255,.03);
+}
+.card-header h3{font-size:14px;font-weight:700;color:var(--text-display)}
+[data-theme="dark"] .card-header h3{color:var(--text)}
+.card-body{padding:0}
+.card-pad{padding:20px}
+
+/* ── TABLES ───────────────────────────────────────────────── */
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:600px}
+th {
+  background: rgba(0,0,0,.025);
+  padding: 10px 14px;
+  text-align: right;
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: .3px;
+  color: var(--text2);
+  border-bottom: 1px solid var(--glass-border);
+  white-space: nowrap;
+  cursor: pointer;
+  user-select: none;
+  transition: background .15s;
+}
+[data-theme="dark"] th{background:rgba(255,255,255,.03);color:var(--text2)}
+th:hover{background:rgba(37,99,235,.06);color:var(--blue)}
+td{padding:10px 14px;border-bottom:1px solid var(--glass-border);color:var(--text);font-weight:400}
+[data-theme="dark"] td{color:var(--text)}
+tr:hover td{background:rgba(37,99,235,.04)}
+tr:last-child td{border-bottom:none}
+
+/* ── AVATAR ───────────────────────────────────────────────── */
+.avatar{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;font-size:11px;font-weight:800;color:#fff;flex-shrink:0;margin-left:8px;box-shadow:0 0 0 2px rgba(255,255,255,.3)}
+.emp-cell{display:flex;align-items:center}
+
+/* ── BADGES ───────────────────────────────────────────────── */
+.badge{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;display:inline-block;letter-spacing:.2px}
+.b-green{background:var(--lgreen);color:var(--green)}
+.b-red{background:var(--lred);color:var(--red)}
+.b-orange{background:var(--lorange);color:var(--orange)}
+.b-blue{background:var(--lblue);color:var(--blue)}
+.b-gold{background:var(--lgold);color:var(--gold)}
+.b-purple{background:var(--lpurple);color:var(--purple)}
+.b-teal{background:var(--lteal);color:var(--teal)}
+.b-pink{background:var(--lpink);color:var(--pink)}
+.b-gray{background:var(--lgray);color:var(--gray)}
+
+/* ── FORMS ────────────────────────────────────────────────── */
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-grid.cols3{grid-template-columns:1fr 1fr 1fr}
+.fg{display:flex;flex-direction:column;gap:6px}
+.fg.full{grid-column:1/-1}
+.fg label{font-size:11px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:.6px}
+.fg input,.fg select,.fg textarea {
+  padding: 10px 13px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-family: inherit;
+  direction: rtl;
+  background: rgba(255,255,255,.5);
+  color: var(--text);
+  transition: border .2s, box-shadow .2s, background .2s;
+  backdrop-filter: blur(8px);
+}
+[data-theme="dark"] .fg input,[data-theme="dark"] .fg select,[data-theme="dark"] .fg textarea {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.1);
+  color: var(--text);
+}
+.fg input:focus,.fg select:focus,.fg textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-glow);
+  background: rgba(255,255,255,.7);
+}
+[data-theme="dark"] .fg input:focus,[data-theme="dark"] .fg select:focus,[data-theme="dark"] .fg textarea:focus {
+  background: rgba(255,255,255,.08);
+}
+.fg textarea{resize:vertical;min-height:72px}
+
+/* ── BUTTONS ──────────────────────────────────────────────── */
+.btn {
+  padding: 9px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  letter-spacing: .2px;
+}
+.btn:active{transform:scale(.96)}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 4px 14px rgba(37,99,235,.3)}
+.btn-primary:hover{background:var(--blue2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(37,99,235,.4)}
+.btn-success{background:var(--green);color:#fff;box-shadow:0 4px 14px rgba(5,150,105,.3)}
+.btn-success:hover{background:var(--green2);transform:translateY(-2px)}
+.btn-danger{background:var(--red);color:#fff;box-shadow:0 4px 14px rgba(220,38,38,.25)}
+.btn-danger:hover{background:var(--red2);transform:translateY(-2px)}
+.btn-gold{background:var(--gold);color:#fff}.btn-gold:hover{background:var(--gold2);transform:translateY(-2px)}
+.btn-purple{background:var(--purple);color:#fff}.btn-purple:hover{background:#6D28D9;transform:translateY(-2px)}
+.btn-teal{background:var(--teal);color:#fff}.btn-teal:hover{background:var(--teal2);transform:translateY(-2px)}
+.btn-outline{background:rgba(37,99,235,.07);color:var(--blue);border:1.5px solid rgba(37,99,235,.3)}
+.btn-outline:hover{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateY(-2px)}
+.btn-outline-red{background:rgba(220,38,38,.07);color:var(--red);border:1.5px solid rgba(220,38,38,.3)}
+.btn-outline-red:hover{background:var(--red);color:#fff;transform:translateY(-2px)}
+.btn-ghost{background:var(--glass-bg);color:var(--text2);border:1px solid var(--glass-border);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:rgba(0,0,0,.06);color:var(--text);transform:translateY(-1px)}
+[data-theme="dark"] .btn-ghost:hover{background:rgba(255,255,255,.08)}
+.btn-sm{padding:6px 14px;font-size:12px}
+.btn-xs{padding:3px 9px;font-size:10px;border-radius:7px}
+
+/* ── MODAL ────────────────────────────────────────────────── */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500;align-items:center;justify-content:center;backdrop-filter:blur(6px)}
+.modal-overlay.open{display:flex}
+.modal {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  width: min(700px,95vw);
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 24px 64px rgba(0,0,0,.25);
+  animation: modalIn .3s cubic-bezier(.4,0,.2,1);
+}
+@keyframes modalIn{from{opacity:0;transform:scale(.93) translateY(10px)}to{opacity:1;transform:none}}
+.modal-hdr {
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  z-index: 1;
+}
+.modal-hdr h2{font-size:16px;font-weight:800;color:var(--text-display);letter-spacing:-.3px}
+[data-theme="dark"] .modal-hdr h2{color:var(--text)}
+.modal-close{background:none;border:none;font-size:22px;cursor:pointer;color:var(--text2);line-height:1;padding:0 4px;transition:color .2s,transform .2s}
+.modal-close:hover{color:var(--red);transform:rotate(90deg)}
+.modal-ftr {
+  padding: 16px 24px;
+  border-top: 1px solid var(--glass-border);
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  position: sticky;
+  bottom: 0;
+}
+
+/* ── ALERTS ───────────────────────────────────────────────── */
+.alert{padding:12px 16px;border-radius:var(--radius-sm);font-size:12px;margin-bottom:10px;display:flex;align-items:flex-start;gap:10px;border-right:3px solid;animation:fadeIn .2s ease;backdrop-filter:blur(8px)}
+.alert-w{background:var(--lgold);color:var(--gold);border-color:var(--gold)}
+.alert-d{background:var(--lred);color:var(--red);border-color:var(--red)}
+.alert-s{background:var(--lgreen);color:var(--green);border-color:var(--green)}
+.alert-i{background:var(--lblue);color:var(--blue);border-color:var(--blue)}
+.alert-p{background:var(--lpurple);color:var(--purple);border-color:var(--purple)}
+
+/* ── PROGRESS ─────────────────────────────────────────────── */
+.prog{background:var(--mgray);border-radius:20px;height:6px;overflow:hidden;flex:1}
+.prog-bar{height:100%;border-radius:20px;transition:width .6s cubic-bezier(.4,0,.2,1)}
+
+/* ── STATS BAR ────────────────────────────────────────────── */
+.stats-bar{display:grid;gap:0;border-top:1px solid var(--glass-border);background:rgba(0,0,0,.02)}
+[data-theme="dark"] .stats-bar{background:rgba(255,255,255,.02)}
+.stats-bar.cols4{grid-template-columns:repeat(4,1fr)}
+.stats-bar.cols3{grid-template-columns:repeat(3,1fr)}
+.stats-bar.cols5{grid-template-columns:repeat(5,1fr)}
+.stat-cell{padding:14px;text-align:center;border-left:1px solid var(--glass-border)}
+.stat-cell:last-child{border-left:none}
+.stat-val{font-size:20px;font-weight:900;color:var(--text-display);letter-spacing:-.5px}
+[data-theme="dark"] .stat-val{color:var(--text)}
+.stat-lbl{font-size:10px;color:var(--text2);margin-top:3px;font-weight:500;text-transform:uppercase;letter-spacing:.4px}
+
+/* ── SEARCH ROW ───────────────────────────────────────────── */
+.search-row{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.search-row input,.search-row select {
+  padding: 9px 13px;
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-family: inherit;
+  direction: rtl;
+  background: rgba(255,255,255,.5);
+  color: var(--text);
+  transition: border .2s, box-shadow .2s;
+  backdrop-filter: blur(8px);
+}
+[data-theme="dark"] .search-row input,[data-theme="dark"] .search-row select {
+  background: rgba(255,255,255,.06);
+  border-color: rgba(255,255,255,.1);
+}
+.search-row input{flex:1;min-width:180px}
+.search-row input:focus,.search-row select:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-glow)}
+
+/* ── PRIORITY ─────────────────────────────────────────────── */
+.priority-high{color:var(--red);font-weight:700}
+.priority-med{color:var(--orange);font-weight:600}
+.priority-low{color:var(--teal);font-weight:500}
+
+/* ── TIMELINE ─────────────────────────────────────────────── */
+.tl-item{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--glass-border)}
+.tl-item:last-child{border-bottom:none}
+.tl-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:4px;box-shadow:0 0 0 3px rgba(255,255,255,.2)}
+.tl-content{flex:1}
+.tl-title{font-weight:700;font-size:13px;color:var(--text)}
+.tl-sub{font-size:11px;color:var(--text2);margin-top:2px}
+
+/* ── TAB BAR ──────────────────────────────────────────────── */
+.tab-bar{display:flex;border-bottom:1px solid var(--glass-border);margin-bottom:18px;gap:0;overflow-x:auto}
+.tab-btn{padding:10px 22px;background:none;border:none;font-size:13px;font-family:inherit;font-weight:600;cursor:pointer;color:var(--text2);border-bottom:2px solid transparent;margin-bottom:-1px;transition:var(--transition);white-space:nowrap}
+.tab-btn.active{color:var(--blue);border-bottom-color:var(--blue)}
+.tab-btn:hover:not(.active){color:var(--text);background:rgba(37,99,235,.05)}
+.tab-pane{display:none}.tab-pane.active{display:block;animation:fadeIn .2s}
+
+/* ── INSURANCE CARD ───────────────────────────────────────── */
+.ins-card{background:linear-gradient(135deg,var(--teal),#0D9488);border-radius:var(--radius);padding:20px;color:#fff;box-shadow:0 8px 24px rgba(15,118,110,.3)}
+
+/* ── DEPT COMPARE ─────────────────────────────────────────── */
+.dept-compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* ── GLOBAL SEARCH ────────────────────────────────────────── */
+.gsearch-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:600;align-items:flex-start;justify-content:center;padding-top:80px;backdrop-filter:blur(8px)}
+.gsearch-overlay.open{display:flex}
+.gsearch-box {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: 20px;
+  width: min(600px,90vw);
+  box-shadow: 0 24px 64px rgba(0,0,0,.3);
+  overflow: hidden;
+}
+.gsearch-input-wrap{display:flex;align-items:center;gap:10px;padding:16px 20px;border-bottom:1px solid var(--glass-border)}
+.gsearch-input-wrap input{flex:1;border:none;outline:none;font-size:16px;font-weight:500;background:transparent;color:var(--text);font-family:inherit}
+.gsearch-input-wrap input::placeholder{color:var(--text2)}
+.gsearch-results{max-height:400px;overflow-y:auto}
+.gsearch-item{padding:12px 20px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:background .15s;border-bottom:1px solid var(--glass-border)}
+.gsearch-item:last-child{border-bottom:none}
+.gsearch-item:hover{background:var(--lblue)}
+.gsearch-empty{padding:32px;text-align:center;color:var(--text2);font-size:13px}
+.gsearch-shortcut{font-size:11px;color:var(--text2);background:var(--lgray);padding:3px 9px;border-radius:7px;border:1px solid var(--glass-border)}
+
+/* ── SALARY SLIP ──────────────────────────────────────────── */
+.slip-modal .modal{width:min(520px,95vw)}
+.slip-paper{background:#fff;border-radius:14px;padding:24px;color:#111;font-size:13px}
+.slip-header{text-align:center;border-bottom:2px solid #1A3557;padding-bottom:14px;margin-bottom:14px}
+.slip-company{font-size:18px;font-weight:800;color:#1A3557}
+.slip-title{font-size:12px;color:#6B7280;margin-top:4px}
+.slip-row{display:flex;justify-content:space-between;padding:7px 0;border-bottom:1px solid #F1F5F9}
+.slip-row:last-child{border-bottom:none}
+.slip-section-title{font-weight:800;color:#1A3557;margin:12px 0 6px;font-size:11px;text-transform:uppercase;letter-spacing:.8px}
+.slip-total{font-size:16px;font-weight:900;color:#059669}
+@media print{body>*:not(.slip-print-area){display:none!important}.slip-print-area{display:block!important}.modal-overlay,.top-bar,.sidebar{display:none!important}}
+
+/* ── TOAST ────────────────────────────────────────────────── */
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(10px);
+  background: rgba(15,23,42,.9);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,.12);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 14px;
+  font-size: 13px;
+  font-weight: 500;
+  z-index: 999;
+  opacity: 0;
+  transition: opacity .3s, transform .3s;
+  pointer-events: none;
+  white-space: nowrap;
+  box-shadow: 0 8px 32px rgba(0,0,0,.3);
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+/* ── MISC ─────────────────────────────────────────────────── */
+.att-edit-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.perf-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+
+.reports-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:14px}
+.report-card {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--glass-shadow);
+  padding: 22px;
+  text-align: center;
+  transition: box-shadow .35s cubic-bezier(.4,0,.2,1), transform .35s cubic-bezier(.4,0,.2,1);
+  cursor: pointer;
+}
+.report-card:hover{box-shadow:var(--glass-hover-shadow);transform:translateY(-5px) scale(1.02)}
+.report-icon{font-size:40px;margin-bottom:14px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.1))}
+.report-title{font-weight:800;color:var(--text-display);margin-bottom:5px;font-size:14px;letter-spacing:-.2px}
+[data-theme="dark"] .report-title{color:var(--text)}
+.report-desc{font-size:11px;color:var(--text2);margin-bottom:14px;line-height:1.5}
+
+.empty-state{text-align:center;padding:50px 20px;color:var(--text2)}
+.empty-icon{font-size:52px;margin-bottom:14px;opacity:.4}
+.empty-msg{font-size:13px;font-weight:500}
+
+.candidate-card{background:rgba(5,150,105,.07);border-radius:var(--radius-sm);padding:14px;border:1px solid rgba(5,150,105,.2);transition:var(--transition)}
+.candidate-card:hover{box-shadow:var(--glass-hover-shadow);transform:translateY(-2px)}
+[data-theme="dark"] .candidate-card{background:rgba(52,211,153,.06);border-color:rgba(52,211,153,.15)}
+
+/* ── RESPONSIVE ───────────────────────────────────────────── */
+@media(max-width:900px){
+  .sidebar{position:fixed;top:58px;right:0;z-index:250;height:calc(100vh - 58px);transform:translateX(100%);box-shadow:var(--shadow-lg)}
+  .sidebar.open{transform:translateX(0)}
+  .hamburger{display:flex}
+  .search-trigger .search-text{display:none}
+  .dept-compare-grid{grid-template-columns:1fr}
+  .top-bar h1 span.title-text{display:none}
+  .top-bar h1 .title-short{display:inline}
+}
+@media(min-width:901px){.title-short{display:none}}
+@media(max-width:600px){
+  .form-grid,.form-grid.cols3{grid-template-columns:1fr}
+  .kpi-grid{grid-template-columns:repeat(2,1fr)}
+  .main{padding:14px}
+  .stats-bar.cols4{grid-template-columns:repeat(2,1fr)}
+  .stats-bar.cols3{grid-template-columns:repeat(3,1fr)}
+  .version-badge{display:none}
+  .clock{display:none}
+}
+
+/* ── DASHBOARD GRIDS ──────────────────────────────────────── */
+.dash-charts-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.dash-bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:700px){.dash-charts-grid,.dash-bottom-grid{grid-template-columns:1fr}}
+
+/* ── FIREBASE AUTH ────────────────────────────────────────── */
+.auth-screen{
+  position:fixed;inset:0;
+  background: radial-gradient(ellipse at 30% 20%, rgba(37,99,235,.4), transparent 50%),
+              radial-gradient(ellipse at 70% 80%, rgba(124,58,237,.3), transparent 50%),
+              #090C14;
+  z-index:1000;display:flex;align-items:center;justify-content:center;flex-direction:column;
+}
+.auth-card {
+  background: rgba(255,255,255,.08);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255,255,255,.12);
+  border-radius: 24px;
+  padding: 44px;
+  width: min(420px,90vw);
+  box-shadow: 0 24px 64px rgba(0,0,0,.5), inset 0 1px 0 rgba(255,255,255,.1);
+}
+.auth-logo{text-align:center;margin-bottom:32px}
+.auth-logo h1{font-size:22px;font-weight:800;color:#fff;margin-top:10px;letter-spacing:-.4px}
+.auth-logo p{font-size:12px;color:rgba(255,255,255,.5);margin-top:5px}
+.auth-field{margin-bottom:18px}
+.auth-field label{display:block;font-size:11px;font-weight:700;color:rgba(255,255,255,.6);margin-bottom:7px;text-transform:uppercase;letter-spacing:.6px}
+.auth-field input{
+  width:100%;padding:13px 16px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;font-size:14px;font-family:inherit;
+  direction:rtl;
+  background:rgba(255,255,255,.07);
+  color:#fff;
+  transition: border .2s, box-shadow .2s;
+}
+.auth-field input::placeholder{color:rgba(255,255,255,.3)}
+.auth-field input:focus{outline:none;border-color:rgba(59,130,246,.6);box-shadow:0 0 0 3px rgba(59,130,246,.2);background:rgba(255,255,255,.1)}
+.auth-btn{
+  width:100%;padding:14px;
+  background:linear-gradient(135deg,#2563EB,#7C3AED);
+  color:#fff;border:none;border-radius:12px;
+  font-size:14px;font-weight:800;cursor:pointer;
+  font-family:inherit;
+  transition: transform .2s, box-shadow .2s;
+  margin-top:8px;
+  box-shadow: 0 8px 24px rgba(37,99,235,.4);
+  letter-spacing:.2px;
+}
+.auth-btn:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(37,99,235,.5)}
+.auth-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.auth-error{background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);color:#FCA5A5;padding:10px 14px;border-radius:10px;font-size:12px;margin-bottom:14px;display:none}
+
+.setup-overlay{position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:2000;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px)}
+.setup-card{background:var(--card);backdrop-filter:var(--glass-blur);border:1px solid var(--glass-border);border-radius:24px;width:min(680px,94vw);max-height:88vh;overflow-y:auto;box-shadow:0 24px 64px rgba(0,0,0,.5)}
+.setup-step{padding:28px 32px}
+.setup-header{background:linear-gradient(135deg,#1E3A5F,#2563EB,#7C3AED);padding:26px 32px;border-radius:24px 24px 0 0;color:#fff}
+.setup-header h2{font-size:20px;font-weight:800;letter-spacing:-.3px}
+.setup-header p{font-size:13px;opacity:.7;margin-top:4px}
+.config-input{width:100%;padding:10px 14px;border:1px solid var(--glass-border);border-radius:9px;font-size:12px;font-family:monospace;direction:ltr;text-align:left;background:var(--lgray);color:var(--text);margin-bottom:8px;transition:border .2s}
+.config-input:focus{outline:none;border-color:var(--blue)}
+.code-block{background:#0A0E1A;color:#E2E8F0;border-radius:12px;padding:16px;font-size:12px;font-family:monospace;direction:ltr;text-align:left;line-height:1.7;overflow-x:auto;margin:12px 0;border:1px solid rgba(255,255,255,.08)}
+.highlight-box{background:var(--lgold);border:1px solid rgba(217,119,6,.3);border-radius:10px;padding:12px 16px;font-size:12px;color:var(--gold);margin:12px 0}
+[data-theme="dark"] .highlight-box{background:rgba(217,119,6,.1)}
+
+.role-badge{padding:3px 9px;border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.3px}
+.role-admin{background:rgba(124,58,237,.12);color:var(--purple)}
+.role-hr{background:rgba(37,99,235,.1);color:var(--blue)}
+.role-emp{background:rgba(5,150,105,.1);color:var(--green)}
+
+.realtime-dot{width:7px;height:7px;border-radius:50%;background:#22C55E;display:inline-block;margin-left:5px;animation:blink 2s infinite;box-shadow:0 0 6px #22C55E}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 6px #22C55E}50%{opacity:.3;box-shadow:none}}
+
+/* ═══════ AI ASSISTANT ═══════ */
+#ai-fab{
+  position:fixed;left:24px;bottom:28px;z-index:800;
+  width:54px;height:54px;border-radius:50%;border:none;cursor:pointer;
+  background:linear-gradient(135deg,#2563EB,#7C3AED);
+  color:#fff;font-size:22px;
+  box-shadow:0 6px 24px rgba(37,99,235,.45);
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .3s cubic-bezier(.4,0,.2,1),box-shadow .3s;
+}
+#ai-fab:hover{transform:scale(1.1) translateY(-2px);box-shadow:0 10px 32px rgba(37,99,235,.6)}
+#ai-fab .fab-dot{
+  position:absolute;top:6px;right:6px;width:8px;height:8px;
+  background:#22C55E;border-radius:50%;border:2px solid #fff;
+}
+#ai-panel{
+  position:fixed;left:24px;bottom:96px;z-index:800;
+  width:min(400px,calc(100vw - 48px));
+  height:min(560px,calc(100vh - 140px));
+  background:rgba(9,12,20,.92);
+  backdrop-filter:blur(32px);-webkit-backdrop-filter:blur(32px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;
+  box-shadow:0 24px 64px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.08);
+  display:flex;flex-direction:column;
+  transform:scale(.92) translateY(16px);opacity:0;pointer-events:none;
+  transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .3s;
+}
+#ai-panel.open{transform:scale(1) translateY(0);opacity:1;pointer-events:all}
+.ai-header{
+  padding:16px 18px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  display:flex;align-items:center;gap:10px;flex-shrink:0;
+}
+.ai-avatar{
+  width:34px;height:34px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,#2563EB,#7C3AED);
+  display:flex;align-items:center;justify-content:center;font-size:15px;
+  box-shadow:0 0 0 2px rgba(99,102,241,.4);
+}
+.ai-header-info{flex:1}
+.ai-header-name{font-size:13px;font-weight:700;color:#F1F5F9}
+.ai-header-status{font-size:11px;color:rgba(255,255,255,.4);display:flex;align-items:center;gap:4px}
+.ai-header-status::before{content:'';width:6px;height:6px;border-radius:50%;background:#22C55E;flex-shrink:0}
+.ai-close{background:none;border:none;color:rgba(255,255,255,.4);cursor:pointer;font-size:18px;padding:4px;line-height:1;transition:color .2s}
+.ai-close:hover{color:#F1F5F9}
+.ai-messages{
+  flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent;
+}
+.ai-messages::-webkit-scrollbar{width:4px}
+.ai-messages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:4px}
+.ai-msg{max-width:88%;animation:msgIn .2s ease}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.ai-msg.user{align-self:flex-end}
+.ai-msg.bot{align-self:flex-start}
+.ai-bubble{
+  padding:10px 14px;border-radius:14px;font-size:13px;line-height:1.6;
+  white-space:pre-wrap;word-break:break-word;
+}
+.ai-msg.user .ai-bubble{
+  background:linear-gradient(135deg,rgba(37,99,235,.7),rgba(124,58,237,.7));
+  color:#F1F5F9;border-bottom-left-radius:4px;
+  border:1px solid rgba(255,255,255,.1);
+}
+.ai-msg.bot .ai-bubble{
+  background:rgba(255,255,255,.07);
+  color:#E2E8F0;border-bottom-right-radius:4px;
+  border:1px solid rgba(255,255,255,.08);
+}
+.ai-typing{display:flex;gap:5px;padding:12px 16px;align-items:center}
+.ai-typing span{
+  width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.3);
+  animation:typing 1.2s infinite;
+}
+.ai-typing span:nth-child(2){animation-delay:.2s}
+.ai-typing span:nth-child(3){animation-delay:.4s}
+@keyframes typing{0%,60%,100%{transform:translateY(0);opacity:.4}30%{transform:translateY(-5px);opacity:1}}
+.ai-chips{
+  padding:0 16px 10px;display:flex;gap:6px;flex-wrap:wrap;flex-shrink:0;
+}
+.ai-chip{
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);
+  color:rgba(255,255,255,.7);border-radius:20px;padding:5px 12px;
+  font-size:11px;cursor:pointer;transition:background .2s,color .2s;font-family:inherit;
+}
+.ai-chip:hover{background:rgba(255,255,255,.12);color:#fff}
+.ai-input-row{
+  padding:12px 14px;border-top:1px solid rgba(255,255,255,.08);
+  display:flex;gap:8px;align-items:flex-end;flex-shrink:0;
+}
+.ai-input{
+  flex:1;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;padding:10px 14px;color:#F1F5F9;font-size:13px;
+  font-family:inherit;direction:rtl;resize:none;max-height:100px;
+  outline:none;transition:border .2s;line-height:1.5;
+}
+.ai-input::placeholder{color:rgba(255,255,255,.3)}
+.ai-input:focus{border-color:rgba(99,102,241,.6)}
+.ai-send{
+  width:38px;height:38px;border-radius:10px;border:none;cursor:pointer;flex-shrink:0;
+  background:linear-gradient(135deg,#2563EB,#7C3AED);color:#fff;font-size:16px;
+  display:flex;align-items:center;justify-content:center;transition:transform .2s,opacity .2s;
+}
+.ai-send:hover{transform:scale(1.08)}
+.ai-send:disabled{opacity:.4;cursor:not-allowed;transform:none}
+.ai-suggestions{
+  padding:8px 16px 0;display:flex;flex-direction:column;gap:5px;flex-shrink:0;
+}
+.ai-sug-title{font-size:10px;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:2px}
+
+</style>
+</head>
+<body>
+
+<!-- ════════════════ TOP BAR ════════════════ -->
+<div class="top-bar">
+  <div style="display:flex;align-items:center;gap:10px">
+    <button class="hamburger" id="hamburger" onclick="toggleSidebar()"><span></span><span></span><span></span></button>
+    <h1>🏢 <span class="title-text">نظام إدارة الموارد البشرية</span><span class="title-short">HR</span></h1>
+  </div>
+  <div class="right">
+    <button class="search-trigger" onclick="openGlobalSearch()" title="Ctrl+K">
+      <span>🔍</span><span class="search-text">بحث سريع...</span><kbd>K</kbd>
+    </button>
+    <span class="clock" id="clock"></span>
+    <button class="icon-btn" onclick="toggleDark()" title="الوضع الليلي" id="dark-btn">🌙</button>
+    <button class="icon-btn" onclick="showPage('alerts')" title="التنبيهات" style="position:relative">🔔<span class="notif-dot" id="notif-dot" style="display:none"></span></button>
+    <div id="user-info-bar" style="display:none;align-items:center;gap:8px;font-size:12px;color:rgba(255,255,255,.85)"><span class="realtime-dot"></span><span id="user-email-bar"></span><span id="user-role-bar" class="role-badge"></span><button class="icon-btn" onclick="signOutUser()" title="خروج" style="font-size:11px;padding:4px 8px;width:auto">خروج</button></div><span class="version-badge">v5.0 &bull; Firebase</span>
+  </div>
+</div>
+
+<div class="layout">
+
+<!-- ════════════════ SIDEBAR ════════════════ -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-body">
+    <div class="nav-section">الرئيسية</div>
+    <div class="nav-item active" onclick="showPage('dashboard')"><span class="nav-icon">📊</span>لوحة التحكم</div>
+
+    <div class="nav-section">الموظفون</div>
+    <div class="nav-item" onclick="showPage('employees')"><span class="nav-icon">👥</span>بيانات الموظفين</div>
+    <div class="nav-item" onclick="showPage('add-emp')"><span class="nav-icon">➕</span>إضافة موظف</div>
+
+    <div class="nav-section">العمليات اليومية</div>
+    <div class="nav-item" onclick="showPage('attendance')"><span class="nav-icon">📅</span>الحضور والانصراف</div>
+    <div class="nav-item" onclick="showPage('payroll')"><span class="nav-icon">💰</span>كشف الرواتب</div>
+    <div class="nav-item" onclick="showPage('tasks')"><span class="nav-icon">✅</span>المهام اليومية</div>
+    <div class="nav-item" onclick="showPage('requests')"><span class="nav-icon">📋</span>الاستئذانات والطلبات</div>
+
+    <div class="nav-section">الموارد البشرية</div>
+    <div class="nav-item" onclick="showPage('performance')"><span class="nav-icon">⭐</span>تقييم الأداء</div>
+    <div class="nav-item" onclick="showPage('promotions')"><span class="nav-icon">📈</span>الترقيات والعلاوات</div>
+    <div class="nav-item" onclick="showPage('insurance')"><span class="nav-icon">🏥</span>التأمين الصحي</div>
+    <div class="nav-item" onclick="showPage('terminations')"><span class="nav-icon">🔄</span>الاستقالات والإنهاءات</div>
+
+    <div class="nav-section">التحليلات</div>
+    <div class="nav-item" onclick="showPage('dept-compare')"><span class="nav-icon">🔬</span>مقارنة الأقسام</div>
+    <div class="nav-item" onclick="showPage('alerts')"><span class="nav-icon">⚠️</span>التنبيهات<span class="nav-badge" id="alert-count">0</span></div>
+    <div class="nav-item" onclick="showPage('reports')"><span class="nav-icon">📤</span>التقارير والتصدير</div>
+    <div class="nav-item" id="nav-users" onclick="showPage('users')"><span class="nav-icon">🔐</span>إدارة المستخدمين</div>
+  </div>
+  <div class="sidebar-user">
+    <div class="sidebar-user-avatar">HR</div>
+    <div>
+      <div class="sidebar-user-name">مدير الموارد البشرية</div>
+      <div class="sidebar-user-info" id="sidebar-clock-date"></div>
+    </div>
+  </div>
+</nav>
+<div class="sidebar-overlay" id="sidebar-overlay" onclick="toggleSidebar()"></div>
+
+<!-- ════════════════ MAIN ════════════════ -->
+<main class="main">
+
+<!-- ══════════ DASHBOARD ══════════ -->
+<div class="page active" id="page-dashboard">
+  <div class="page-title">
+    <div class="page-title-left"><h2>لوحة التحكم الرئيسية</h2><p>نظرة شاملة على الموارد البشرية — مارس 2025</p></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost btn-sm" onclick="exportAll()">📤 تصدير</button>
+      <button class="btn btn-primary btn-sm" onclick="showPage('add-emp')">➕ موظف جديد</button>
+    </div>
+  </div>
+  <div class="kpi-grid" id="dash-kpis"></div>
+  <div class="dash-charts-grid">
+    <div class="card"><div class="card-header"><h3>🏢 توزيع الموظفين بالأقسام</h3></div><div class="card-pad"><canvas id="ch-dept" height="200"></canvas></div></div>
+    <div class="card"><div class="card-header"><h3>⭐ مستويات الأداء</h3></div><div class="card-pad"><canvas id="ch-perf" height="200"></canvas></div></div>
+  </div>
+  <div class="dash-bottom-grid">
+    <div class="card"><div class="card-header"><h3>✅ حالة المهام</h3></div><div class="card-pad"><canvas id="ch-tasks" height="180"></canvas></div></div>
+    <div class="card"><div class="card-header"><h3>💰 متوسط الراتب بالقسم</h3></div><div class="card-pad"><canvas id="ch-sal" height="180"></canvas></div></div>
+  </div>
+  <div class="card"><div class="card-header"><h3>📩 الطلبات المعلقة</h3><span class="badge b-gold" id="dash-pending-cnt"></span></div><div id="dash-pending" class="card-pad" style="font-size:12px"></div></div>
+</div>
+
+<!-- ══════════ EMPLOYEES ══════════ -->
+<div class="page" id="page-employees">
+  <div class="page-title">
+    <div class="page-title-left"><h2>بيانات الموظفين</h2><p id="emp-count-lbl"></p></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost btn-sm" onclick="exportCSV('emp-tbl','employees')">📤 CSV</button>
+      <button class="btn btn-primary btn-sm" onclick="showPage('add-emp')">➕ إضافة موظف</button>
+    </div>
+  </div>
+  <div class="search-row">
+    <input type="text" id="emp-search" placeholder="🔍 ابحث بالاسم أو الكود أو المسمى..." oninput="renderEmployees()">
+    <select id="emp-dept-f" onchange="renderEmployees()"><option value="">كل الأقسام</option></select>
+    <select id="emp-contract-f" onchange="renderEmployees()"><option value="">كل العقود</option><option>دائم</option><option>مؤقت</option></select>
+    <select id="emp-gender-f" onchange="renderEmployees()"><option value="">كل الجنس</option><option>ذكر</option><option>أنثى</option></select>
+  </div>
+  <div class="card"><div class="table-wrap"><table id="emp-tbl">
+    <thead><tr>
+      <th onclick="sortEmp('code')">الكود ↕</th>
+      <th>الموظف</th>
+      <th onclick="sortEmp('dept')">القسم ↕</th>
+      <th>المسمى</th>
+      <th onclick="sortEmp('hire')">التعيين ↕</th>
+      <th>الخدمة</th>
+      <th onclick="sortEmp('basic')">الأساسي ↕</th>
+      <th>الإجمالي</th>
+      <th>العقد</th>
+      <th>الأداء</th>
+      <th>الإجراءات</th>
+    </tr></thead>
+    <tbody id="emp-tbody"></tbody>
+  </table></div>
+  <div class="stats-bar cols4">
+    <div class="stat-cell"><div class="stat-val" id="s-total">—</div><div class="stat-lbl">إجمالي الموظفين</div></div>
+    <div class="stat-cell"><div class="stat-val" id="s-avg">—</div><div class="stat-lbl">متوسط الراتب الأساسي</div></div>
+    <div class="stat-cell"><div class="stat-val" id="s-males">—</div><div class="stat-lbl">ذكور</div></div>
+    <div class="stat-cell"><div class="stat-val" id="s-females">—</div><div class="stat-lbl">إناث</div></div>
+  </div></div>
+</div>
+
+<!-- ══════════ ADD EMPLOYEE ══════════ -->
+<div class="page" id="page-add-emp">
+  <div class="page-title">
+    <div class="page-title-left"><h2 id="add-emp-title">إضافة موظف جديد</h2></div>
+    <button class="btn btn-ghost btn-sm" onclick="showPage('employees')">← رجوع</button>
+  </div>
+  <div class="card card-pad">
+    <div style="display:flex;align-items:center;gap:14px;padding:14px;background:var(--lblue);border-radius:var(--radius-sm);margin-bottom:18px">
+      <div id="form-avatar" style="width:50px;height:50px;border-radius:50%;background:var(--blue);display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;font-weight:700;flex-shrink:0">؟</div>
+      <div><div style="font-weight:600;font-size:14px;color:var(--navy)" id="form-name-preview">الاسم الكامل</div>
+      <div style="font-size:12px;color:var(--text2)" id="form-title-preview">المسمى الوظيفي • القسم</div></div>
+    </div>
+    <div class="form-grid" style="margin-bottom:16px">
+      <div class="fg"><label>الكود (تلقائي)</label><input id="f-code" readonly style="background:var(--lgray)"></div>
+      <div class="fg"><label>الاسم الكامل *</label><input id="f-name" placeholder="أدخل الاسم الثلاثي" oninput="updateFormPreview()"></div>
+      <div class="fg"><label>القسم *</label><select id="f-dept" onchange="updateFormPreview()"></select></div>
+      <div class="fg"><label>المسمى الوظيفي *</label><input id="f-title" oninput="updateFormPreview()"></div>
+      <div class="fg"><label>تاريخ التعيين</label><input id="f-hire" type="date"></div>
+      <div class="fg"><label>نوع العقد</label><select id="f-contract"><option>دائم</option><option>مؤقت</option><option>عقد</option><option>تدريب</option></select></div>
+    </div>
+    <div style="border-top:1px solid var(--border);padding-top:14px;margin-bottom:14px"><strong style="color:var(--navy);font-size:13px">💰 الراتب والبدلات</strong></div>
+    <div class="form-grid cols3" style="margin-bottom:14px">
+      <div class="fg"><label>الراتب الأساسي (ر.س)*</label><input id="f-basic" type="number" min="0" oninput="calcTotal()"></div>
+      <div class="fg"><label>بدل السكن</label><input id="f-housing" type="number" min="0" value="0" oninput="calcTotal()"></div>
+      <div class="fg"><label>بدل المواصلات</label><input id="f-transport" type="number" min="0" value="0" oninput="calcTotal()"></div>
+      <div class="fg"><label>بدل الاتصالات</label><input id="f-comm" type="number" min="0" value="0" oninput="calcTotal()"></div>
+      <div class="fg"><label>إجمالي الراتب</label><input id="f-total" readonly style="background:#F0FDF4;font-weight:700;color:var(--green)"></div>
+    </div>
+    <div style="border-top:1px solid var(--border);padding-top:14px;margin-bottom:14px"><strong style="color:var(--navy);font-size:13px">👤 المعلومات الشخصية</strong></div>
+    <div class="form-grid">
+      <div class="fg"><label>رقم الهوية</label><input id="f-nid"></div>
+      <div class="fg"><label>رقم الجوال</label><input id="f-phone"></div>
+      <div class="fg"><label>الجنس</label><select id="f-gender"><option>ذكر</option><option>أنثى</option></select></div>
+      <div class="fg"><label>الجنسية</label><input id="f-nat" value="سعودي"></div>
+      <div class="fg"><label>المؤهل</label><select id="f-edu"><option>بكالوريوس</option><option>ماجستير</option><option>دكتوراه</option><option>دبلوم</option><option>ثانوية</option></select></div>
+    </div>
+    <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:18px;padding-top:14px;border-top:1px solid var(--border)">
+      <button class="btn btn-ghost" onclick="clearEmpForm()">🗑️ مسح</button>
+      <button class="btn btn-primary" onclick="saveEmployee()">💾 حفظ الموظف</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ ATTENDANCE ══════════ -->
+<div class="page" id="page-attendance">
+  <div class="page-title">
+    <div class="page-title-left"><h2>الحضور والانصراف</h2><p>مارس 2025 — 26 يوم عمل</p></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost btn-sm" onclick="exportCSV('att-tbl','attendance')">📤 CSV</button>
+    </div>
+  </div>
+  <div class="card"><div class="table-wrap"><table id="att-tbl">
+    <thead><tr><th>الكود</th><th>الموظف</th><th>حضور</th><th>غياب</th><th>ساعات فعلية</th><th>إضافي</th><th>تأخير(دق)</th><th>نسبة الحضور</th><th>التقييم</th><th>الخصم</th><th>تعديل</th></tr></thead>
+    <tbody id="att-tbody"></tbody>
+  </table></div>
+  <div class="stats-bar cols4">
+    <div class="stat-cell"><div class="stat-val" id="att-avg">—</div><div class="stat-lbl">متوسط الحضور</div></div>
+    <div class="stat-cell"><div class="stat-val" id="att-abs">—</div><div class="stat-lbl">إجمالي أيام الغياب</div></div>
+    <div class="stat-cell"><div class="stat-val" id="att-ot">—</div><div class="stat-lbl">إجمالي الإضافي (ساعة)</div></div>
+    <div class="stat-cell"><div class="stat-val" id="att-ded">—</div><div class="stat-lbl">إجمالي الخصومات</div></div>
+  </div></div>
+</div>
+
+<!-- ══════════ PAYROLL ══════════ -->
+<div class="page" id="page-payroll">
+  <div class="page-title">
+    <div class="page-title-left"><h2>كشف الرواتب</h2><p>مارس 2025</p></div>
+    <div class="btn-row">
+      <button class="btn btn-gold btn-sm" onclick="renderPayroll();showToast('✅ تم إعادة الحساب')">🔄 إعادة حساب</button>
+      <button class="btn btn-ghost btn-sm" onclick="exportCSV('pay-tbl','payroll')">📤 CSV</button>
+    </div>
+  </div>
+  <div class="card"><div class="table-wrap"><table id="pay-tbl">
+    <thead><tr><th>الكود</th><th>الموظف</th><th>الإجمالي</th><th>خصم غياب</th><th>خصم تأخير</th><th>خصم تأمين</th><th>إضافي</th><th>إجمالي الخصم</th><th>صافي الراتب</th><th>الحالة</th><th>الإجراء</th></tr></thead>
+    <tbody id="pay-tbody"></tbody>
+  </table></div>
+  <div class="stats-bar cols4">
+    <div class="stat-cell"><div class="stat-val" id="pay-gross">—</div><div class="stat-lbl">إجمالي المستحقات</div></div>
+    <div class="stat-cell"><div class="stat-val" id="pay-ded">—</div><div class="stat-lbl">إجمالي الخصومات</div></div>
+    <div class="stat-cell"><div class="stat-val" id="pay-ot">—</div><div class="stat-lbl">إجمالي الإضافي</div></div>
+    <div class="stat-cell"><div class="stat-val" id="pay-net">—</div><div class="stat-lbl">صافي الرواتب الكلي</div></div>
+  </div></div>
+</div>
+
+<!-- ══════════ TASKS ══════════ -->
+<div class="page" id="page-tasks">
+  <div class="page-title">
+    <div class="page-title-left"><h2>إدارة المهام اليومية</h2><p>تتبع وتوزيع مهام الموظفين</p></div>
+    <button class="btn btn-primary btn-sm" onclick="openModal('task-modal')">➕ مهمة جديدة</button>
+  </div>
+  <div class="kpi-grid" id="task-kpis"></div>
+  <div class="search-row">
+    <input type="text" id="task-search" placeholder="🔍 ابحث في المهام..." oninput="renderTasks()">
+    <select id="task-priority-f" onchange="renderTasks()"><option value="">كل الأولويات</option><option>عالية</option><option>متوسطة</option><option>منخفضة</option></select>
+    <select id="task-cat-f" onchange="renderTasks()"><option value="">كل الفئات</option><option>إدارية</option><option>مالية</option><option>تقنية</option><option>تسويقية</option></select>
+  </div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="setTaskFilter('all',this)">الكل</button>
+    <button class="tab-btn" onclick="setTaskFilter('pending',this)">🔵 قيد التنفيذ</button>
+    <button class="tab-btn" onclick="setTaskFilter('done',this)">✅ مكتملة</button>
+    <button class="tab-btn" onclick="setTaskFilter('overdue',this)">🔴 متأخرة</button>
+    <button class="tab-btn" onclick="setTaskFilter('waiting',this)">⏸️ معلقة</button>
+  </div>
+  <div class="card"><div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>المهمة</th><th>المسؤول</th><th>القسم</th><th>الأولوية</th><th>الموعد</th><th>الحالة</th><th>التقدم</th><th>الإجراء</th></tr></thead>
+    <tbody id="tasks-tbody"></tbody>
+  </table></div></div>
+</div>
+
+<!-- ══════════ REQUESTS ══════════ -->
+<div class="page" id="page-requests">
+  <div class="page-title">
+    <div class="page-title-left"><h2>الاستئذانات والطلبات</h2><p>إدارة جميع طلبات الموظفين</p></div>
+    <button class="btn btn-primary btn-sm" onclick="openModal('req-modal')">➕ طلب جديد</button>
+  </div>
+  <div class="kpi-grid" id="req-kpis"></div>
+  <div class="search-row">
+    <input type="text" id="req-search" placeholder="🔍 ابحث باسم الموظف..." oninput="renderRequests()">
+    <select id="req-type-f" onchange="renderRequests()">
+      <option value="">كل الأنواع</option><option>إجازة سنوية</option><option>إجازة مرضية</option><option>استئذان</option><option>عمل من المنزل</option><option>بدل نقدي</option><option>طلب أخرى</option>
+    </select>
+    <select id="req-status-f" onchange="renderRequests()">
+      <option value="">كل الحالات</option><option>معلق</option><option>موافق</option><option>مرفوض</option>
+    </select>
+  </div>
+  <div class="card"><div class="table-wrap"><table>
+    <thead><tr><th>#</th><th>الموظف</th><th>نوع الطلب</th><th>التاريخ</th><th>التفاصيل</th><th>الحالة</th><th>المراجع</th><th>الإجراء</th></tr></thead>
+    <tbody id="req-tbody"></tbody>
+  </table></div>
+  <div class="stats-bar cols4">
+    <div class="stat-cell"><div class="stat-val" id="req-total">—</div><div class="stat-lbl">إجمالي الطلبات</div></div>
+    <div class="stat-cell"><div class="stat-val" id="req-pending">—</div><div class="stat-lbl">معلقة</div></div>
+    <div class="stat-cell"><div class="stat-val" id="req-approved">—</div><div class="stat-lbl">موافق عليها</div></div>
+    <div class="stat-cell"><div class="stat-val" id="req-rejected">—</div><div class="stat-lbl">مرفوضة</div></div>
+  </div></div>
+</div>
+
+<!-- ══════════ PERFORMANCE ══════════ -->
+<div class="page" id="page-performance">
+  <div class="page-title">
+    <div class="page-title-left"><h2>تقييم الأداء</h2><p>الربع الأول 2025</p></div>
+    <div class="btn-row">
+      <button class="btn btn-ghost btn-sm" onclick="exportCSV('perf-tbl','performance')">📤 CSV</button>
+    </div>
+  </div>
+  <div class="kpi-grid" id="perf-kpis"></div>
+  <div class="card"><div class="table-wrap"><table id="perf-tbl">
+    <thead><tr><th>الموظف</th><th>القسم</th><th>جودة/25</th><th>إنتاجية/25</th><th>التزام/20</th><th>جماعي/15</th><th>مبادرة/15</th><th>الدرجة</th><th>النسبة</th><th>التقدير</th><th>التوصية</th><th>تفاصيل</th></tr></thead>
+    <tbody id="perf-tbody"></tbody>
+  </table></div></div>
+</div>
+
+<!-- ══════════ PROMOTIONS ══════════ -->
+<div class="page" id="page-promotions">
+  <div class="page-title">
+    <div class="page-title-left"><h2>مسار الترقيات والعلاوات</h2><p>تاريخ ومستقبل الترقيات الوظيفية</p></div>
+    <button class="btn btn-primary btn-sm" onclick="openModal('promo-modal')">➕ إضافة ترقية</button>
+  </div>
+  <div class="kpi-grid" id="promo-kpis"></div>
+  <div class="card">
+    <div class="card-header"><h3>📋 سجل الترقيات والعلاوات</h3></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>الموظف</th><th>القسم</th><th>نوع القرار</th><th>المسمى السابق</th><th>المسمى الجديد</th><th>الراتب السابق</th><th>الراتب الجديد</th><th>نسبة الزيادة</th><th>التاريخ</th><th>السبب</th><th>الحالة</th></tr></thead>
+      <tbody id="promo-tbody"></tbody>
+    </table></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>🌟 مرشحون للترقية القادمة</h3><span class="badge b-gold">مرتبون حسب الأداء</span></div>
+    <div id="promo-candidates" class="card-pad"></div>
+  </div>
+</div>
+
+<!-- ══════════ INSURANCE ══════════ -->
+<div class="page" id="page-insurance">
+  <div class="page-title">
+    <div class="page-title-left"><h2>إدارة التأمين الصحي</h2><p>وثائق وتغطية الموظفين</p></div>
+    <button class="btn btn-teal btn-sm" onclick="openModal('ins-modal')">➕ تسجيل مطالبة</button>
+  </div>
+  <div class="kpi-grid" id="ins-kpis"></div>
+  <div class="tab-bar">
+    <button class="tab-btn active" onclick="switchTab('ins','policies',this)">🛡️ الوثائق والتغطية</button>
+    <button class="tab-btn" onclick="switchTab('ins','claims',this)">🏥 المطالبات</button>
+  </div>
+  <div class="tab-pane active" id="ins-policies">
+    <div class="card"><div class="table-wrap"><table>
+      <thead><tr><th>الموظف</th><th>القسم</th><th>الفئة</th><th>شركة التأمين</th><th>رقم الوثيقة</th><th>البدء</th><th>الانتهاء</th><th>التغطية</th><th>المستخدم</th><th>المتبقي</th><th>الحالة</th></tr></thead>
+      <tbody id="ins-tbl-body"></tbody>
+    </table></div></div>
+  </div>
+  <div class="tab-pane" id="ins-claims">
+    <div class="card"><div class="table-wrap"><table>
+      <thead><tr><th>الموظف</th><th>التاريخ</th><th>نوع العلاج</th><th>المستشفى</th><th>المبلغ الكلي</th><th>تغطية التأمين</th><th>مدفوع من الموظف</th><th>الحالة</th></tr></thead>
+      <tbody id="claims-tbl-body"></tbody>
+    </table></div></div>
+  </div>
+</div>
+
+<!-- ══════════ TERMINATIONS ══════════ -->
+<div class="page" id="page-terminations">
+  <div class="page-title">
+    <div class="page-title-left"><h2>الاستقالات والإنهاءات</h2><p>إدارة مغادرة الموظفين</p></div>
+    <button class="btn btn-outline-red btn-sm" onclick="openModal('term-modal')">➕ تسجيل مغادرة</button>
+  </div>
+  <div class="kpi-grid" id="term-kpis"></div>
+  <div class="card">
+    <div class="card-header"><h3>📋 سجل المغادرات</h3></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>الموظف</th><th>القسم</th><th>المسمى</th><th>سنوات الخدمة</th><th>نوع المغادرة</th><th>تاريخ الإشعار</th><th>آخر يوم</th><th>مكافأة النهاية</th><th>السبب</th><th>الحالة</th></tr></thead>
+      <tbody id="term-tbody"></tbody>
+    </table></div>
+  </div>
+  <div class="card card-pad">
+    <h3 style="color:var(--navy);margin-bottom:14px;font-size:14px">🧮 حاسبة مكافأة نهاية الخدمة</h3>
+    <div class="form-grid">
+      <div class="fg"><label>اختر الموظف</label><select id="term-calc-emp"></select></div>
+      <div class="fg"><label>الراتب الأساسي (ر.س)</label><input id="term-basic" type="number" readonly style="background:var(--lgray)"></div>
+      <div class="fg"><label>تاريخ بداية الخدمة</label><input id="term-start" type="date" readonly style="background:var(--lgray)"></div>
+      <div class="fg"><label>تاريخ نهاية الخدمة</label><input id="term-end" type="date" value="2025-03-31" oninput="calcGratuity()"></div>
+    </div>
+    <div id="gratuity-result" style="margin-top:14px;padding:16px;background:var(--lgray);border-radius:var(--radius-sm);display:none"></div>
+    <div style="margin-top:12px"><button class="btn btn-gold" onclick="calcGratuity()">🧮 احسب المكافأة</button></div>
+  </div>
+</div>
+
+<!-- ══════════ DEPT COMPARE ══════════ -->
+<div class="page" id="page-dept-compare">
+  <div class="page-title">
+    <div class="page-title-left"><h2>مقارنة الأقسام</h2><p>تحليل مقارن شامل بين جميع الأقسام</p></div>
+  </div>
+  <div class="dept-compare-grid">
+    <div class="card"><div class="card-header"><h3>💰 متوسط الراتب الأساسي</h3></div><div class="card-pad"><canvas id="ch-dept-salary" height="220"></canvas></div></div>
+    <div class="card"><div class="card-header"><h3>⭐ متوسط تقييم الأداء</h3></div><div class="card-pad"><canvas id="ch-dept-perf" height="220"></canvas></div></div>
+    <div class="card"><div class="card-header"><h3>📅 نسبة الحضور</h3></div><div class="card-pad"><canvas id="ch-dept-att" height="220"></canvas></div></div>
+    <div class="card"><div class="card-header"><h3>👥 عدد الموظفين</h3></div><div class="card-pad"><canvas id="ch-dept-count" height="220"></canvas></div></div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>📊 جدول المقارنة التفصيلي</h3></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>القسم</th><th>عدد الموظفين</th><th>متوسط الراتب</th><th>إجمالي رواتب القسم</th><th>متوسط الأداء</th><th>متوسط الحضور</th><th>الترتيب</th></tr></thead>
+      <tbody id="compare-tbody"></tbody>
+    </table></div>
+  </div>
+</div>
+
+<!-- ══════════ ALERTS ══════════ -->
+<div class="page" id="page-alerts">
+  <div class="page-title"><div class="page-title-left"><h2>⚠️ التنبيهات والإشعارات</h2><p>تنبيهات تحتاج مراجعة فورية</p></div></div>
+  <div id="alerts-wrap"></div>
+</div>
+
+<!-- ══════════ REPORTS ══════════ -->
+<div class="page" id="page-reports">
+  <div class="page-title"><div class="page-title-left"><h2>📤 التقارير والتصدير</h2><p>تصدير وتحميل جميع تقارير النظام</p></div></div>
+  <div class="reports-grid" id="reports-grid"></div>
+</div>
+
+
+<!-- ══════════ USERS ══════════ -->
+<div class="page" id="page-users">
+  <div class="page-title">
+    <div class="page-title-left"><h2>🔐 إدارة المستخدمين والصلاحيات</h2><p>إنشاء حسابات وتحديد الأدوار</p></div>
+    <button class="btn btn-primary btn-sm" onclick="openModal('new-user-modal')">➕ مستخدم جديد</button>
+  </div>
+  <div class="kpi-grid" id="users-kpis"></div>
+  <div class="card card-pad" style="margin-bottom:18px">
+    <div style="font-weight:600;color:var(--navy);margin-bottom:14px;font-size:14px">📋 الأدوار والصلاحيات</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">
+      <div style="border:1px solid var(--border);border-radius:10px;padding:16px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="badge role-admin">مدير النظام</span></div>
+        <div style="font-size:12px;color:var(--text2)">وصول كامل لكل البيانات والإعدادات والتقارير</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:10px;padding:16px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="badge role-hr">مدير HR</span></div>
+        <div style="font-size:12px;color:var(--text2)">إدارة الموظفين، الحضور، الرواتب، والتقييم</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:10px;padding:16px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px"><span class="badge role-emp">موظف</span></div>
+        <div style="font-size:12px;color:var(--text2)">عرض بياناته الشخصية وتقديم الطلبات فقط</div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header"><h3>المستخدمون المسجّلون</h3><span class="badge b-blue" id="users-count">0</span></div>
+    <div class="table-wrap"><table>
+      <thead><tr><th>البريد الإلكتروني</th><th>الدور</th><th>الموظف المرتبط</th><th>تاريخ الإنشاء</th><th>الإجراء</th></tr></thead>
+      <tbody id="users-tbody"></tbody>
+    </table></div>
+  </div>
+  <div id="fb-not-connected" style="display:none" class="card card-pad">
+    <div style="text-align:center;padding:20px;color:var(--text2)">
+      <div style="font-size:40px;margin-bottom:12px">🔥</div>
+      <div style="font-weight:600;margin-bottom:8px">Firebase غير مُهيّأ</div>
+      <div style="font-size:13px;margin-bottom:14px">لإدارة المستخدمين تحتاج إلى ربط Firebase</div>
+      <button class="btn btn-primary" onclick="document.getElementById('setup-overlay').style.display='flex'">⚙️ إعداد Firebase</button>
+    </div>
+  </div>
+</div>
+
+</main>
+</div>
+
+<!-- ════════════════ MODALS ════════════════ -->
+
+<!-- Employee Detail -->
+<div class="modal-overlay" id="emp-detail-modal">
+  <div class="modal">
+    <div class="modal-hdr"><h2 id="detail-name">بيانات الموظف</h2><button class="modal-close" onclick="closeModal('emp-detail-modal')">×</button></div>
+    <div id="detail-body" style="padding:20px"></div>
+    <div class="modal-ftr"><button class="btn btn-ghost" onclick="closeModal('emp-detail-modal')">إغلاق</button><button class="btn btn-primary" id="detail-edit-btn">✏️ تعديل</button></div>
+  </div>
+</div>
+
+<!-- Task Modal -->
+<div class="modal-overlay" id="task-modal">
+  <div class="modal">
+    <div class="modal-hdr"><h2>➕ مهمة جديدة</h2><button class="modal-close" onclick="closeModal('task-modal')">×</button></div>
+    <div style="padding:20px">
+      <div class="form-grid">
+        <div class="fg full"><label>عنوان المهمة *</label><input id="t-title" placeholder="وصف المهمة"></div>
+        <div class="fg"><label>تعيين إلى</label><select id="t-assign"></select></div>
+        <div class="fg"><label>الأولوية</label><select id="t-priority"><option>عالية</option><option>متوسطة</option><option>منخفضة</option></select></div>
+        <div class="fg"><label>الموعد النهائي</label><input id="t-due" type="date"></div>
+        <div class="fg"><label>الفئة</label><select id="t-cat"><option>إدارية</option><option>مالية</option><option>تقنية</option><option>تسويقية</option><option>أخرى</option></select></div>
+        <div class="fg full"><label>الوصف</label><textarea id="t-desc"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-ftr"><button class="btn btn-ghost" onclick="closeModal('task-modal')">إلغاء</button><button class="btn btn-primary" onclick="addTask()">➕ إضافة المهمة</button></div>
+  </div>
+</div>
+
+<!-- Request Modal -->
+<div class="modal-overlay" id="req-modal">
+  <div class="modal">
+    <div class="modal-hdr"><h2>📋 طلب جديد</h2><button class="modal-close" onclick="closeModal('req-modal')">×</button></div>
+    <div style="padding:20px">
+      <div class="form-grid">
+        <div class="fg"><label>الموظف *</label><select id="r-emp"></select></div>
+        <div class="fg"><label>نوع الطلب *</label><select id="r-type"><option>إجازة سنوية</option><option>إجازة مرضية</option><option>استئذان</option><option>عمل من المنزل</option><option>بدل نقدي</option><option>طلب أخرى</option></select></div>
+        <div class="fg"><label>من تاريخ</label><input id="r-from" type="date"></div>
+        <div class="fg"><label>إلى تاريخ</label><input id="r-to" type="date"></div>
+        <div class="fg full"><label>التفاصيل</label><textarea id="r-detail" rows="2"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-ftr"><button class="btn btn-ghost" onclick="closeModal('req-modal')">إلغاء</button><button class="btn btn-primary" onclick="addRequest()">تقديم الطلب</button></div>
+  </div>
+</div>
+
+<!-- Promotion Modal -->
+<div class="modal-overlay" id="promo-modal">
+  <div class="modal">
+    <div class="modal-hdr"><h2>📈 إضافة ترقية أو علاوة</h2><button class="modal-close" onclick="closeModal('promo-modal')">×</button></div>
+    <div style="padding:20px">
+      <div class="form-grid">
+        <div class="fg"><label>الموظف *</label><select id="p-emp" onchange="fillPromoData()"></select></div>
+        <div class="fg"><label>نوع القرار</label><select id="p-type"><option>ترقية</option><option>علاوة سنوية</option><option>علاوة استثنائية</option><option>تغيير مسمى</option></select></div>
+        <div class="fg"><label>المسمى الجديد</label><input id="p-new-title"></div>
+        <div class="fg"><label>الراتب الجديد (ر.س)</label><input id="p-new-salary" type="number" oninput="calcPromoIncrease()"></div>
+        <div class="fg"><label>تاريخ التطبيق</label><input id="p-date" type="date"></div>
+        <div class="fg"><label>نسبة الزيادة</label><input id="p-increase" readonly style="background:var(--lgreen);font-weight:700;color:var(--green)"></div>
+        <div class="fg full"><label>سبب القرار</label><textarea id="p-reason" rows="2"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-ftr"><button class="btn btn-ghost" onclick="closeModal('promo-modal')">إلغاء</button><button class="btn btn-success" onclick="addPromotion()">✅ تأكيد القرار</button></div>
+  </div>
+</div>
+
+<!-- Insurance Claim Modal -->
+<div class="modal-overlay" id="ins-modal">
+  <div class="modal">
+    <div class="modal-hdr"><h2>🏥 تسجيل مطالبة تأمين</h2><button class="modal-close" onclick="closeModal('ins-modal')">×</button></div>
+    <div style="padding:20px">
+      <div class="form-grid">
+        <div class="fg"><label>الموظف *</label><select id="ic-emp"></select></div>
+        <div class="fg"><label>تاريخ العلاج</label><input id="ic-date" type="date"></div>
+        <div class="fg"><label>نوع العلاج</label><select id="ic-type"><option>عيادة عامة</option><option>طوارئ</option><option>عملية جراحية</option><option>أسنان</option><option>نظارات</option><option>مختبر</option><option>أشعة</option></select></div>
+        <div class="fg"><label>المستشفى / العيادة</label><input id="ic-hospital"></div>
+        <div class="fg"><label>المبلغ الكلي (ر.س)</label><input id="ic-total" type="number" oninput="calcCoverage()"></div>
+        <div class="fg"><label>تغطية التأمين (90%)</label><input id="ic-covered" readonly style="background:var(--lgreen);color:var(--green);font-weight:700"></div>
+      </div>
+    </div>
+    <div class="modal-ftr"><button class="btn btn-ghost" onclick="closeModal('ins-modal')">إلغاء</button><button class="btn btn-teal" onclick="addClaim()">تسجيل المطالبة</button></div>
+  </div>
+</div>
+
+<!-- Termination Modal -->
+<div class="modal-overlay" id="term-modal">
+  <div class="modal">
+    <div class="modal-hdr"><h2>🔄 تسجيل مغادرة موظف</h2><button class="modal-close" onclick="closeModal('term-modal')">×</button></div>
+    <div style="padding:20px">
+      <div class="form-grid">
+        <div class="fg"><label>الموظف *</label><select id="tm-emp"></select></div>
+        <div class="fg"><label>نوع المغادرة</label><select id="tm-type"><option>استقالة طوعية</option><option>إنهاء خدمة</option><option>إحالة للتقاعد</option><option>انتهاء عقد</option><option>وفاة</option></select></div>
+        <div class="fg"><label>تاريخ الإشعار</label><input id="tm-notice" type="date"></div>
+        <div class="fg"><label>آخر يوم عمل</label><input id="tm-last" type="date"></div>
+        <div class="fg full"><label>السبب</label><textarea id="tm-reason" rows="2"></textarea></div>
+      </div>
+    </div>
+    <div class="modal-ftr"><button class="btn btn-ghost" onclick="closeModal('term-modal')">إلغاء</button><button class="btn btn-danger" onclick="addTermination()">تأكيد المغادرة</button></div>
+  </div>
+</div>
+
+<!-- Attendance Edit Modal -->
+<div class="modal-overlay" id="att-edit-modal">
+  <div class="modal" style="max-width:440px">
+    <div class="modal-hdr"><h2>✏️ تعديل سجل الحضور</h2><button class="modal-close" onclick="closeModal('att-edit-modal')">×</button></div>
+    <div style="padding:20px">
+      <div id="att-edit-name" style="font-weight:700;font-size:14px;color:var(--navy);margin-bottom:14px"></div>
+      <div class="att-edit-grid form-grid">
+        <div class="fg"><label>أيام الحضور</label><input id="ae-present" type="number" min="0" max="26"></div>
+        <div class="fg"><label>أيام الغياب</label><input id="ae-absent" type="number" min="0" max="26"></div>
+        <div class="fg"><label>الساعات الفعلية</label><input id="ae-hrs" type="number" min="0"></div>
+        <div class="fg"><label>الساعات الإضافية</label><input id="ae-ot" type="number" min="0"></div>
+        <div class="fg full"><label>التأخير (دقائق)</label><input id="ae-delay" type="number" min="0"></div>
+      </div>
+    </div>
+    <div class="modal-ftr"><button class="btn btn-ghost" onclick="closeModal('att-edit-modal')">إلغاء</button><button class="btn btn-primary" onclick="saveAttEdit()">💾 حفظ</button></div>
+  </div>
+</div>
+
+<!-- Performance Detail Modal -->
+<div class="modal-overlay" id="perf-detail-modal">
+  <div class="modal">
+    <div class="modal-hdr"><h2 id="perf-detail-name">تفاصيل الأداء</h2><button class="modal-close" onclick="closeModal('perf-detail-modal')">×</button></div>
+    <div style="padding:20px" id="perf-detail-body"></div>
+    <div class="modal-ftr"><button class="btn btn-ghost" onclick="closeModal('perf-detail-modal')">إغلاق</button><button class="btn btn-primary" id="perf-save-btn">💾 حفظ التقييم</button></div>
+  </div>
+</div>
+
+
+<!-- New User Modal -->
+<div class="modal-overlay" id="new-user-modal">
+  <div class="modal" style="max-width:460px">
+    <div class="modal-hdr"><h2>➕ إنشاء مستخدم جديد</h2><button class="modal-close" onclick="closeModal('new-user-modal')">×</button></div>
+    <div style="padding:20px">
+      <div class="form-grid">
+        <div class="fg full"><label>البريد الإلكتروني *</label><input id="nu-email" type="email" placeholder="employee@company.com" style="direction:ltr;text-align:left"></div>
+        <div class="fg"><label>كلمة المرور *</label><input id="nu-pass" type="password" placeholder="6 أحرف على الأقل"></div>
+        <div class="fg"><label>الدور</label>
+          <select id="nu-role">
+            <option value="admin">مدير النظام</option>
+            <option value="hr">مدير HR</option>
+            <option value="employee" selected>موظف</option>
+          </select>
+        </div>
+        <div class="fg full"><label>ربط بموظف (اختياري)</label>
+          <select id="nu-emp">
+            <option value="">— بدون ربط —</option>
+          </select>
+        </div>
+      </div>
+      <div class="highlight-box" style="margin-top:12px">⚠️ تأكد من إعداد Firebase قبل إنشاء حسابات حقيقية. كلمة المرور لن تُعرض مجدداً.</div>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-ghost" onclick="closeModal('new-user-modal')">إلغاء</button>
+      <button class="btn btn-primary" onclick="submitNewUser()">إنشاء الحساب</button>
+    </div>
+  </div>
+</div>
+
+<!-- Salary Slip Modal -->
+<div class="modal-overlay slip-modal" id="slip-modal">
+  <div class="modal">
+    <div class="modal-hdr"><h2>🧾 قسيمة الراتب</h2><button class="modal-close" onclick="closeModal('slip-modal')">×</button></div>
+    <div style="padding:20px" id="slip-body"></div>
+    <div class="modal-ftr">
+      <button class="btn btn-ghost" onclick="closeModal('slip-modal')">إغلاق</button>
+      <button class="btn btn-primary" onclick="printSlip()">🖨️ طباعة</button>
+    </div>
+  </div>
+</div>
+
+<!-- Global Search -->
+<div class="gsearch-overlay" id="gsearch-overlay" onclick="closeGlobalSearch(event)">
+  <div class="gsearch-box" onclick="event.stopPropagation()">
+    <div class="gsearch-input-wrap">
+      <span style="font-size:18px">🔍</span>
+      <input type="text" id="gsearch-input" placeholder="ابحث في الموظفين، المهام، الطلبات..." oninput="runGlobalSearch()" autocomplete="off">
+      <button class="btn btn-ghost btn-xs" onclick="closeGlobalSearch()">ESC</button>
+    </div>
+    <div class="gsearch-results" id="gsearch-results">
+      <div class="gsearch-empty">اكتب للبحث في جميع بيانات النظام</div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ════════════════ SETUP WIZARD ════════════════ -->
+<div class="setup-overlay" id="setup-overlay" style="display:none">
+  <div class="setup-card">
+    <div class="setup-header">
+      <h2>🔥 إعداد Firebase — 4 خطوات بسيطة</h2>
+      <p>اتبع الخطوات وسيعمل نظامك مع قاعدة بيانات حقيقية مشتركة</p>
+    </div>
+    <div class="setup-step">
+      <!-- Step 1 -->
+      <div style="margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+          <span style="background:var(--blue);color:#fff;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">1</span>
+          <strong style="color:var(--navy);font-size:14px">أنشئ مشروع Firebase</strong>
+        </div>
+        <p style="font-size:13px;color:var(--text2);margin-bottom:10px">افتح <a href="https://console.firebase.google.com" target="_blank" style="color:var(--blue)">console.firebase.google.com</a> ← أنشئ مشروعاً جديداً ← اختر اسماً مثل <code style="background:var(--lgray);padding:2px 6px;border-radius:4px">hr-system</code></p>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+          <span style="background:var(--blue);color:#fff;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">2</span>
+          <strong style="color:var(--navy);font-size:14px">فعّل Firestore و Authentication</strong>
+        </div>
+        <p style="font-size:13px;color:var(--text2)">من القائمة الجانبية: <b>Firestore Database</b> ← أنشئ قاعدة بيانات ← اختر <b>Test mode</b> مؤقتاً</p>
+        <p style="font-size:13px;color:var(--text2);margin-top:6px"><b>Authentication</b> ← Get started ← فعّل <b>Email/Password</b></p>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+          <span style="background:var(--blue);color:#fff;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">3</span>
+          <strong style="color:var(--navy);font-size:14px">احصل على بيانات الإعداد</strong>
+        </div>
+        <p style="font-size:13px;color:var(--text2)">Project Settings ← General ← Your apps ← Web app ← Register app ← انسخ الـ firebaseConfig</p>
+      </div>
+      <div style="margin-bottom:20px">
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+          <span style="background:var(--blue);color:#fff;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-weight:700;font-size:12px;flex-shrink:0">4</span>
+          <strong style="color:var(--navy);font-size:14px">الصق بيانات Firebase هنا</strong>
+        </div>
+        <div class="form-grid" style="gap:10px">
+          <div class="fg"><label>API Key *</label><input class="config-input" id="cfg-apiKey" placeholder="AIzaSy..."></div>
+          <div class="fg"><label>Auth Domain *</label><input class="config-input" id="cfg-authDomain" placeholder="project-id.firebaseapp.com"></div>
+          <div class="fg"><label>Project ID *</label><input class="config-input" id="cfg-projectId" placeholder="my-hr-system"></div>
+          <div class="fg"><label>Storage Bucket</label><input class="config-input" id="cfg-storageBucket" placeholder="project-id.appspot.com"></div>
+          <div class="fg"><label>Messaging Sender ID</label><input class="config-input" id="cfg-messagingSenderId" placeholder="123456789"></div>
+          <div class="fg"><label>App ID *</label><input class="config-input" id="cfg-appId" placeholder="1:123:web:abc..."></div>
+        </div>
+        <div class="highlight-box">⚠️ ستُحفظ هذه البيانات في المتصفح (localStorage) — لا تشاركها مع أحد</div>
+        <div id="setup-error" style="background:var(--lred);color:var(--red);padding:10px;border-radius:8px;font-size:12px;display:none;margin-bottom:10px"></div>
+        <div style="display:flex;gap:10px;justify-content:flex-end;margin-top:16px">
+          <button class="btn btn-ghost" onclick="loadSavedConfig()">استرجاع محفوظ</button>
+          <button class="btn btn-primary" onclick="saveAndInitFirebase()">🔥 اتصل بـ Firebase</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ AUTH SCREEN ════════════════ -->
+<div class="auth-screen" id="auth-screen">
+  <div style="text-align:center;margin-bottom:32px">
+    <div style="font-size:48px">🏢</div>
+    <h1 style="color:#fff;font-size:26px;font-weight:700;margin-top:10px">نظام إدارة الموارد البشرية</h1>
+    <p style="color:rgba(255,255,255,.7);font-size:14px;margin-top:6px">مدعوم بـ Firebase • v5.0</p>
+  </div>
+  <div class="auth-card">
+    <div id="auth-error" class="auth-error"></div>
+    <div class="auth-field">
+      <label>البريد الإلكتروني</label>
+      <input type="email" id="auth-email" placeholder="admin@company.com" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <div class="auth-field">
+      <label>كلمة المرور</label>
+      <input type="password" id="auth-password" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="auth-btn" id="auth-btn" onclick="doLogin()">🔑 تسجيل الدخول</button>
+    <div style="text-align:center;margin-top:16px">
+      <button onclick="document.getElementById('setup-overlay').style.display='flex'" style="background:none;border:none;color:var(--blue);font-size:12px;cursor:pointer;text-decoration:underline">⚙️ إعداد Firebase لأول مرة</button>
+    </div>
+    </div>
+</div>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script>
+// ═══════════════════════════════════
+// MASTER DATA
+// ═══════════════════════════════════
+let EMP = [
+  {code:"EMP001",name:"أحمد محمد السعيد",    dept:"الإدارة العليا",     title:"مدير عام",              hire:"2016/03/01",basic:30000,housing:6000,transport:2000,comm:800, phone:"0501234567",nid:"1011234567",gender:"ذكر", nat:"سعودي",  edu:"ماجستير",  contract:"دائم"},
+  {code:"EMP002",name:"فاطمة علي الزهراني",  dept:"الموارد البشرية",    title:"مدير موارد بشرية",      hire:"2018/07/15",basic:20000,housing:5000,transport:1500,comm:600, phone:"0512345678",nid:"1022345678",gender:"أنثى",nat:"سعودية", edu:"بكالوريوس",contract:"دائم"},
+  {code:"EMP003",name:"محمد خالد العمري",    dept:"المالية والمحاسبة",  title:"المدير المالي",          hire:"2017/01/10",basic:22000,housing:5000,transport:1500,comm:600, phone:"0523456789",nid:"1033456789",gender:"ذكر", nat:"سعودي",  edu:"بكالوريوس",contract:"دائم"},
+  {code:"EMP004",name:"نورة سعد القحطاني",   dept:"المبيعات",           title:"مدير مبيعات",            hire:"2019/04/20",basic:18000,housing:4500,transport:1500,comm:500, phone:"0534567890",nid:"1044567890",gender:"أنثى",nat:"سعودية", edu:"بكالوريوس",contract:"دائم"},
+  {code:"EMP005",name:"عبدالله عمر الغامدي", dept:"تقنية المعلومات",    title:"مدير تقنية المعلومات",  hire:"2018/09/05",basic:21000,housing:5000,transport:1500,comm:700, phone:"0545678901",nid:"1055678901",gender:"ذكر", nat:"سعودي",  edu:"ماجستير",  contract:"دائم"},
+  {code:"EMP006",name:"سارة إبراهيم الدوسري",dept:"التسويق",            title:"مدير تسويق",             hire:"2019/11/12",basic:17000,housing:4000,transport:1500,comm:500, phone:"0556789012",nid:"1066789012",gender:"أنثى",nat:"سعودية", edu:"بكالوريوس",contract:"دائم"},
+  {code:"EMP007",name:"يوسف ناصر الشمري",   dept:"المبيعات",           title:"مندوب مبيعات أول",       hire:"2020/02/01",basic:13000,housing:3500,transport:1200,comm:400, phone:"0567890123",nid:"1077890123",gender:"ذكر", nat:"سعودي",  edu:"دبلوم",    contract:"دائم"},
+  {code:"EMP008",name:"منى عبدالرحمن",       dept:"الموارد البشرية",    title:"أخصائي توظيف",          hire:"2021/06/15",basic:12000,housing:3000,transport:1200,comm:350, phone:"0578901234",nid:"1088901234",gender:"أنثى",nat:"سعودية", edu:"بكالوريوس",contract:"مؤقت"},
+  {code:"EMP009",name:"تركي سلمان الحربي",   dept:"المالية والمحاسبة",  title:"محاسب أول",              hire:"2020/03/08",basic:14000,housing:3500,transport:1200,comm:400, phone:"0589012345",nid:"1099012345",gender:"ذكر", nat:"سعودي",  edu:"بكالوريوس",contract:"دائم"},
+  {code:"EMP010",name:"رنا حسن المطيري",     dept:"تقنية المعلومات",    title:"مطور برمجيات",          hire:"2021/01/20",basic:15000,housing:3500,transport:1200,comm:500, phone:"0590123456",nid:"1100123456",gender:"أنثى",nat:"سعودية", edu:"بكالوريوس",contract:"دائم"},
+  {code:"EMP011",name:"بندر فهد الرشيدي",    dept:"المبيعات",           title:"مندوب مبيعات",           hire:"2022/03/01",basic:10000,housing:2500,transport:1000,comm:300, phone:"0501122334",nid:"1111234568",gender:"ذكر", nat:"سعودي",  edu:"دبلوم",    contract:"مؤقت"},
+  {code:"EMP012",name:"هند جاسم العنزي",     dept:"خدمة العملاء",      title:"مشرف خدمة عملاء",       hire:"2021/08/10",basic:13500,housing:3200,transport:1200,comm:400, phone:"0512233445",nid:"1122345679",gender:"أنثى",nat:"سعودية", edu:"بكالوريوس",contract:"دائم"},
+  {code:"EMP013",name:"خالد محمد البقمي",    dept:"التسويق",            title:"أخصائي تسويق رقمي",      hire:"2022/05/15",basic:13000,housing:3000,transport:1200,comm:450, phone:"0523344556",nid:"1133456780",gender:"ذكر", nat:"سعودي",  edu:"بكالوريوس",contract:"دائم"},
+  {code:"EMP014",name:"ريم عبدالله الشهري",  dept:"الموارد البشرية",    title:"أخصائي تدريب وتطوير",  hire:"2020/11/01",basic:14000,housing:3500,transport:1200,comm:400, phone:"0534455667",nid:"1144567891",gender:"أنثى",nat:"سعودية", edu:"ماجستير",  contract:"دائم"},
+  {code:"EMP015",name:"عمر سعيد العسيري",    dept:"خدمة العملاء",      title:"ممثل خدمة عملاء",       hire:"2023/01/15",basic:9000, housing:2200,transport:1000,comm:250, phone:"0545566778",nid:"1155678902",gender:"ذكر", nat:"سعودي",  edu:"دبلوم",    contract:"مؤقت"},
+];
+
+let ATT = [
+  {code:"EMP001",present:26,absent:0,actHrs:208,overtime:8, delay:0},
+  {code:"EMP002",present:24,absent:2,actHrs:192,overtime:0, delay:35},
+  {code:"EMP003",present:25,absent:1,actHrs:200,overtime:0, delay:45},
+  {code:"EMP004",present:22,absent:2,actHrs:184,overtime:0, delay:60},
+  {code:"EMP005",present:26,absent:0,actHrs:218,overtime:10,delay:0},
+  {code:"EMP006",present:23,absent:2,actHrs:184,overtime:0, delay:20},
+  {code:"EMP007",present:25,absent:1,actHrs:202,overtime:2, delay:15},
+  {code:"EMP008",present:26,absent:0,actHrs:208,overtime:0, delay:0},
+  {code:"EMP009",present:24,absent:1,actHrs:196,overtime:4, delay:10},
+  {code:"EMP010",present:20,absent:4,actHrs:160,overtime:0, delay:90},
+  {code:"EMP011",present:25,absent:1,actHrs:200,overtime:0, delay:30},
+  {code:"EMP012",present:26,absent:0,actHrs:208,overtime:3, delay:0},
+  {code:"EMP013",present:24,absent:2,actHrs:192,overtime:0, delay:25},
+  {code:"EMP014",present:26,absent:0,actHrs:208,overtime:0, delay:0},
+  {code:"EMP015",present:21,absent:3,actHrs:168,overtime:0, delay:70},
+];
+
+let PERF = [
+  {code:"EMP001",q:24,p:24,c:20,t:14,i:15},{code:"EMP002",q:22,p:21,c:18,t:13,i:12},
+  {code:"EMP003",q:20,p:22,c:17,t:12,i:13},{code:"EMP004",q:19,p:20,c:16,t:12,i:11},
+  {code:"EMP005",q:25,p:24,c:20,t:15,i:15},{code:"EMP006",q:21,p:20,c:18,t:13,i:12},
+  {code:"EMP007",q:22,p:23,c:19,t:14,i:13},{code:"EMP008",q:19,p:18,c:17,t:11,i:11},
+  {code:"EMP009",q:24,p:23,c:20,t:14,i:14},{code:"EMP010",q:17,p:18,c:15,t:11,i:10},
+  {code:"EMP011",q:20,p:19,c:16,t:12,i:11},{code:"EMP012",q:22,p:22,c:19,t:13,i:13},
+  {code:"EMP013",q:21,p:20,c:18,t:13,i:12},{code:"EMP014",q:23,p:22,c:20,t:14,i:14},
+  {code:"EMP015",q:16,p:17,c:13,t:10,i:9},
+];
+
+let TASKS = [
+  {id:1,title:"مراجعة عقود الموظفين المؤقتين",assign:"EMP002",priority:"عالية", due:"2025/03/20",cat:"إدارية",status:"قيد التنفيذ",progress:60,desc:""},
+  {id:2,title:"إعداد تقرير الرواتب الشهري",   assign:"EMP003",priority:"عالية", due:"2025/03/31",cat:"مالية",  status:"قيد التنفيذ",progress:80,desc:""},
+  {id:3,title:"تحديث قاعدة بيانات الموظفين",  assign:"EMP002",priority:"متوسطة",due:"2025/04/05",cat:"إدارية",status:"معلقة",     progress:0, desc:""},
+  {id:4,title:"تطوير بوابة الخدمات الذاتية",  assign:"EMP005",priority:"متوسطة",due:"2025/04/15",cat:"تقنية",  status:"قيد التنفيذ",progress:35,desc:""},
+  {id:5,title:"تصميم حملة التوظيف Q2",         assign:"EMP006",priority:"متوسطة",due:"2025/04/01",cat:"تسويقية",status:"مكتملة",    progress:100,desc:""},
+  {id:6,title:"إجراء مقابلات التوظيف الجديدة", assign:"EMP008",priority:"عالية", due:"2025/03/25",cat:"إدارية",status:"قيد التنفيذ",progress:50,desc:""},
+  {id:7,title:"تدقيق مصاريف الربع الأول",     assign:"EMP009",priority:"عالية", due:"2025/03/28",cat:"مالية",  status:"قيد التنفيذ",progress:70,desc:""},
+  {id:8,title:"برنامج تدريب الموظفين الجدد",   assign:"EMP014",priority:"منخفضة",due:"2025/04/20",cat:"إدارية",status:"معلقة",     progress:0, desc:""},
+  {id:9,title:"تحديث سياسة العمل عن بُعد",    assign:"EMP002",priority:"منخفضة",due:"2025/04/30",cat:"إدارية",status:"مكتملة",    progress:100,desc:""},
+  {id:10,title:"إعداد خطة التوظيف السنوية",   assign:"EMP002",priority:"عالية", due:"2025/03/15",cat:"إدارية",status:"متأخرة",    progress:20,desc:""},
+];
+
+let REQUESTS = [
+  {id:1,emp:"EMP003",type:"إجازة سنوية",  from:"2025/03/20",to:"2025/03/25",detail:"إجازة عائلية",status:"موافق", reviewer:"مدير عام"},
+  {id:2,emp:"EMP007",type:"استئذان",      from:"2025/03/18",to:"2025/03/18",detail:"موعد طبي",   status:"موافق", reviewer:"مدير مبيعات"},
+  {id:3,emp:"EMP010",type:"عمل من المنزل",from:"2025/03/19",to:"2025/03/21",detail:"ظروف صحية", status:"معلق",  reviewer:"—"},
+  {id:4,emp:"EMP012",type:"إجازة مرضية", from:"2025/03/10",to:"2025/03/12",detail:"مرض",        status:"موافق", reviewer:"مدير HR"},
+  {id:5,emp:"EMP015",type:"إجازة سنوية", from:"2025/04/01",to:"2025/04/05",detail:"سفر",        status:"معلق",  reviewer:"—"},
+  {id:6,emp:"EMP008",type:"بدل نقدي",    from:"2025/03/01",to:"2025/03/31",detail:"بدل انتقال", status:"مرفوض",reviewer:"مدير HR"},
+  {id:7,emp:"EMP011",type:"استئذان",      from:"2025/03/22",to:"2025/03/22",detail:"شؤون شخصية",status:"معلق",  reviewer:"—"},
+  {id:8,emp:"EMP004",type:"إجازة سنوية", from:"2025/04/10",to:"2025/04/15",detail:"عطلة",       status:"معلق",  reviewer:"—"},
+];
+
+let PROMOTIONS = [
+  {emp:"EMP002",type:"علاوة سنوية",    oldTitle:"مدير موارد بشرية",    newTitle:"مدير موارد بشرية",    oldSalary:18000,newSalary:20000,date:"2024/07/01",reason:"أداء متميز",status:"مطبق"},
+  {emp:"EMP005",type:"ترقية",          oldTitle:"مطور برمجيات أول",    newTitle:"مدير تقنية المعلومات",oldSalary:16000,newSalary:21000,date:"2024/09/01",reason:"كفاءة عالية وقيادة ناجحة",status:"مطبق"},
+  {emp:"EMP009",type:"علاوة سنوية",    oldTitle:"محاسب",               newTitle:"محاسب أول",            oldSalary:12000,newSalary:14000,date:"2024/03/01",reason:"خبرة متراكمة",status:"مطبق"},
+  {emp:"EMP003",type:"علاوة استثنائية",oldTitle:"المدير المالي",        newTitle:"المدير المالي",        oldSalary:20000,newSalary:22000,date:"2024/12/01",reason:"إنجاز استثنائي في إغلاق السنة",status:"مطبق"},
+  {emp:"EMP001",type:"علاوة سنوية",    oldTitle:"مدير عام",            newTitle:"مدير عام",             oldSalary:28000,newSalary:30000,date:"2025/01/01",reason:"نمو الشركة",status:"مطبق"},
+];
+
+let INSURANCE = [
+  {emp:"EMP001",class:"VIP",provider:"بوبا العربية",   policy:"POL-001",start:"2025/01/01",end:"2025/12/31",coverage:100000,used:12000},
+  {emp:"EMP002",class:"A",  provider:"تكافل الراجحي",  policy:"POL-002",start:"2025/01/01",end:"2025/12/31",coverage:50000, used:8500},
+  {emp:"EMP003",class:"A",  provider:"بوبا العربية",   policy:"POL-003",start:"2025/01/01",end:"2025/12/31",coverage:50000, used:3200},
+  {emp:"EMP004",class:"B",  provider:"الاتحاد التعاوني",policy:"POL-004",start:"2025/01/01",end:"2025/12/31",coverage:30000, used:1500},
+  {emp:"EMP005",class:"A",  provider:"بوبا العربية",   policy:"POL-005",start:"2025/01/01",end:"2025/12/31",coverage:50000, used:0},
+  {emp:"EMP006",class:"B",  provider:"تكافل الراجحي",  policy:"POL-006",start:"2025/01/01",end:"2025/12/31",coverage:30000, used:4200},
+  {emp:"EMP007",class:"B",  provider:"الاتحاد التعاوني",policy:"POL-007",start:"2025/01/01",end:"2025/12/31",coverage:30000, used:700},
+  {emp:"EMP008",class:"B",  provider:"الاتحاد التعاوني",policy:"POL-008",start:"2025/01/01",end:"2025/12/31",coverage:30000, used:2100},
+  {emp:"EMP009",class:"B",  provider:"تكافل الراجحي",  policy:"POL-009",start:"2025/01/01",end:"2025/12/31",coverage:30000, used:900},
+  {emp:"EMP010",class:"B",  provider:"بوبا العربية",   policy:"POL-010",start:"2025/01/01",end:"2025/12/31",coverage:30000, used:6800},
+  {emp:"EMP011",class:"C",  provider:"الاتحاد التعاوني",policy:"POL-011",start:"2025/01/01",end:"2025/12/31",coverage:15000, used:0},
+  {emp:"EMP012",class:"B",  provider:"تكافل الراجحي",  policy:"POL-012",start:"2025/01/01",end:"2025/12/31",coverage:30000, used:1300},
+  {emp:"EMP013",class:"B",  provider:"الاتحاد التعاوني",policy:"POL-013",start:"2025/01/01",end:"2025/12/31",coverage:30000, used:450},
+  {emp:"EMP014",class:"A",  provider:"بوبا العربية",   policy:"POL-014",start:"2025/01/01",end:"2025/12/31",coverage:50000, used:2700},
+  {emp:"EMP015",class:"C",  provider:"الاتحاد التعاوني",policy:"POL-015",start:"2025/01/01",end:"2025/12/31",coverage:15000, used:550},
+];
+
+let CLAIMS = [
+  {emp:"EMP001",date:"2025/02/10",type:"عيادة عامة",   hospital:"مستشفى السعودي الألماني",total:800, covered:800, patient:0,   status:"مسدد"},
+  {emp:"EMP002",date:"2025/01/20",type:"طوارئ",         hospital:"مستشفى الملك فهد",       total:4500,covered:4500,patient:0,   status:"مسدد"},
+  {emp:"EMP006",date:"2025/02/28",type:"أسنان",          hospital:"عيادة الابتسامة",        total:3200,covered:2560,patient:640, status:"مسدد"},
+  {emp:"EMP010",date:"2025/03/05",type:"عملية جراحية",  hospital:"مستشفى الحمادي",         total:18000,covered:16200,patient:1800,status:"قيد المعالجة"},
+  {emp:"EMP004",date:"2025/01/15",type:"مختبر",          hospital:"مختبر المدينة",          total:350, covered:350, patient:0,   status:"مسدد"},
+];
+
+let TERMINATIONS = [
+  {emp:"EMP008",type:"انتهاء عقد",notice:"2025/03/01",lastDay:"2025/03/31",reason:"انتهاء مدة العقد",status:"قيد الإجراء"},
+];
+
+// ═══════════════════════════════════
+// HELPERS
+// ═══════════════════════════════════
+const sar   = n => n.toLocaleString('ar-SA') + ' ر.س';
+const pct   = n => (n*100).toFixed(1) + '%';
+const yrSvc = h => Math.floor((new Date()-new Date(h.replace(/\//g,'-')))/(1000*60*60*24*365));
+const gE    = c => EMP.find(e=>e.code===c) || {};
+const gA    = c => ATT.find(a=>a.code===c) || {present:26,absent:0,actHrs:208,overtime:0,delay:0};
+const gP    = c => PERF.find(p=>p.code===c) || {q:0,p:0,c:0,t:0,i:0};
+const gross = e => (e.basic||0)+(e.housing||0)+(e.transport||0)+(e.comm||0);
+const absDed  = (e,a) => a ? Math.round(a.absent*((e.basic||0)/26)) : 0;
+const lateDed = a => a ? a.delay*5 : 0;
+const insDed  = e => Math.round((e.basic||0)*0.10);
+const otPay   = (e,a) => a ? Math.round(a.overtime*((e.basic||0)/30/8)*1.5) : 0;
+const netSal  = (e,a) => gross(e) - absDed(e,a) - lateDed(a) - insDed(e) + otPay(e,a);
+const perfTotal = p => (p.q||0)+(p.p||0)+(p.c||0)+(p.t||0)+(p.i||0);
+
+const perfGrade = s => {
+  if(s>=92)return{lbl:'ممتاز',cls:'b-green'};
+  if(s>=82)return{lbl:'جيد جداً',cls:'b-blue'};
+  if(s>=72)return{lbl:'جيد',cls:'b-gold'};
+  if(s>=60)return{lbl:'مقبول',cls:'b-orange'};
+  return{lbl:'يحتاج تطوير',cls:'b-red'};
+};
+const perfRec = s => {
+  if(s>=92)return'ترقية + علاوة استثنائية';
+  if(s>=82)return'علاوة سنوية كاملة';
+  if(s>=72)return'علاوة جزئية';
+  if(s>=60)return'بلا تغيير';
+  return'خطة تحسين PIP';
+};
+const attGrade = p => {
+  if(p>=0.96)return{lbl:'ممتاز',cls:'b-green'};
+  if(p>=0.88)return{lbl:'جيد جداً',cls:'b-blue'};
+  if(p>=0.78)return{lbl:'جيد',cls:'b-gold'};
+  return{lbl:'يحتاج متابعة',cls:'b-red'};
+};
+
+// Avatar color from name hash
+const AVATAR_COLORS=['#2563EB','#0F766E','#B45309','#6B21A8','#C2410C','#166534','#9D174D','#1D4ED8','#0D9488','#92400E'];
+function avatarColor(name){
+  let h=0;for(let c of name)h=((h<<5)-h)+c.charCodeAt(0);
+  return AVATAR_COLORS[Math.abs(h)%AVATAR_COLORS.length];
+}
+function avatarInitials(name){
+  const w=name.trim().split(/\s+/);
+  if(w.length>=2)return w[0][0]+w[1][0];
+  return w[0][0]||'؟';
+}
+function avatarHtml(name,size=28){
+  const col=avatarColor(name),init=avatarInitials(name);
+  return `<div class="avatar" style="background:${col};width:${size}px;height:${size}px;font-size:${Math.round(size*.38)}px">${init}</div>`;
+}
+
+// UI helpers
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  clearTimeout(t._to);t._to=setTimeout(()=>t.classList.remove('show'),3000);
+}
+function openModal(id){document.getElementById(id).classList.add('open')}
+function closeModal(id){document.getElementById(id).classList.remove('open')}
+
+// Close modal on overlay click
+document.querySelectorAll('.modal-overlay').forEach(o=>{
+  o.addEventListener('click',e=>{if(e.target===o)o.classList.remove('open');});
+});
+
+function showPage(id){ _currentPage=id;
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  const pg=document.getElementById('page-'+id);
+  if(pg)pg.classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n=>{
+    if(n.getAttribute('onclick')===`showPage('${id}')`)n.classList.add('active');
+  });
+  // Close mobile sidebar
+  if(window.innerWidth<=900)closeSidebar();
+  const renders={
+    employees:renderEmployees,attendance:renderAttendance,
+    payroll:renderPayroll,performance:renderPerformance,
+    tasks:renderTasks,requests:renderRequests,
+    promotions:renderPromotions,insurance:renderInsurance,
+    terminations:renderTerminations,'dept-compare':renderDeptCompare,
+    alerts:renderAlerts,'add-emp':()=>{ if(!editingCode) initEmpForm(); },users:renderUsers,dashboard:renderDashboard,
+  };
+  if(renders[id])renders[id]();
+}
+
+function switchTab(group,tab,btn){
+  const page=document.getElementById('page-'+group)||document;
+  page.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  page.querySelectorAll('.tab-pane').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  const pane=document.getElementById(`${group}-${tab}`);
+  if(pane)pane.classList.add('active');
+}
+
+// ═══════════════════════════════════
+// DARK MODE
+// ═══════════════════════════════════
+function toggleDark(){
+  isDark=!isDark;
+  document.documentElement.setAttribute('data-theme',isDark?'dark':'light');
+  document.body.setAttribute('data-theme',isDark?'dark':'light');
+  document.getElementById('dark-btn').textContent=isDark?'☀️':'🌙';
+  localStorage.setItem('theme',isDark?'dark':'light');
+}
+
+// ═══════════════════════════════════
+// MOBILE SIDEBAR
+// ═══════════════════════════════════
+function toggleSidebar(){
+  const sb=document.getElementById('sidebar');
+  const ov=document.getElementById('sidebar-overlay');
+  const hb=document.getElementById('hamburger');
+  const isOpen=sb.classList.contains('open');
+  sb.classList.toggle('open',!isOpen);
+  ov.classList.toggle('open',!isOpen);
+  hb.classList.toggle('open',!isOpen);
+}
+function closeSidebar(){
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('sidebar-overlay').classList.remove('open');
+  document.getElementById('hamburger').classList.remove('open');
+}
+
+// ═══════════════════════════════════
+// GLOBAL SEARCH
+// ═══════════════════════════════════
+function openGlobalSearch(){
+  document.getElementById('gsearch-overlay').classList.add('open');
+  setTimeout(()=>document.getElementById('gsearch-input').focus(),50);
+}
+function closeGlobalSearch(e){
+  if(!e||e.target===document.getElementById('gsearch-overlay'))
+    document.getElementById('gsearch-overlay').classList.remove('open');
+}
+function runGlobalSearch(){
+  const q=document.getElementById('gsearch-input').value.trim().toLowerCase();
+  const res=document.getElementById('gsearch-results');
+  if(!q){res.innerHTML='<div class="gsearch-empty">اكتب للبحث في جميع بيانات النظام</div>';return;}
+  const results=[];
+  EMP.forEach(e=>{
+    if((e.name+e.code+e.dept+e.title).toLowerCase().includes(q))
+      results.push({icon:'👤',label:e.name,sub:e.title+' • '+e.dept,action:`showPage('employees');closeGlobalSearch()`});
+  });
+  TASKS.forEach(t=>{
+    if(t.title.toLowerCase().includes(q))
+      results.push({icon:'✅',label:t.title,sub:`${t.status} • ${gE(t.assign).name||''}`,action:`showPage('tasks');closeGlobalSearch()`});
+  });
+  REQUESTS.forEach(r=>{
+    if((gE(r.emp).name+r.type).toLowerCase().includes(q))
+      results.push({icon:'📋',label:gE(r.emp).name,sub:r.type+' • '+r.status,action:`showPage('requests');closeGlobalSearch()`});
+  });
+  if(!results.length){res.innerHTML='<div class="gsearch-empty">لا نتائج لـ "'+q+'"</div>';return;}
+  res.innerHTML=results.slice(0,8).map(r=>`
+    <div class="gsearch-item" onclick="${r.action}">
+      <span style="font-size:20px">${r.icon}</span>
+      <div><div style="font-weight:600;font-size:13px">${r.label}</div>
+      <div style="font-size:11px;color:var(--text2)">${r.sub}</div></div>
+    </div>`).join('');
+}
+document.addEventListener('keydown',e=>{
+  if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();openGlobalSearch();}
+  if(e.key==='Escape')closeGlobalSearch();
+});
+
+// ═══════════════════════════════════
+// CLOCK
+// ═══════════════════════════════════
+function updateClock(){
+  const now=new Date();
+  document.getElementById('clock').textContent=now.toLocaleTimeString('ar-SA');
+  const dateEl=document.getElementById('sidebar-clock-date');
+  if(dateEl)dateEl.textContent=now.toLocaleDateString('ar-SA',{weekday:'short',month:'short',day:'numeric'});
+}
+
+// ═══════════════════════════════════
+// DASHBOARD
+// ═══════════════════════════════════
+let dashCharts={};
+function renderDashboard(){
+  const totalNet=EMP.reduce((s,e)=>s+netSal(e,gA(e.code)),0);
+  const avgAtt=ATT.reduce((s,a)=>s+(a.present/26),0)/ATT.length;
+  const avgPerf=PERF.reduce((s,p)=>s+perfTotal(p),0)/PERF.length;
+  const pendingTasks=TASKS.filter(t=>t.status==='قيد التنفيذ').length;
+  const pendingReqs=REQUESTS.filter(r=>r.status==='معلق').length;
+  const tempEmp=EMP.filter(e=>e.contract==='مؤقت').length;
+
+  document.getElementById('dash-kpis').innerHTML=[
+    {lbl:'إجمالي الموظفين',val:EMP.length,sub:'موظف نشط',accent:'--blue',icon:'👥',trend:'',trcls:''},
+    {lbl:'صافي الرواتب الشهري',val:(totalNet/1000).toFixed(0)+'K ر.س',sub:'مارس 2025',accent:'--green',icon:'💰',trend:'▲ 3.2%',trcls:'trend-up'},
+    {lbl:'متوسط الحضور',val:pct(avgAtt),sub:'هذا الشهر',accent:'--teal',icon:'📅',trend:'',trcls:''},
+    {lbl:'متوسط الأداء',val:avgPerf.toFixed(0)+'/100',sub:'الربع الأول',accent:'--purple',icon:'⭐',trend:'',trcls:''},
+    {lbl:'مهام جارية',val:pendingTasks,sub:'مهمة قيد التنفيذ',accent:'--gold',icon:'✅',trend:'',trcls:''},
+    {lbl:'طلبات معلقة',val:pendingReqs,sub:'تنتظر موافقة',accent:'--orange',icon:'📩',trend:'',trcls:''},
+    {lbl:'موظفون مؤقتون',val:tempEmp,sub:'عقد مؤقت',accent:'--red',icon:'📋',trend:'',trcls:''},
+    {lbl:'نسبة الإنجاز',val:Math.round(TASKS.filter(t=>t.status==='مكتملة').length/TASKS.length*100)+'%',sub:'من المهام مكتملة',accent:'--indigo',icon:'🎯',trend:'',trcls:''},
+  ].map(k=>`
+    <div class="kpi-card" style="--accent:var(${k.accent})">
+      ${k.trend?`<span class="kpi-trend ${k.trcls}">${k.trend}</span>`:''}
+      <div class="kpi-icon">${k.icon}</div>
+      <div class="kpi-label">${k.lbl}</div>
+      <div class="kpi-value">${k.val}</div>
+      <div class="kpi-sub">${k.sub}</div>
+    </div>`).join('');
+
+  // Dept distribution
+  const depts={};EMP.forEach(e=>depts[e.dept]=(depts[e.dept]||0)+1);
+  const COLORS=['#2563EB','#0F766E','#B45309','#991B1B','#6B21A8','#C2410C','#166534','#9D174D'];
+  const mkChart=(id,type,data,opts={})=>{
+    if(dashCharts[id])dashCharts[id].destroy();
+    const ctx=document.getElementById(id);if(!ctx)return;
+    dashCharts[id]=new Chart(ctx.getContext('2d'),{type,...data,...opts});
+  };
+  mkChart('ch-dept','doughnut',{data:{labels:Object.keys(depts),datasets:[{data:Object.values(depts),backgroundColor:COLORS,borderWidth:3,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:10,padding:8}}}}});
+
+  const grades={'ممتاز':0,'جيد جداً':0,'جيد':0,'مقبول':0,'يحتاج تطوير':0};
+  PERF.forEach(p=>grades[perfGrade(perfTotal(p)).lbl]++);
+  mkChart('ch-perf','bar',{data:{labels:Object.keys(grades),datasets:[{label:'موظفين',data:Object.values(grades),backgroundColor:['#166534','#2563EB','#B45309','#C2410C','#991B1B'],borderRadius:8}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{stepSize:1}},x:{grid:{display:false}}}}});
+
+  const ts={'مكتملة':0,'قيد التنفيذ':0,'متأخرة':0,'معلقة':0};
+  TASKS.forEach(t=>ts[t.status]=(ts[t.status]||0)+1);
+  mkChart('ch-tasks','pie',{data:{labels:Object.keys(ts),datasets:[{data:Object.values(ts),backgroundColor:['#166534','#2563EB','#991B1B','#6B7280'],borderWidth:3,borderColor:'#fff'}]},options:{responsive:true,plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:10}}}}});
+
+  // Salary by dept
+  const deptNames=[...new Set(EMP.map(e=>e.dept))];
+  const deptAvgSal=deptNames.map(d=>{const emps=EMP.filter(e=>e.dept===d);return Math.round(emps.reduce((s,e)=>s+e.basic,0)/emps.length);});
+  mkChart('ch-sal','bar',{data:{labels:deptNames.map(d=>d.length>6?d.substring(0,6)+'..':d),datasets:[{label:'متوسط الراتب',data:deptAvgSal,backgroundColor:COLORS,borderRadius:8}]},options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:v=>(v/1000)+'K'}},x:{grid:{display:false}}}}});
+
+  // Pending requests
+  const pending=REQUESTS.filter(r=>r.status==='معلق').slice(0,5);
+  document.getElementById('dash-pending-cnt').textContent=pending.length?`${pending.length} معلق`:'';
+  document.getElementById('dash-pending').innerHTML=pending.length
+    ?pending.map(r=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border)">
+        <div style="display:flex;align-items:center;gap:10px">
+          ${avatarHtml(gE(r.emp).name||'؟')}
+          <div><div style="font-weight:600;font-size:12px">${gE(r.emp).name}</div>
+          <div style="font-size:11px;color:var(--text2)">${r.type} • ${r.from}</div></div>
+        </div>
+        <div style="display:flex;gap:5px">
+          <button class="btn btn-xs btn-success" onclick="approveReq(${r.id})">✓ موافقة</button>
+          <button class="btn btn-xs btn-outline-red" onclick="rejectReq(${r.id})">✗ رفض</button>
+        </div></div>`).join('')
+    :'<div class="empty-state"><div class="empty-icon">✅</div><div class="empty-msg">لا توجد طلبات معلقة</div></div>';
+}
+
+// ═══════════════════════════════════
+// EMPLOYEES
+// ═══════════════════════════════════
+let editingCode=null;
+let empSortKey=null,empSortAsc=true;
+
+function sortEmp(key){
+  if(empSortKey===key)empSortAsc=!empSortAsc;
+  else{empSortKey=key;empSortAsc=true;}
+  renderEmployees();
+}
+
+function renderEmployees(){
+  const q=(document.getElementById('emp-search')||{value:''}).value.toLowerCase();
+  const df=(document.getElementById('emp-dept-f')||{value:''}).value;
+  const cf=(document.getElementById('emp-contract-f')||{value:''}).value;
+  const gf=(document.getElementById('emp-gender-f')||{value:''}).value;
+  let list=EMP.filter(e=>
+    (!q||(e.name+e.code+e.dept+e.title).toLowerCase().includes(q))&&
+    (!df||e.dept===df)&&(!cf||e.contract===cf)&&(!gf||e.gender===gf));
+  if(empSortKey){
+    list=[...list].sort((a,b)=>{
+      const av=a[empSortKey],bv=b[empSortKey];
+      const cmp=typeof av==='number'?av-bv:String(av).localeCompare(String(bv),'ar');
+      return empSortAsc?cmp:-cmp;
+    });
+  }
+  const tb=document.getElementById('emp-tbody');if(!tb)return;
+  tb.innerHTML=list.map(e=>{
+    const p=gP(e.code);const pt=perfTotal(p);const g=perfGrade(pt);
+    return `<tr>
+      <td><span class="b-blue">${e.code}</span></td>
+      <td><div class="emp-cell">${avatarHtml(e.name)}<div><div style="font-weight:600">${e.name}</div><div style="font-size:10px;color:var(--text2)">${e.gender} • ${e.edu}</div></div></div></td>
+      <td>${e.dept}</td>
+      <td style="color:var(--text2);font-size:12px">${e.title}</td>
+      <td style="font-size:11px">${e.hire}</td>
+      <td><span class="badge b-blue">${yrSvc(e.hire)} سنة</span></td>
+      <td style="font-weight:600;color:var(--navy)">${e.basic.toLocaleString()} ر.س</td>
+      <td style="font-weight:700;color:var(--green)">${gross(e).toLocaleString()} ر.س</td>
+      <td><span class="badge ${e.contract==='دائم'?'b-green':'b-orange'}">${e.contract}</span></td>
+      <td><span class="badge ${g.cls}">${g.lbl} ${pt}</span></td>
+      <td style="white-space:nowrap">
+        <button class="btn btn-xs btn-outline" onclick="showDetail('${e.code}')">👁️</button>
+        <button class="btn btn-xs btn-ghost" onclick="editEmp('${e.code}')" style="margin:0 2px">✏️</button>
+      </td></tr>`;
+  }).join('');
+  document.getElementById('emp-count-lbl').textContent=`إجمالي: ${EMP.length} | معروض: ${list.length}`;
+  const totalBasic=EMP.reduce((s,e)=>s+e.basic,0);
+  document.getElementById('s-total').textContent=EMP.length;
+  document.getElementById('s-avg').textContent=Math.round(totalBasic/EMP.length).toLocaleString()+' ر.س';
+  document.getElementById('s-males').textContent=EMP.filter(e=>e.gender==='ذكر').length;
+  document.getElementById('s-females').textContent=EMP.filter(e=>e.gender==='أنثى').length;
+}
+
+function showDetail(code){
+  const e=gE(code),a=gA(code),p=gP(code);
+  const pt=perfTotal(p),g=perfGrade(pt),ap=a.present/26,ag=attGrade(ap);
+  document.getElementById('detail-name').textContent=e.name;
+  document.getElementById('detail-body').innerHTML=`
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:18px;padding:14px;background:var(--lgray);border-radius:var(--radius-sm)">
+      ${avatarHtml(e.name,50)}
+      <div>
+        <div style="font-size:16px;font-weight:700;color:var(--navy)">${e.name}</div>
+        <div style="font-size:12px;color:var(--text2)">${e.title} • ${e.dept}</div>
+        <div style="margin-top:4px"><span class="badge ${e.contract==='دائم'?'b-green':'b-orange'}">${e.contract}</span></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;font-size:12px">
+      <div style="padding:10px;background:var(--lgray);border-radius:8px"><div style="color:var(--text2);margin-bottom:2px">الكود</div><div style="font-weight:600"><span class="badge b-blue">${e.code}</span></div></div>
+      <div style="padding:10px;background:var(--lgray);border-radius:8px"><div style="color:var(--text2);margin-bottom:2px">الهاتف</div><div style="font-weight:600">${e.phone||'—'}</div></div>
+      <div style="padding:10px;background:var(--lgray);border-radius:8px"><div style="color:var(--text2);margin-bottom:2px">المؤهل</div><div style="font-weight:600">${e.edu}</div></div>
+      <div style="padding:10px;background:var(--lgray);border-radius:8px"><div style="color:var(--text2);margin-bottom:2px">تاريخ التعيين</div><div style="font-weight:600">${e.hire}</div></div>
+      <div style="padding:10px;background:var(--lgray);border-radius:8px"><div style="color:var(--text2);margin-bottom:2px">سنوات الخدمة</div><div style="font-weight:600">${yrSvc(e.hire)} سنة</div></div>
+      <div style="padding:10px;background:var(--lgray);border-radius:8px"><div style="color:var(--text2);margin-bottom:2px">الجنسية</div><div style="font-weight:600">${e.nat}</div></div>
+    </div>
+    <div style="background:linear-gradient(135deg,#EFF6FF,#DBEAFE);border-radius:var(--radius-sm);padding:14px;margin-bottom:12px">
+      <div style="font-weight:700;color:var(--navy);font-size:12px;margin-bottom:10px">💰 الراتب الشهري</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;font-size:12px">
+        <div>أساسي: <b>${e.basic.toLocaleString()} ر.س</b></div>
+        <div>سكن: <b>${e.housing.toLocaleString()} ر.س</b></div>
+        <div>مواصلات: <b>${e.transport.toLocaleString()} ر.س</b></div>
+        <div>اتصالات: <b>${e.comm.toLocaleString()} ر.س</b></div>
+        <div>إجمالي: <b style="color:var(--blue)">${gross(e).toLocaleString()} ر.س</b></div>
+        <div>صافي: <b style="color:var(--green)">${netSal(e,a).toLocaleString()} ر.س</b></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div style="background:var(--lgray);border-radius:8px;padding:12px">
+        <div style="font-weight:700;color:var(--navy);font-size:12px;margin-bottom:6px">📅 الحضور</div>
+        <div style="display:flex;align-items:center;gap:8px;margin:6px 0">
+          <div class="prog"><div class="prog-bar" style="width:${ap*100}%;background:${ap>=0.9?'var(--green)':ap>=0.75?'var(--gold)':'var(--red)'}"></div></div>
+          <span class="badge ${ag.cls}">${ag.lbl}</span>
+        </div>
+        <div style="font-size:11px;color:var(--text2)">حضور ${a.present}/26 • غياب ${a.absent} • تأخير ${a.delay} دق</div>
+      </div>
+      <div style="background:var(--lgray);border-radius:8px;padding:12px">
+        <div style="font-weight:700;color:var(--navy);font-size:12px;margin-bottom:6px">⭐ الأداء</div>
+        <div style="display:flex;align-items:center;gap:8px;margin:6px 0">
+          <div class="prog"><div class="prog-bar" style="width:${pt}%;background:${pt>=90?'var(--green)':pt>=70?'var(--gold)':'var(--red)'}"></div></div>
+          <span class="badge ${g.cls}">${g.lbl}</span>
+        </div>
+        <div style="font-size:11px;color:var(--text2)">${pt}/100 • ${perfRec(pt)}</div>
+      </div>
+    </div>`;
+  document.getElementById('detail-edit-btn').onclick=()=>{closeModal('emp-detail-modal');editEmp(code);};
+  openModal('emp-detail-modal');
+}
+
+function updateFormPreview(){
+  const name=document.getElementById('f-name').value||'الاسم الكامل';
+  const title=document.getElementById('f-title').value||'المسمى الوظيفي';
+  const dept=document.getElementById('f-dept').value||'القسم';
+  document.getElementById('form-name-preview').textContent=name;
+  document.getElementById('form-title-preview').textContent=`${title} • ${dept}`;
+  const av=document.getElementById('form-avatar');
+  if(name&&name!=='الاسم الكامل'){
+    av.textContent=avatarInitials(name);
+    av.style.background=avatarColor(name);
+  }
+}
+
+function initEmpForm(){
+  editingCode=null;
+  document.getElementById('add-emp-title').textContent='إضافة موظف جديد';
+  document.getElementById('f-code').value='EMP'+String(EMP.length+1).padStart(3,'0');
+  document.getElementById('f-hire').value=new Date().toISOString().split('T')[0];
+  ['f-name','f-title','f-phone','f-nid'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  ['f-basic','f-housing','f-transport','f-comm'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('f-nat').value='سعودي';
+  const av=document.getElementById('form-avatar');if(av){av.textContent='؟';av.style.background='var(--blue)';}
+  calcTotal();
+}
+
+function editEmp(code){
+  const e=gE(code);editingCode=code;
+  document.getElementById('add-emp-title').textContent='تعديل: '+e.name;
+  ['code','name','title','phone','nid','nat'].forEach(k=>{const el=document.getElementById('f-'+k);if(el)el.value=e[k]||'';});
+  document.getElementById('f-dept').value=e.dept;
+  document.getElementById('f-contract').value=e.contract;
+  document.getElementById('f-gender').value=e.gender;
+  document.getElementById('f-edu').value=e.edu;
+  document.getElementById('f-hire').value=e.hire.replace(/\//g,'-');
+  ['basic','housing','transport','comm'].forEach(k=>{const el=document.getElementById('f-'+k);if(el)el.value=e[k]||0;});
+  updateFormPreview();calcTotal();
+  // انتقل للصفحة مباشرة دون استدعاء initEmpForm
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-add-emp').classList.add('active');
+  if(window.innerWidth<=900)closeSidebar();
+}
+
+function calcTotal(){
+  const b=+document.getElementById('f-basic').value||0;
+  const h=+document.getElementById('f-housing').value||0;
+  const tr=+document.getElementById('f-transport').value||0;
+  const c=+document.getElementById('f-comm').value||0;
+  document.getElementById('f-total').value=(b+h+tr+c).toLocaleString()+' ر.س';
+}
+
+function clearEmpForm(){initEmpForm();}
+
+function saveEmployee(){
+  const name=document.getElementById('f-name').value.trim();
+  const basic=+document.getElementById('f-basic').value;
+  if(!name){showToast('⚠️ أدخل اسم الموظف');return;}
+  if(!basic){showToast('⚠️ أدخل الراتب الأساسي');return;}
+  const d={
+    code:document.getElementById('f-code').value,name,
+    dept:document.getElementById('f-dept').value,
+    title:document.getElementById('f-title').value,
+    hire:document.getElementById('f-hire').value.replace(/-/g,'/'),
+    basic,housing:+document.getElementById('f-housing').value||0,
+    transport:+document.getElementById('f-transport').value||0,
+    comm:+document.getElementById('f-comm').value||0,
+    phone:document.getElementById('f-phone').value,
+    nid:document.getElementById('f-nid').value,
+    gender:document.getElementById('f-gender').value,
+    nat:document.getElementById('f-nat').value,
+    edu:document.getElementById('f-edu').value,
+    contract:document.getElementById('f-contract').value,
+  };
+  if(editingCode){
+    const i=EMP.findIndex(e=>e.code===editingCode);EMP[i]=d;
+    showToast('✅ تم تحديث '+name);
+  }else{
+    EMP.push(d);
+    ATT.push({code:d.code,present:26,absent:0,actHrs:208,overtime:0,delay:0});
+    PERF.push({code:d.code,q:20,p:20,c:16,t:12,i:12});
+    INSURANCE.push({emp:d.code,class:'B',provider:'الاتحاد التعاوني',policy:'POL-NEW',start:'2025/01/01',end:'2025/12/31',coverage:30000,used:0});
+    showToast('✅ تم إضافة '+name);
+  }
+  initSelects();updateAlertCount();showPage('employees');
+}
+
+// ═══════════════════════════════════
+// ATTENDANCE
+// ═══════════════════════════════════
+let attEditCode=null;
+function renderAttendance(){
+  const tb=document.getElementById('att-tbody');if(!tb)return;
+  tb.innerHTML=EMP.map(e=>{
+    const a=gA(e.code);const ap=a.present/26;const ag=attGrade(ap);
+    const ded=absDed(e,a)+lateDed(a);
+    return `<tr>
+      <td><span class="b-blue">${e.code}</span></td>
+      <td><div class="emp-cell">${avatarHtml(e.name)}<span style="font-weight:600">${e.name}</span></div></td>
+      <td><b style="color:var(--green)">${a.present}</b></td>
+      <td><b style="color:${a.absent>2?'var(--red)':'var(--orange)'}">${a.absent}</b></td>
+      <td>${a.actHrs}</td>
+      <td style="color:${a.overtime>0?'var(--green)':'var(--text2)'}">${a.overtime}</td>
+      <td style="color:${a.delay>30?'var(--red)':'var(--text2)'}">${a.delay}</td>
+      <td><div style="display:flex;align-items:center;gap:6px;min-width:100px">
+        <div class="prog"><div class="prog-bar" style="width:${ap*100}%;background:${ap>=0.9?'var(--green)':ap>=0.75?'var(--gold)':'var(--red)'}"></div></div>
+        <span style="font-size:11px;white-space:nowrap">${pct(ap)}</span></div></td>
+      <td><span class="badge ${ag.cls}">${ag.lbl}</span></td>
+      <td style="color:var(--red);font-weight:600">${ded.toLocaleString()} ر.س</td>
+      <td><button class="btn btn-xs btn-ghost" onclick="openAttEdit('${e.code}')">✏️</button></td>
+    </tr>`;
+  }).join('');
+  const avgAp=ATT.reduce((s,a)=>s+(a.present/26),0)/ATT.length;
+  document.getElementById('att-avg').textContent=pct(avgAp);
+  document.getElementById('att-abs').textContent=ATT.reduce((s,a)=>s+a.absent,0)+' يوم';
+  document.getElementById('att-ot').textContent=ATT.reduce((s,a)=>s+a.overtime,0)+' ساعة';
+  document.getElementById('att-ded').textContent=EMP.reduce((s,e)=>{const a=gA(e.code);return s+absDed(e,a)+lateDed(a);},0).toLocaleString()+' ر.س';
+}
+
+function openAttEdit(code){
+  attEditCode=code;
+  const e=gE(code),a=gA(code);
+  document.getElementById('att-edit-name').textContent=`✏️ تعديل: ${e.name}`;
+  document.getElementById('ae-present').value=a.present;
+  document.getElementById('ae-absent').value=a.absent;
+  document.getElementById('ae-hrs').value=a.actHrs;
+  document.getElementById('ae-ot').value=a.overtime;
+  document.getElementById('ae-delay').value=a.delay;
+  openModal('att-edit-modal');
+}
+
+function saveAttEdit(){
+  const idx=ATT.findIndex(a=>a.code===attEditCode);
+  if(idx>-1){
+    ATT[idx].present=+document.getElementById('ae-present').value;
+    ATT[idx].absent=+document.getElementById('ae-absent').value;
+    ATT[idx].actHrs=+document.getElementById('ae-hrs').value;
+    ATT[idx].overtime=+document.getElementById('ae-ot').value;
+    ATT[idx].delay=+document.getElementById('ae-delay').value;
+  }
+  closeModal('att-edit-modal');renderAttendance();updateAlertCount();showToast('✅ تم تحديث سجل الحضور');
+}
+
+// ═══════════════════════════════════
+// PAYROLL
+// ═══════════════════════════════════
+function renderPayroll(){
+  const tb=document.getElementById('pay-tbody');if(!tb)return;
+  let tg=0,td=0,tn=0,tot=0;
+  tb.innerHTML=EMP.map(e=>{
+    const a=gA(e.code);const gr=gross(e);const ad=absDed(e,a);const ld=lateDed(a);
+    const ins=insDed(e);const ot=otPay(e,a);
+    const totDed=ad+ld+ins;const net=gr-totDed+ot;
+    tg+=gr;td+=totDed;tn+=net;tot+=ot;
+    return `<tr>
+      <td><span class="b-blue">${e.code}</span></td>
+      <td><div class="emp-cell">${avatarHtml(e.name)}<span style="font-weight:600">${e.name}</span></div></td>
+      <td>${gr.toLocaleString()} ر.س</td>
+      <td style="color:var(--red)">${ad?ad.toLocaleString()+' ر.س':'—'}</td>
+      <td style="color:var(--red)">${ld?ld.toLocaleString()+' ر.س':'—'}</td>
+      <td style="color:var(--red)">${ins.toLocaleString()} ر.س</td>
+      <td style="color:var(--green)">${ot?'+'+ot.toLocaleString()+' ر.س':'—'}</td>
+      <td style="color:var(--red);font-weight:600">${totDed.toLocaleString()} ر.س</td>
+      <td style="color:var(--green);font-weight:700;font-size:14px">${net.toLocaleString()} ر.س</td>
+      <td><span class="badge b-green">محسوب ✓</span></td>
+      <td><button class="btn btn-xs btn-outline" onclick="showSlip('${e.code}')">🧾 قسيمة</button></td>
+    </tr>`;
+  }).join('');
+  document.getElementById('pay-gross').textContent=tg.toLocaleString()+' ر.س';
+  document.getElementById('pay-ded').textContent=td.toLocaleString()+' ر.س';
+  document.getElementById('pay-ot').textContent='+'+tot.toLocaleString()+' ر.س';
+  document.getElementById('pay-net').textContent=tn.toLocaleString()+' ر.س';
+}
+
+// Salary Slip
+function showSlip(code){
+  const e=gE(code),a=gA(code);
+  const gr=gross(e),ad=absDed(e,a),ld=lateDed(a),ins=insDed(e),ot=otPay(e,a);
+  const net=gr-ad-ld-ins+ot;
+  document.getElementById('slip-body').innerHTML=`
+    <div class="slip-paper" id="slip-content">
+      <div class="slip-header">
+        <div class="slip-company">🏢 الشركة العربية للتجارة</div>
+        <div class="slip-title">قسيمة راتب — مارس 2025</div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px;font-size:12px">
+        <div><b>الموظف:</b> ${e.name}</div>
+        <div><b>الكود:</b> ${e.code}</div>
+        <div><b>القسم:</b> ${e.dept}</div>
+        <div><b>المسمى:</b> ${e.title}</div>
+      </div>
+      <div class="slip-section-title">المستحقات</div>
+      ${[['الراتب الأساسي',e.basic],['بدل السكن',e.housing],['بدل المواصلات',e.transport],['بدل الاتصالات',e.comm],['الساعات الإضافية',ot]].filter(r=>r[1]>0).map(r=>`<div class="slip-row"><span>${r[0]}</span><span style="color:#166534;font-weight:600">${r[1].toLocaleString()} ر.س</span></div>`).join('')}
+      <div class="slip-row" style="font-weight:700"><span>إجمالي المستحقات</span><span style="color:#166534">${(gr+ot).toLocaleString()} ر.س</span></div>
+      <div class="slip-section-title">الخصومات</div>
+      ${[['خصم الغياب',ad],['خصم التأخير',ld],['خصم التأمين الصحي',ins]].filter(r=>r[1]>0).map(r=>`<div class="slip-row"><span>${r[0]}</span><span style="color:#991B1B">${r[1].toLocaleString()} ر.س</span></div>`).join('')}
+      <div class="slip-row" style="font-weight:700"><span>إجمالي الخصومات</span><span style="color:#991B1B">${(ad+ld+ins).toLocaleString()} ر.س</span></div>
+      <div style="background:#F0FDF4;border-radius:8px;padding:14px;margin-top:14px;text-align:center">
+        <div style="font-size:11px;color:#6B7280;margin-bottom:4px">صافي الراتب</div>
+        <div class="slip-total">${net.toLocaleString()} ر.س</div>
+      </div>
+      <div style="text-align:center;margin-top:14px;font-size:10px;color:#9CA3AF">تم الإصدار: ${new Date().toLocaleDateString('ar-SA')}</div>
+    </div>`;
+  openModal('slip-modal');
+}
+function printSlip(){
+  const content=document.getElementById('slip-content');
+  const w=window.open('','_blank','width=550,height=700');
+  w.document.write(`<html dir="rtl"><head><meta charset="UTF-8"><style>body{font-family:Tahoma,Arial;direction:rtl;padding:20px}.slip-header{text-align:center;border-bottom:2px solid #1A3557;padding-bottom:14px;margin-bottom:14px}.slip-company{font-size:18px;font-weight:700;color:#1A3557}.slip-title{font-size:13px;color:#6B7280;margin-top:4px}.slip-section-title{font-weight:700;color:#1A3557;margin:12px 0 6px;font-size:12px;text-transform:uppercase}.slip-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #F1F5F9}</style></head><body>${content.outerHTML}
+<!-- ════════ AI ASSISTANT FAB ════════ -->
+<button id="ai-fab" onclick="toggleAI()" title="مساعد HR الذكي">
+  <span id="ai-fab-icon">🤖</span>
+  <span class="fab-dot"></span>
+</button>
+
+<!-- ════════ AI PANEL ════════ -->
+<div id="ai-panel">
+  <div class="ai-header">
+    <div class="ai-avatar">🤖</div>
+    <div class="ai-header-info">
+      <div class="ai-header-name">مساعد MAKSAB الذكي</div>
+      <div class="ai-header-status">متصل · يقرأ بيانات النظام</div>
+    </div>
+    <button class="ai-close" onclick="toggleAI()">×</button>
+  </div>
+
+  <div class="ai-messages" id="ai-messages">
+    <div class="ai-msg bot">
+      <div class="ai-bubble">مرحباً! أنا مساعدك الذكي لنظام MAKSAB HR 👋
+
+أستطيع تحليل بيانات موظفيك والإجابة على أسئلتك بالعربية. جرّب أحد الأسئلة أدناه أو اكتب سؤالك مباشرة.</div>
+    </div>
+  </div>
+
+  <div class="ai-chips">
+    <button class="ai-chip" onclick="askChip(this)">من أعلى أداءً؟</button>
+    <button class="ai-chip" onclick="askChip(this)">ملخص الرواتب</button>
+    <button class="ai-chip" onclick="askChip(this)">تحليل الحضور</button>
+    <button class="ai-chip" onclick="askChip(this)">موظفون بعقود تنتهي</button>
+    <button class="ai-chip" onclick="askChip(this)">أعلى غياباً</button>
+    <button class="ai-chip" onclick="askChip(this)">مقارنة الأقسام</button>
+  </div>
+
+  <div class="ai-input-row">
+    <textarea class="ai-input" id="ai-input" rows="1" placeholder="اسألني عن موظفيك..." 
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAI()}"
+      oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+    <button class="ai-send" id="ai-send-btn" onclick="sendAI()">➤</button>
+  </div>
+</div>
+
+</body></html>`);
+  w.document.close();w.print();
+}
+
+// ═══════════════════════════════════
+// PERFORMANCE
+// ═══════════════════════════════════
+let perfEditCode=null;
+function renderPerformance(){
+  const avgPt=PERF.reduce((s,p)=>s+perfTotal(p),0)/PERF.length;
+  const excellent=PERF.filter(p=>perfTotal(p)>=90).length;
+  const needDev=PERF.filter(p=>perfTotal(p)<65).length;
+  document.getElementById('perf-kpis').innerHTML=[
+    {lbl:'متوسط الأداء',val:avgPt.toFixed(1)+'/100',accent:'--blue'},
+    {lbl:'ممتاز (90+)',val:excellent,accent:'--green'},
+    {lbl:'يحتاج تطوير (<65)',val:needDev,accent:'--red'},
+    {lbl:'جيد جداً (82-89)',val:PERF.filter(p=>perfTotal(p)>=82&&perfTotal(p)<90).length,accent:'--gold'},
+  ].map(k=>`<div class="kpi-card" style="--accent:var(${k.accent})"><div class="kpi-label">${k.lbl}</div><div class="kpi-value">${k.val}</div></div>`).join('');
+
+  const tb=document.getElementById('perf-tbody');if(!tb)return;
+  tb.innerHTML=EMP.map(e=>{
+    const p=gP(e.code);const t=perfTotal(p);const g=perfGrade(t);
+    return `<tr>
+      <td><div class="emp-cell">${avatarHtml(e.name)}<span style="font-weight:600">${e.name}</span></div></td>
+      <td style="font-size:12px">${e.dept}</td>
+      <td style="text-align:center;font-weight:600">${p.q}</td>
+      <td style="text-align:center;font-weight:600">${p.p}</td>
+      <td style="text-align:center;font-weight:600">${p.c}</td>
+      <td style="text-align:center;font-weight:600">${p.t}</td>
+      <td style="text-align:center;font-weight:600">${p.i}</td>
+      <td style="text-align:center;font-weight:700;font-size:16px;color:var(--navy)">${t}</td>
+      <td><div style="display:flex;align-items:center;gap:6px;min-width:80px">
+        <div class="prog"><div class="prog-bar" style="width:${t}%;background:${t>=90?'var(--green)':t>=70?'var(--gold)':'var(--red)'}"></div></div>
+        <span style="font-size:11px">${t}%</span></div></td>
+      <td><span class="badge ${g.cls}">${g.lbl}</span></td>
+      <td style="font-size:11px;color:var(--text2)">${perfRec(t)}</td>
+      <td><button class="btn btn-xs btn-outline" onclick="showPerfDetail('${e.code}')">📊</button></td>
+    </tr>`;
+  }).join('');
+}
+
+function showPerfDetail(code){
+  perfEditCode=code;
+  const e=gE(code),p=gP(code);const t=perfTotal(p);const g=perfGrade(t);
+  document.getElementById('perf-detail-name').textContent=`⭐ تقييم: ${e.name}`;
+  document.getElementById('perf-detail-body').innerHTML=`
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;padding:12px;background:var(--lgray);border-radius:var(--radius-sm)">
+      ${avatarHtml(e.name,44)}
+      <div>
+        <div style="font-weight:700;font-size:15px">${e.name}</div>
+        <div style="font-size:12px;color:var(--text2)">${e.title} • ${e.dept}</div>
+        <div style="margin-top:4px"><span class="badge ${g.cls}">${g.lbl} — ${t}/100</span></div>
+      </div>
+    </div>
+    <div style="margin-bottom:14px">
+      <canvas id="perf-radar-chart" height="220"></canvas>
+    </div>
+    <div style="font-weight:600;color:var(--navy);margin-bottom:10px;font-size:13px">تعديل الدرجات:</div>
+    <div class="form-grid cols3">
+      ${[['q','جودة العمل','25'],['p','الإنتاجية','25'],['c','الالتزام','20'],['t','العمل الجماعي','15'],['i','المبادرة','15']].map(([k,lbl,max])=>`
+        <div class="fg"><label>${lbl} (/${max})</label><input id="pe-${k}" type="number" min="0" max="${max}" value="${p[k]}" oninput="updatePerfTotal()"></div>`).join('')}
+      <div class="fg"><label>الدرجة الكلية</label><input id="pe-total" readonly style="background:var(--lgray);font-weight:700;font-size:16px;color:var(--navy)"></div>
+    </div>
+    <div id="pe-grade" style="margin-top:12px;padding:10px;background:var(--lgray);border-radius:8px;font-size:12px;text-align:center"></div>`;
+  updatePerfTotal();
+  // Radar chart
+  setTimeout(()=>{
+    const ctx=document.getElementById('perf-radar-chart');if(!ctx)return;
+    new Chart(ctx.getContext('2d'),{type:'radar',
+      data:{labels:['جودة/25','إنتاجية/25','التزام/20','جماعي/15','مبادرة/15'],
+      datasets:[{label:e.name,data:[p.q/25*100,p.p/25*100,p.c/20*100,p.t/15*100,p.i/15*100],
+        backgroundColor:'rgba(37,99,235,.15)',borderColor:'#2563EB',pointBackgroundColor:'#2563EB',pointRadius:4,borderWidth:2}]},
+      options:{responsive:true,scales:{r:{beginAtZero:true,max:100,ticks:{stepSize:25,font:{size:9}},pointLabels:{font:{size:11}}}},plugins:{legend:{display:false}}}});
+  },100);
+  document.getElementById('perf-save-btn').onclick=()=>savePerfDetail(code);
+  openModal('perf-detail-modal');
+}
+
+function updatePerfTotal(){
+  const vals=['q','p','c','t','i'].map(k=>+document.getElementById('pe-'+k).value||0);
+  const t=vals.reduce((a,b)=>a+b,0);
+  const el=document.getElementById('pe-total');if(el)el.value=t+'/100';
+  const gl=document.getElementById('pe-grade');
+  if(gl){const g=perfGrade(t);gl.innerHTML=`التقدير: <strong class="badge ${g.cls}">${g.lbl}</strong> — التوصية: ${perfRec(t)}`;}
+}
+
+function savePerfDetail(code){
+  const idx=PERF.findIndex(p=>p.code===code);
+  if(idx>-1){
+    PERF[idx].q=+document.getElementById('pe-q').value||0;
+    PERF[idx].p=+document.getElementById('pe-p').value||0;
+    PERF[idx].c=+document.getElementById('pe-c').value||0;
+    PERF[idx].t=+document.getElementById('pe-t').value||0;
+    PERF[idx].i=+document.getElementById('pe-i').value||0;
+  }
+  closeModal('perf-detail-modal');renderPerformance();updateAlertCount();showToast('✅ تم حفظ التقييم');
+}
+
+// ═══════════════════════════════════
+// TASKS
+// ═══════════════════════════════════
+let taskFilter='all';
+function setTaskFilter(f,btn){
+  taskFilter=f;
+  document.querySelectorAll('#page-tasks .tab-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTasks();
+}
+
+function renderTasks(){
+  const q=(document.getElementById('task-search')||{value:''}).value.toLowerCase();
+  const pf=(document.getElementById('task-priority-f')||{value:''}).value;
+  const cf=(document.getElementById('task-cat-f')||{value:''}).value;
+  const total=TASKS.length,done=TASKS.filter(t=>t.status==='مكتملة').length;
+  const pending=TASKS.filter(t=>t.status==='قيد التنفيذ').length;
+  const overdue=TASKS.filter(t=>t.status==='متأخرة').length;
+  const waiting=TASKS.filter(t=>t.status==='معلقة').length;
+  document.getElementById('task-kpis').innerHTML=[
+    {lbl:'إجمالي',val:total,accent:'--blue'},{lbl:'مكتملة',val:done,accent:'--green'},
+    {lbl:'جارية',val:pending,accent:'--gold'},{lbl:'متأخرة',val:overdue,accent:'--red'},{lbl:'معلقة',val:waiting,accent:'--gray'},
+  ].map(k=>`<div class="kpi-card" style="--accent:var(${k.accent})"><div class="kpi-label">${k.lbl}</div><div class="kpi-value">${k.val}</div></div>`).join('');
+
+  const filterMap={all:null,pending:'قيد التنفيذ',done:'مكتملة',overdue:'متأخرة',waiting:'معلقة'};
+  let list=TASKS.filter(t=>
+    (!filterMap[taskFilter]||t.status===filterMap[taskFilter])&&
+    (!q||t.title.toLowerCase().includes(q)||gE(t.assign).name.toLowerCase().includes(q))&&
+    (!pf||t.priority===pf)&&(!cf||t.cat===cf));
+
+  const priCls={عالية:'priority-high',متوسطة:'priority-med',منخفضة:'priority-low'};
+  const stCls={'مكتملة':'b-green','قيد التنفيذ':'b-blue','متأخرة':'b-red','معلقة':'b-gray'};
+  document.getElementById('tasks-tbody').innerHTML=list.length?list.map(t=>{
+    const emp=gE(t.assign);
+    return `<tr>
+      <td style="color:var(--text2);font-size:11px">${t.id}</td>
+      <td style="font-weight:600;max-width:200px">${t.title}</td>
+      <td><div class="emp-cell">${emp.name?avatarHtml(emp.name,22):''}${emp.name||'—'}</div></td>
+      <td style="font-size:11px">${emp.dept||'—'}</td>
+      <td class="${priCls[t.priority]||''}">${t.priority}</td>
+      <td style="font-size:11px">${t.due}</td>
+      <td><span class="badge ${stCls[t.status]||'b-gray'}">${t.status}</span></td>
+      <td><div style="display:flex;align-items:center;gap:6px;min-width:90px">
+        <div class="prog"><div class="prog-bar" style="width:${t.progress}%;background:${t.progress===100?'var(--green)':t.progress>50?'var(--blue)':'var(--orange)'}"></div></div>
+        <span style="font-size:10px;min-width:26px">${t.progress}%</span></div></td>
+      <td style="white-space:nowrap">
+        ${t.status!=='مكتملة'?`<button class="btn btn-xs btn-success" onclick="completeTask(${t.id})">✓</button>`:'<span class="badge b-green">✓</span>'}
+        <button class="btn btn-xs btn-outline-red" onclick="deleteTask(${t.id})" style="margin-right:3px">🗑️</button>
+      </td></tr>`;
+  }).join(''):
+  `<tr><td colspan="9"><div class="empty-state"><div class="empty-icon">📋</div><div class="empty-msg">لا توجد مهام</div></div></td></tr>`;
+}
+
+function addTask(){
+  const title=document.getElementById('t-title').value.trim();
+  if(!title){showToast('⚠️ أدخل عنوان المهمة');return;}
+  TASKS.push({id:TASKS.length+1,title,assign:document.getElementById('t-assign').value,
+    priority:document.getElementById('t-priority').value,due:document.getElementById('t-due').value.replace(/-/g,'/'),
+    cat:document.getElementById('t-cat').value,status:'معلقة',progress:0,desc:document.getElementById('t-desc').value});
+  ['t-title','t-desc'].forEach(id=>document.getElementById(id).value='');
+  closeModal('task-modal');renderTasks();showToast('✅ تم إضافة المهمة');
+}
+function completeTask(id){const t=TASKS.find(x=>x.id===id);if(t){t.status='مكتملة';t.progress=100;}renderTasks();showToast('✅ تم إتمام المهمة');}
+function deleteTask(id){if(!confirm('حذف المهمة؟'))return;const i=TASKS.findIndex(x=>x.id===id);if(i>-1)TASKS.splice(i,1);renderTasks();showToast('🗑️ تم حذف المهمة');}
+
+// ═══════════════════════════════════
+// REQUESTS
+// ═══════════════════════════════════
+function renderRequests(){
+  const q=(document.getElementById('req-search')||{value:''}).value.toLowerCase();
+  const tf=(document.getElementById('req-type-f')||{value:''}).value;
+  const sf=(document.getElementById('req-status-f')||{value:''}).value;
+  const list=REQUESTS.filter(r=>(!q||gE(r.emp).name.toLowerCase().includes(q))&&(!tf||r.type===tf)&&(!sf||r.status===sf));
+  const stCls={موافق:'b-green',مرفوض:'b-red',معلق:'b-gold'};
+  const typCls={'إجازة سنوية':'b-blue','إجازة مرضية':'b-red',استئذان:'b-orange','عمل من المنزل':'b-teal','بدل نقدي':'b-gold','طلب أخرى':'b-gray'};
+  document.getElementById('req-tbody').innerHTML=list.length?list.map(r=>{
+    const e=gE(r.emp);
+    return `<tr>
+      <td style="color:var(--text2);font-size:11px">${r.id}</td>
+      <td><div class="emp-cell">${avatarHtml(e.name||'؟')}<span style="font-weight:600">${e.name}</span></div></td>
+      <td><span class="badge ${typCls[r.type]||'b-gray'}">${r.type}</span></td>
+      <td style="font-size:11px">${r.from}</td>
+      <td style="font-size:11px;color:var(--text2)">${r.detail}</td>
+      <td><span class="badge ${stCls[r.status]}">${r.status}</span></td>
+      <td style="font-size:11px;color:var(--text2)">${r.reviewer}</td>
+      <td style="white-space:nowrap">
+        ${r.status==='معلق'?`<button class="btn btn-xs btn-success" onclick="approveReq(${r.id})">✓ موافقة</button> <button class="btn btn-xs btn-outline-red" onclick="rejectReq(${r.id})">✗ رفض</button>`:'—'}
+      </td></tr>`;
+  }).join(''):
+  `<tr><td colspan="8"><div class="empty-state"><div class="empty-icon">📋</div><div class="empty-msg">لا توجد طلبات مطابقة</div></div></td></tr>`;
+  document.getElementById('req-kpis').innerHTML=[
+    {lbl:'إجمالي الطلبات',val:REQUESTS.length,accent:'--blue'},
+    {lbl:'معلقة',val:REQUESTS.filter(r=>r.status==='معلق').length,accent:'--gold'},
+    {lbl:'موافق عليها',val:REQUESTS.filter(r=>r.status==='موافق').length,accent:'--green'},
+    {lbl:'مرفوضة',val:REQUESTS.filter(r=>r.status==='مرفوض').length,accent:'--red'},
+  ].map(k=>`<div class="kpi-card" style="--accent:var(${k.accent})"><div class="kpi-label">${k.lbl}</div><div class="kpi-value">${k.val}</div></div>`).join('');
+  ['req-total','req-pending','req-approved','req-rejected'].forEach((id,i)=>{
+    const el=document.getElementById(id);if(el)el.textContent=[REQUESTS.length,...['معلق','موافق','مرفوض'].map(s=>REQUESTS.filter(r=>r.status===s).length)][i];
+  });
+}
+function addRequest(){
+  const emp=document.getElementById('r-emp').value;if(!emp){showToast('⚠️ اختر الموظف');return;}
+  REQUESTS.push({id:REQUESTS.length+1,emp,type:document.getElementById('r-type').value,
+    from:document.getElementById('r-from').value.replace(/-/g,'/'),
+    to:document.getElementById('r-to').value.replace(/-/g,'/'),
+    detail:document.getElementById('r-detail').value,status:'معلق',reviewer:'—'});
+  closeModal('req-modal');renderRequests();updateAlertCount();showToast('✅ تم تقديم الطلب');
+}
+function approveReq(id){const r=REQUESTS.find(x=>x.id===id);if(r){r.status='موافق';r.reviewer='مدير HR';}renderRequests();renderDashboard();updateAlertCount();showToast('✅ تمت الموافقة');}
+function rejectReq(id){const r=REQUESTS.find(x=>x.id===id);if(r){r.status='مرفوض';r.reviewer='مدير HR';}renderRequests();renderDashboard();updateAlertCount();showToast('❌ تم الرفض');}
+
+// ═══════════════════════════════════
+// PROMOTIONS
+// ═══════════════════════════════════
+function renderPromotions(){
+  const avgInc=PROMOTIONS.reduce((s,p)=>s+(p.newSalary-p.oldSalary)/p.oldSalary*100,0)/PROMOTIONS.length;
+  document.getElementById('promo-kpis').innerHTML=[
+    {lbl:'إجمالي القرارات',val:PROMOTIONS.length,accent:'--blue'},
+    {lbl:'ترقيات',val:PROMOTIONS.filter(p=>p.type==='ترقية').length,accent:'--green'},
+    {lbl:'علاوات',val:PROMOTIONS.filter(p=>p.type.includes('علاوة')).length,accent:'--gold'},
+    {lbl:'متوسط الزيادة',val:avgInc.toFixed(1)+'%',accent:'--teal'},
+  ].map(k=>`<div class="kpi-card" style="--accent:var(${k.accent})"><div class="kpi-label">${k.lbl}</div><div class="kpi-value">${k.val}</div></div>`).join('');
+
+  document.getElementById('promo-tbody').innerHTML=PROMOTIONS.map(p=>{
+    const e=gE(p.emp);const inc=((p.newSalary-p.oldSalary)/p.oldSalary*100).toFixed(1);
+    return `<tr>
+      <td><div class="emp-cell">${avatarHtml(e.name||'؟')}<span style="font-weight:600">${e.name||'—'}</span></div></td>
+      <td style="font-size:12px">${e.dept||'—'}</td>
+      <td><span class="badge ${p.type==='ترقية'?'b-green':p.type.includes('استثنائية')?'b-purple':'b-gold'}">${p.type}</span></td>
+      <td style="color:var(--text2);font-size:12px">${p.oldTitle}</td>
+      <td style="font-weight:600">${p.newTitle}</td>
+      <td>${p.oldSalary.toLocaleString()} ر.س</td>
+      <td style="font-weight:700;color:var(--green)">${p.newSalary.toLocaleString()} ر.س</td>
+      <td><span class="badge b-green">+${inc}%</span></td>
+      <td style="font-size:11px">${p.date}</td>
+      <td style="font-size:11px;color:var(--text2)">${p.reason}</td>
+      <td><span class="badge b-green">${p.status}</span></td></tr>`;
+  }).join('');
+
+  const candidates=EMP.filter(e=>perfTotal(gP(e.code))>=85&&yrSvc(e.hire)>=2)
+    .sort((a,b)=>perfTotal(gP(b.code))-perfTotal(gP(a.code))).slice(0,6);
+  document.getElementById('promo-candidates').innerHTML=candidates.length
+    ?`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px">`+
+    candidates.map(e=>{const t=perfTotal(gP(e.code));return`
+      <div class="candidate-card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+          ${avatarHtml(e.name,36)}
+          <div><div style="font-weight:700;font-size:13px">${e.name}</div>
+          <div style="font-size:11px;color:var(--text2)">${e.title}</div></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:10px">
+          <span>أداء: <b style="color:var(--green)">${t}/100</b></span>
+          <span>خدمة: <b>${yrSvc(e.hire)} سنة</b></span>
+        </div>
+        <button class="btn btn-xs btn-success" style="width:100%;justify-content:center" onclick="openPromoFor('${e.code}')">📈 ترشيح للترقية</button>
+      </div>`}).join('')+'</div>'
+    :'<div class="empty-state"><div class="empty-icon">👥</div><div class="empty-msg">لا يوجد مرشحون مؤهلون</div></div>';
+}
+function openPromoFor(code){document.getElementById('p-emp').value=code;fillPromoData();openModal('promo-modal');}
+function fillPromoData(){const e=gE(document.getElementById('p-emp').value);document.getElementById('p-new-title').value=e.title||'';document.getElementById('p-new-salary').value=e.basic||'';calcPromoIncrease();}
+function calcPromoIncrease(){
+  const code=document.getElementById('p-emp').value;const e=gE(code);
+  const newSal=+document.getElementById('p-new-salary').value||0;
+  if(e.basic&&newSal){const inc=((newSal-e.basic)/e.basic*100).toFixed(1);document.getElementById('p-increase').value=`+${inc}% (${(newSal-e.basic).toLocaleString()} ر.س)`;}
+}
+function addPromotion(){
+  const code=document.getElementById('p-emp').value;if(!code){showToast('⚠️ اختر الموظف');return;}
+  const e=gE(code);const newSal=+document.getElementById('p-new-salary').value||e.basic;
+  PROMOTIONS.push({emp:code,type:document.getElementById('p-type').value,
+    oldTitle:e.title,newTitle:document.getElementById('p-new-title').value||e.title,
+    oldSalary:e.basic,newSalary:newSal,date:document.getElementById('p-date').value.replace(/-/g,'/'),
+    reason:document.getElementById('p-reason').value,status:'مطبق'});
+  const idx=EMP.findIndex(x=>x.code===code);
+  if(idx>-1){EMP[idx].basic=newSal;if(document.getElementById('p-new-title').value)EMP[idx].title=document.getElementById('p-new-title').value;}
+  closeModal('promo-modal');renderPromotions();showToast('✅ تم تسجيل القرار');
+}
+
+// ═══════════════════════════════════
+// INSURANCE
+// ═══════════════════════════════════
+function renderInsurance(){
+  const totalCov=INSURANCE.reduce((s,i)=>s+i.coverage,0);
+  const totalUsed=INSURANCE.reduce((s,i)=>s+i.used,0);
+  document.getElementById('ins-kpis').innerHTML=[
+    {lbl:'إجمالي التغطية',val:(totalCov/1000).toFixed(0)+'K ر.س',accent:'--blue'},
+    {lbl:'المستخدم',val:(totalUsed/1000).toFixed(0)+'K ر.س',accent:'--orange'},
+    {lbl:'المتبقي',val:((totalCov-totalUsed)/1000).toFixed(0)+'K ر.س',accent:'--green'},
+    {lbl:'المطالبات',val:CLAIMS.length+' مطالبة',accent:'--gold'},
+  ].map(k=>`<div class="kpi-card" style="--accent:var(${k.accent})"><div class="kpi-label">${k.lbl}</div><div class="kpi-value">${k.val}</div></div>`).join('');
+
+  const clsCls={VIP:'b-purple',A:'b-blue',B:'b-teal',C:'b-gray'};
+  document.getElementById('ins-tbl-body').innerHTML=INSURANCE.map(i=>{
+    const e=gE(i.emp);const rem=i.coverage-i.used;const usedPct=i.used/i.coverage;
+    return `<tr>
+      <td><div class="emp-cell">${avatarHtml(e.name||'؟')}<span style="font-weight:600">${e.name}</span></div></td>
+      <td style="font-size:12px">${e.dept}</td>
+      <td><span class="badge ${clsCls[i.class]||'b-gray'}">${i.class}</span></td>
+      <td style="font-size:11px">${i.provider}</td>
+      <td style="font-size:11px">${i.policy}</td>
+      <td style="font-size:11px">${i.start}</td>
+      <td style="font-size:11px">${i.end}</td>
+      <td>${i.coverage.toLocaleString()} ر.س</td>
+      <td style="color:var(--orange)">${i.used.toLocaleString()} ر.س</td>
+      <td><div style="display:flex;align-items:center;gap:4px;min-width:80px">
+        <div class="prog"><div class="prog-bar" style="width:${usedPct*100}%;background:${usedPct>0.8?'var(--red)':usedPct>0.5?'var(--orange)':'var(--green)'}"></div></div>
+        <span style="font-size:10px">${(usedPct*100).toFixed(0)}%</span></div></td>
+      <td><span class="badge ${rem>5000?'b-green':'b-red'}">${rem>5000?'نشط':'قارب الحد'}</span></td></tr>`;
+  }).join('');
+
+  const stCls={مسدد:'b-green','قيد المعالجة':'b-orange',مرفوض:'b-red'};
+  document.getElementById('claims-tbl-body').innerHTML=CLAIMS.map(c=>{
+    const e=gE(c.emp);
+    return `<tr>
+      <td><div class="emp-cell">${avatarHtml(e.name||'؟')}<span style="font-weight:600">${e.name}</span></div></td>
+      <td style="font-size:11px">${c.date}</td>
+      <td>${c.type}</td>
+      <td style="font-size:11px">${c.hospital}</td>
+      <td>${c.total.toLocaleString()} ر.س</td>
+      <td style="color:var(--green);font-weight:600">${c.covered.toLocaleString()} ر.س</td>
+      <td style="color:${c.patient>0?'var(--red)':'var(--text2)'}">${c.patient.toLocaleString()} ر.س</td>
+      <td><span class="badge ${stCls[c.status]||'b-gray'}">${c.status}</span></td></tr>`;
+  }).join('');
+}
+function calcCoverage(){
+  const t=+document.getElementById('ic-total').value||0;
+  document.getElementById('ic-covered').value=(Math.round(t*0.9)).toLocaleString()+' ر.س';
+}
+function addClaim(){
+  const emp=document.getElementById('ic-emp').value;const total=+document.getElementById('ic-total').value;
+  if(!emp||!total){showToast('⚠️ أكمل البيانات');return;}
+  const covered=Math.round(total*0.9);const patient=total-covered;
+  CLAIMS.push({emp,date:document.getElementById('ic-date').value.replace(/-/g,'/'),
+    type:document.getElementById('ic-type').value,hospital:document.getElementById('ic-hospital').value,
+    total,covered,patient,status:'قيد المعالجة'});
+  const ins=INSURANCE.find(i=>i.emp===emp);if(ins)ins.used+=covered;
+  closeModal('ins-modal');renderInsurance();showToast('✅ تم تسجيل المطالبة');
+}
+
+// ═══════════════════════════════════
+// TERMINATIONS
+// ═══════════════════════════════════
+function renderTerminations(){
+  document.getElementById('term-kpis').innerHTML=[
+    {lbl:'إجمالي',val:TERMINATIONS.length,accent:'--gray'},
+    {lbl:'استقالات',val:TERMINATIONS.filter(t=>t.type==='استقالة طوعية').length,accent:'--orange'},
+    {lbl:'إنهاء خدمة',val:TERMINATIONS.filter(t=>t.type==='إنهاء خدمة').length,accent:'--red'},
+    {lbl:'انتهاء عقد',val:TERMINATIONS.filter(t=>t.type==='انتهاء عقد').length,accent:'--blue'},
+  ].map(k=>`<div class="kpi-card" style="--accent:var(${k.accent})"><div class="kpi-label">${k.lbl}</div><div class="kpi-value">${k.val}</div></div>`).join('');
+
+  const typCls={'استقالة طوعية':'b-orange','إنهاء خدمة':'b-red','إحالة للتقاعد':'b-teal','انتهاء عقد':'b-blue','وفاة':'b-gray'};
+  document.getElementById('term-tbody').innerHTML=TERMINATIONS.length?TERMINATIONS.map(t=>{
+    const e=gE(t.emp);const yrs=yrSvc(e.hire||'2020/01/01');
+    const grat=yrs<=5?Math.round(yrs*(e.basic/30)*15):Math.round((5*(e.basic/30)*15)+(yrs-5)*(e.basic/30)*30);
+    return `<tr>
+      <td><div class="emp-cell">${avatarHtml(e.name||'؟')}<span style="font-weight:600">${e.name||'—'}</span></div></td>
+      <td>${e.dept||'—'}</td><td style="font-size:12px">${e.title||'—'}</td>
+      <td><span class="badge b-blue">${yrs} سنة</span></td>
+      <td><span class="badge ${typCls[t.type]||'b-gray'}">${t.type}</span></td>
+      <td style="font-size:11px">${t.notice}</td>
+      <td style="font-size:11px">${t.lastDay}</td>
+      <td style="font-weight:700;color:var(--gold)">${grat.toLocaleString()} ر.س</td>
+      <td style="font-size:11px;color:var(--text2)">${t.reason}</td>
+      <td><span class="badge b-orange">${t.status}</span></td></tr>`;
+  }).join(''):
+  `<tr><td colspan="10"><div class="empty-state"><div class="empty-icon">📋</div><div class="empty-msg">لا توجد مغادرات مسجلة</div></div></td></tr>`;
+
+  const sel=document.getElementById('term-calc-emp');
+  if(sel){
+    sel.onchange=()=>{
+      const e=gE(sel.value);
+      document.getElementById('term-basic').value=e.basic||0;
+      document.getElementById('term-start').value=(e.hire||'2020/01/01').replace(/\//g,'-');
+      calcGratuity();
+    };
+    sel.dispatchEvent(new Event('change'));
+  }
+}
+
+function calcGratuity(){
+  const empCode=document.getElementById('term-calc-emp').value;
+  const e=gE(empCode);const basic=e.basic||0;
+  const start=new Date(document.getElementById('term-start').value);
+  const end=new Date(document.getElementById('term-end').value);
+  if(!start||!end||start>=end){document.getElementById('gratuity-result').style.display='none';return;}
+  const years=(end-start)/(1000*60*60*24*365.25);
+  const daily=basic/30;
+  const grat=years<=5?Math.round(years*daily*15):Math.round((5*daily*15)+(years-5)*daily*30);
+  const res=document.getElementById('gratuity-result');res.style.display='block';
+  res.innerHTML=`<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;text-align:center">
+    <div><div style="font-size:10px;color:var(--text2)">سنوات الخدمة</div><div style="font-size:20px;font-weight:700;color:var(--navy)">${years.toFixed(1)}</div></div>
+    <div><div style="font-size:10px;color:var(--text2)">الراتب اليومي</div><div style="font-size:20px;font-weight:700;color:var(--blue)">${daily.toFixed(0)} ر.س</div></div>
+    <div><div style="font-size:10px;color:var(--text2)">مكافأة نهاية الخدمة</div><div style="font-size:22px;font-weight:700;color:var(--green)">${grat.toLocaleString()} ر.س</div></div>
+  </div>
+  <div style="margin-top:10px;font-size:11px;color:var(--text2);padding:8px;background:var(--card);border-radius:6px">
+    ${years<=5?`يُحسب بـ 15 يوم لكل سنة (أقل من 5 سنوات)`:`الأولى 5 سنوات × 15 يوم + المتبقي × 30 يوم`}</div>`;
+}
+function addTermination(){
+  const emp=document.getElementById('tm-emp').value;if(!emp){showToast('⚠️ اختر الموظف');return;}
+  TERMINATIONS.push({emp,type:document.getElementById('tm-type').value,
+    notice:document.getElementById('tm-notice').value.replace(/-/g,'/'),
+    lastDay:document.getElementById('tm-last').value.replace(/-/g,'/'),
+    reason:document.getElementById('tm-reason').value,status:'قيد الإجراء'});
+  closeModal('term-modal');renderTerminations();showToast('✅ تم تسجيل المغادرة');
+}
+
+// ═══════════════════════════════════
+// DEPT COMPARE
+// ═══════════════════════════════════
+let compareCharts={};
+function renderDeptCompare(){
+  const depts=[...new Set(EMP.map(e=>e.dept))];
+  const dd=depts.map(d=>{
+    const emps=EMP.filter(e=>e.dept===d);
+    const atts=emps.map(e=>gA(e.code));const perfs=emps.map(e=>gP(e.code));
+    return{dept:d,count:emps.length,
+      avgSalary:Math.round(emps.reduce((s,e)=>s+e.basic,0)/emps.length),
+      totalSalary:emps.reduce((s,e)=>s+gross(e),0),
+      avgPerf:Math.round(perfs.reduce((s,p)=>s+perfTotal(p),0)/perfs.length),
+      avgAtt:atts.reduce((s,a)=>s+(a.present/26),0)/atts.length};
+  });
+  const COL=['#2563EB','#0F766E','#B45309','#991B1B','#6B21A8','#C2410C','#166534'];
+  const mkBar=(id,labels,data,yfmt)=>{
+    if(compareCharts[id])compareCharts[id].destroy();
+    const ctx=document.getElementById(id);if(!ctx)return;
+    compareCharts[id]=new Chart(ctx.getContext('2d'),{type:'bar',
+      data:{labels,datasets:[{data,backgroundColor:COL,borderRadius:8}]},
+      options:{responsive:true,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{callback:yfmt||(v=>v)}},x:{grid:{display:false}}}}});
+  };
+  const lbs=dd.map(d=>d.dept.length>6?d.dept.substring(0,6)+'..':d.dept);
+  mkBar('ch-dept-salary',lbs,dd.map(d=>d.avgSalary),v=>(v/1000).toFixed(0)+'K');
+  mkBar('ch-dept-perf',lbs,dd.map(d=>d.avgPerf));
+  mkBar('ch-dept-att',lbs,dd.map(d=>+(d.avgAtt*100).toFixed(1)),v=>v+'%');
+  mkBar('ch-dept-count',lbs,dd.map(d=>d.count));
+
+  const sorted=[...dd].sort((a,b)=>b.avgPerf-a.avgPerf);
+  document.getElementById('compare-tbody').innerHTML=sorted.map((d,i)=>`<tr>
+    <td style="font-weight:700">${d.dept}</td>
+    <td style="text-align:center">${d.count}</td>
+    <td>${d.avgSalary.toLocaleString()} ر.س</td>
+    <td style="font-weight:700;color:var(--navy)">${d.totalSalary.toLocaleString()} ر.س</td>
+    <td><div style="display:flex;align-items:center;gap:6px">
+      <div class="prog" style="width:55px"><div class="prog-bar" style="width:${d.avgPerf}%;background:${d.avgPerf>=85?'var(--green)':d.avgPerf>=75?'var(--gold)':'var(--red)'}"></div></div>
+      <span>${d.avgPerf}</span></div></td>
+    <td>${pct(d.avgAtt)}</td>
+    <td><span class="badge ${i===0?'b-green':i===1?'b-blue':i===sorted.length-1?'b-red':'b-gray'}">#${i+1}</span></td></tr>`).join('');
+}
+
+// ═══════════════════════════════════
+// ALERTS
+// ═══════════════════════════════════
+function renderAlerts(){
+  const alerts=[];
+  EMP.forEach(e=>{
+    const a=gA(e.code);const p=gP(e.code);const pt=perfTotal(p);
+    if(a.absent>=3)alerts.push({type:'alert-d',icon:'⚠️',title:`غياب زائد: ${e.name}`,msg:`${a.absent} أيام غياب — القسم: ${e.dept}`});
+    if(a.delay>60)alerts.push({type:'alert-w',icon:'⏰',title:`تأخر متكرر: ${e.name}`,msg:`${a.delay} دقيقة تأخير إجمالي هذا الشهر`});
+    if(pt<65)alerts.push({type:'alert-d',icon:'📉',title:`أداء منخفض: ${e.name}`,msg:`درجة الأداء: ${pt}/100 — يتطلب خطة تحسين PIP`});
+    if(e.contract==='مؤقت'&&yrSvc(e.hire)>=1)alerts.push({type:'alert-i',icon:'📋',title:`تجديد عقد: ${e.name}`,msg:`عقد مؤقت منذ ${yrSvc(e.hire)} سنة — يستحق مراجعة`});
+  });
+  REQUESTS.filter(r=>r.status==='معلق').forEach(r=>{
+    alerts.push({type:'alert-w',icon:'📩',title:`طلب معلق: ${gE(r.emp).name}`,msg:`${r.type} من ${r.from}`});
+  });
+  INSURANCE.forEach(i=>{
+    const pct=i.used/i.coverage;
+    if(pct>0.8)alerts.push({type:'alert-w',icon:'🏥',title:`تأمين يقترب من الحد: ${gE(i.emp).name}`,msg:`استُخدم ${(pct*100).toFixed(0)}% — المتبقي: ${(i.coverage-i.used).toLocaleString()} ر.س`});
+  });
+  document.getElementById('alerts-wrap').innerHTML=alerts.length
+    ?`<p style="margin-bottom:14px;color:var(--text2);font-size:12px">${alerts.length} تنبيه يحتاج انتباهك</p>`+
+      alerts.map(a=>`<div class="alert ${a.type}"><span style="font-size:18px">${a.icon}</span><div><strong style="font-size:13px">${a.title}</strong><br><span style="font-size:12px">${a.msg}</span></div></div>`).join('')
+    :'<div class="alert alert-s"><span style="font-size:20px">✅</span><span>لا توجد تنبيهات — جميع المؤشرات ضمن الحدود الطبيعية</span></div>';
+}
+
+function updateAlertCount(){
+  let cnt=0;
+  EMP.forEach(e=>{const a=gA(e.code);if(a.absent>=3||a.delay>60||perfTotal(gP(e.code))<65)cnt++;});
+  cnt+=REQUESTS.filter(r=>r.status==='معلق').length;
+  const el=document.getElementById('alert-count');if(el)el.textContent=cnt;
+  const dot=document.getElementById('notif-dot');if(dot)dot.style.display=cnt>0?'block':'none';
+}
+
+// ═══════════════════════════════════
+// REPORTS
+// ═══════════════════════════════════
+function renderReports(){
+  const reports=[
+    {icon:'👥',title:'بيانات الموظفين',desc:'ملف CSV كامل',color:'btn-primary',fn:()=>exportCSV('emp-tbl','employees')},
+    {icon:'📅',title:'سجل الحضور',desc:'الحضور والانصراف',color:'btn-teal',fn:()=>exportCSV('att-tbl','attendance')},
+    {icon:'💰',title:'كشف الرواتب',desc:'الرواتب التفصيلي',color:'btn-gold',fn:()=>exportCSV('pay-tbl','payroll')},
+    {icon:'⭐',title:'تقييم الأداء',desc:'نتائج التقييم',color:'btn-purple',fn:()=>exportCSV('perf-tbl','performance')},
+    {icon:'📊',title:'مقارنة الأقسام',desc:'تحليل مقارن',color:'btn-primary',fn:()=>exportCSV('compare-tbody','dept_compare')},
+    {icon:'📋',title:'الطلبات',desc:'سجل الاستئذانات',color:'btn-outline',fn:()=>exportCSVFromRows(REQUESTS,'requests')},
+    {icon:'📈',title:'الترقيات',desc:'مسار الترقيات',color:'btn-success',fn:()=>exportCSVFromRows(PROMOTIONS,'promotions')},
+    {icon:'💾',title:'نسخ احتياطي JSON',desc:'بيانات كاملة',color:'btn-danger',fn:backupData},
+    {icon:'📤',title:'تصدير الكل',desc:'جميع التقارير CSV',color:'btn-primary',fn:exportAll},
+  ];
+  document.getElementById('reports-grid').innerHTML=reports.map(r=>`
+    <div class="report-card" onclick="(${r.fn.toString()})()">
+      <div class="report-icon">${r.icon}</div>
+      <div class="report-title">${r.title}</div>
+      <div class="report-desc">${r.desc}</div>
+      <button class="btn ${r.color} btn-sm" style="width:100%;justify-content:center">📥 تصدير</button>
+    </div>`).join('');
+}
+
+// CSV helpers
+function exportCSV(tblId,filename){
+  const tbl=document.getElementById(tblId);if(!tbl)return;
+  const rows=Array.from(tbl.closest('table')?.querySelectorAll('tr')||tbl.querySelectorAll('tr'));
+  const csv=rows.map(r=>Array.from(r.querySelectorAll('th,td')).map(c=>`"${c.innerText.replace(/\n/g,' ').replace(/"/g,'""')}"`).join(',')).join('\n');
+  dlCSV(csv,filename);
+}
+function exportCSVFromRows(data,filename){
+  if(!data.length)return;
+  const hdr=Object.keys(data[0]);
+  const csv=[hdr.join(','),...data.map(r=>hdr.map(k=>`"${r[k]||''}"`).join(','))].join('\n');
+  dlCSV(csv,filename);
+}
+function dlCSV(csv,fn){
+  const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8;'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=`HR_${fn}_${new Date().toISOString().split('T')[0]}.csv`;a.click();
+  showToast('✅ تم تصدير '+fn+'.csv');
+}
+function backupData(){
+  const d={exportDate:new Date().toISOString(),employees:EMP,attendance:ATT,performance:PERF,tasks:TASKS,requests:REQUESTS,promotions:PROMOTIONS,insurance:INSURANCE,terminations:TERMINATIONS};
+  const blob=new Blob([JSON.stringify(d,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+  a.download=`HR_Backup_${new Date().toISOString().split('T')[0]}.json`;a.click();
+  showToast('✅ تم تصدير النسخة الاحتياطية');
+}
+function exportAll(){
+  [['emp-tbl','employees'],['att-tbl','attendance'],['pay-tbl','payroll'],['perf-tbl','performance']]
+    .forEach(([t,f],i)=>setTimeout(()=>exportCSV(t,f),i*400));
+}
+
+// ═══════════════════════════════════
+// INIT SELECTS
+// ═══════════════════════════════════
+function initSelects(){
+  const depts=[...new Set(EMP.map(e=>e.dept))];
+  [['emp-dept-f','<option value="">كل الأقسام</option>'],['f-dept','']].forEach(([id,pre])=>{
+    const el=document.getElementById(id);if(el)el.innerHTML=pre+depts.map(d=>`<option>${d}</option>`).join('');
+  });
+  ['t-assign','r-emp','p-emp','ic-emp','tm-emp','term-calc-emp'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(el)el.innerHTML=EMP.map(e=>`<option value="${e.code}">${e.name}</option>`).join('');
+  });
+}
+
+// ═══════════════════════════════════
+// STARTUP
+// ═══════════════════════════════════
+
+// ═══════════════════════════════════════════════════════
+// FIREBASE INTEGRATION — v5.0
+// ═══════════════════════════════════════════════════════
+
+let db = null, auth = null;
+let currentUser = null, currentRole = null, currentEmpCode = null;
+let fbListeners = [];  // unsubscribe handles
+const DEMO_EMAIL = 'hdoa91@gmail.com';
+const DEMO_PASS  = '102030';
+
+// ── Config helpers ──────────────────────────────────────
+function getStoredConfig(){
+  try{ return JSON.parse(localStorage.getItem('fb_config')||'null'); }catch(e){return null;}
+}
+function loadSavedConfig(){
+  const c=getStoredConfig();if(!c)return showToast('⚠️ لا يوجد إعداد محفوظ');
+  ['apiKey','authDomain','projectId','storageBucket','messagingSenderId','appId'].forEach(k=>{
+    const el=document.getElementById('cfg-'+k);if(el&&c[k])el.value=c[k];
+  });
+  showToast('✅ تم استرجاع الإعداد المحفوظ');
+}
+
+function getConfigFromForm(){
+  return {
+    apiKey:     (document.getElementById('cfg-apiKey')||{value:''}).value.trim(),
+    authDomain: (document.getElementById('cfg-authDomain')||{value:''}).value.trim(),
+    projectId:  (document.getElementById('cfg-projectId')||{value:''}).value.trim(),
+    storageBucket:(document.getElementById('cfg-storageBucket')||{value:''}).value.trim(),
+    messagingSenderId:(document.getElementById('cfg-messagingSenderId')||{value:''}).value.trim(),
+    appId:      (document.getElementById('cfg-appId')||{value:''}).value.trim(),
+  };
+}
+
+// ── Init Firebase ───────────────────────────────────────
+function saveAndInitFirebase(){
+  const cfg = getConfigFromForm();
+  const errEl = document.getElementById('setup-error');
+  if(!cfg.apiKey||!cfg.projectId||!cfg.appId){
+    errEl.style.display='block';errEl.textContent='⚠️ يرجى إدخال API Key و Project ID و App ID على الأقل';return;
+  }
+  errEl.style.display='none';
+  localStorage.setItem('fb_config', JSON.stringify(cfg));
+  initFirebaseWithConfig(cfg);
+  document.getElementById('setup-overlay').style.display='none';
+  showToast('🔥 تم الاتصال بـ Firebase!');
+}
+
+function initFirebaseWithConfig(cfg){
+  try{
+    if(firebase.apps.length===0) firebase.initializeApp(cfg);
+    db   = firebase.firestore();
+    auth = firebase.auth();
+    // Enable offline persistence
+    db.enablePersistence({synchronizeTabs:true}).catch(()=>{});
+    listenAuthState();
+  }catch(e){
+    console.error('Firebase init error:',e);
+    showToast('❌ خطأ في الاتصال: '+e.message);
+  }
+}
+
+// ── Auth state listener ─────────────────────────────────
+function listenAuthState(){
+  auth.onAuthStateChanged(async user=>{
+    if(user){
+      currentUser = user;
+      await loadUserRole(user.uid, user.email);
+      hideAuthScreen();
+      await seedDataIfEmpty();
+      attachRealtimeListeners();
+      initSelects();
+      renderDashboard();renderReports();updateAlertCount();
+      updateUserBar();
+    } else {
+      currentUser=null; currentRole=null; currentEmpCode=null;
+      showAuthScreen();
+      stopListeners();
+    }
+  });
+}
+
+async function loadUserRole(uid, email){
+  try{
+    const snap = await db.collection('users').doc(uid).get();
+    if(snap.exists){
+      const d=snap.data();currentRole=d.role||'employee';currentEmpCode=d.empCode||null;
+    } else {
+      // First login — default to admin (first user)
+      const allUsers = await db.collection('users').get();
+      currentRole = allUsers.empty ? 'admin' : 'employee';
+      await db.collection('users').doc(uid).set({email,role:currentRole,empCode:null,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+    }
+  }catch(e){ currentRole='admin'; }
+}
+
+function updateUserBar(){
+  const bar=document.getElementById('user-info-bar');
+  if(bar){ bar.style.display='flex'; }
+  const emailEl=document.getElementById('user-email-bar');
+  if(emailEl) emailEl.textContent=currentUser?.email||'';
+  const roleEl=document.getElementById('user-role-bar');
+  if(roleEl){
+    const map={'admin':'مدير النظام','hr':'مدير HR','employee':'موظف'};
+    const cls={'admin':'role-admin','hr':'role-hr','employee':'role-emp'};
+    roleEl.textContent=map[currentRole]||currentRole;
+    roleEl.className='role-badge '+(cls[currentRole]||'role-emp');
+  }
+  // Restrict nav for employees
+  if(currentRole==='employee'){
+    ['employees','add-emp','payroll','dept-compare','reports','alerts'].forEach(id=>{
+      document.querySelectorAll(`.nav-item[onclick="showPage('${id}')"]`).forEach(el=>el.style.display='none');
+    });
+  }
+}
+
+// ── Login / Logout ──────────────────────────────────────
+async function doLogin(){
+  const email=document.getElementById('auth-email').value.trim();
+  const pass =document.getElementById('auth-password').value;
+  const errEl=document.getElementById('auth-error');
+  const btn  =document.getElementById('auth-btn');
+  errEl.style.display='none';
+  if(!email||!pass){errEl.style.display='block';errEl.textContent='⚠️ أدخل البريد وكلمة المرور';return;}
+
+  // Demo mode (no Firebase)
+  if(email===DEMO_EMAIL && pass===DEMO_PASS){
+    currentUser={email:DEMO_EMAIL,uid:'demo'};currentRole='admin';currentEmpCode=null;
+    hideAuthScreen();
+    initSelects();renderDashboard();renderReports();updateAlertCount();
+    updateUserBar();showToast('👋 مرحباً — وضع تجريبي (بيانات محلية)');
+    return;
+  }
+
+  if(!auth){ errEl.style.display='block';errEl.textContent='❌ Firebase غير مُهيّأ. اضغط "إعداد Firebase لأول مرة"';return; }
+
+  btn.disabled=true;btn.textContent='جاري الدخول...';
+  try{
+    await auth.signInWithEmailAndPassword(email, pass);
+    // onAuthStateChanged handles the rest
+  }catch(e){
+    errEl.style.display='block';
+    const msgs={'auth/user-not-found':'❌ البريد غير مسجّل','auth/wrong-password':'❌ كلمة المرور خاطئة','auth/invalid-email':'❌ بريد إلكتروني غير صالح','auth/too-many-requests':'⚠️ محاولات كثيرة، حاول لاحقاً'};
+    errEl.textContent=msgs[e.code]||'❌ '+e.message;
+    btn.disabled=false;btn.textContent='🔑 تسجيل الدخول';
+  }
+}
+
+async function signOutUser(){
+  if(currentUser?.uid==='demo'){currentUser=null;showAuthScreen();stopListeners();return;}
+  if(auth) await auth.signOut();
+}
+
+function showAuthScreen(){document.getElementById('auth-screen').style.display='flex';}
+function hideAuthScreen(){document.getElementById('auth-screen').style.display='none';}
+
+// ── Seed initial data ────────────────────────────────────
+async function seedDataIfEmpty(){
+  if(!db) return;
+  try{
+    const snap=await db.collection('employees').limit(1).get();
+    if(!snap.empty) return;  // data exists
+    showToast('⏳ جاري رفع البيانات الأولية...');
+    const batch=db.batch();
+    EMP.forEach(e=>batch.set(db.collection('employees').doc(e.code),e));
+    ATT.forEach(a=>batch.set(db.collection('attendance').doc(a.code),a));
+    PERF.forEach(p=>batch.set(db.collection('performance').doc(p.code),p));
+    TASKS.forEach(t=>batch.set(db.collection('tasks').doc(String(t.id)),t));
+    REQUESTS.forEach(r=>batch.set(db.collection('requests').doc(String(r.id)),r));
+    PROMOTIONS.forEach((p,i)=>batch.set(db.collection('promotions').doc('P'+i),p));
+    INSURANCE.forEach(i=>batch.set(db.collection('insurance').doc(i.emp),i));
+    CLAIMS.forEach((c,i)=>batch.set(db.collection('claims').doc('C'+i),c));
+    TERMINATIONS.forEach((t,i)=>batch.set(db.collection('terminations').doc('T'+i),t));
+    await batch.commit();
+    showToast('✅ تم رفع البيانات الأولية إلى Firebase');
+  }catch(e){ console.error('Seed error:',e); }
+}
+
+// ── Real-time listeners ──────────────────────────────────
+function stopListeners(){ fbListeners.forEach(fn=>fn()); fbListeners=[]; }
+
+function attachRealtimeListeners(){
+  if(!db) return;
+  stopListeners();
+
+  const onSnap=(col,setter)=>db.collection(col).onSnapshot(s=>{
+    setter(s.docs.map(d=>({...d.data(),_id:d.id})));
+    renderCurrentPage();
+  },e=>console.error(col,e));
+
+  fbListeners.push(
+    onSnap('employees',  data=>{ EMP=data; initSelects(); }),
+    onSnap('attendance', data=>{ ATT=data; }),
+    onSnap('performance',data=>{ PERF=data; }),
+    onSnap('tasks',      data=>{ TASKS=data.sort((a,b)=>+a.id-+b.id); }),
+    onSnap('requests',   data=>{ REQUESTS=data.sort((a,b)=>+a.id-+b.id); updateAlertCount(); }),
+    onSnap('promotions', data=>{ PROMOTIONS=data; }),
+    onSnap('insurance',  data=>{ INSURANCE=data; }),
+    onSnap('claims',     data=>{ CLAIMS=data; }),
+    onSnap('terminations',data=>{ TERMINATIONS=data; }),
+  );
+}
+
+let _currentPage='dashboard';
+function renderCurrentPage(){
+  const renders={
+    dashboard:renderDashboard,employees:renderEmployees,attendance:renderAttendance,
+    payroll:renderPayroll,performance:renderPerformance,tasks:renderTasks,
+    requests:renderRequests,promotions:renderPromotions,insurance:renderInsurance,
+    terminations:renderTerminations,'dept-compare':renderDeptCompare,
+    alerts:renderAlerts,reports:renderReports,
+  };
+  const fn=renders[_currentPage];if(fn)try{fn();}catch(e){}
+}
+
+// ── Firestore write helpers ──────────────────────────────
+async function fsSet(col, id, data){
+  if(!db) return;
+  try{ await db.collection(col).doc(String(id)).set(data,{merge:true}); }
+  catch(e){ showToast('❌ خطأ في الحفظ: '+e.message); }
+}
+async function fsDel(col, id){
+  if(!db) return;
+  try{ await db.collection(col).doc(String(id)).delete(); }
+  catch(e){ showToast('❌ خطأ في الحذف: '+e.message); }
+}
+
+// ── Patch save functions to also write to Firestore ─────
+const _origSaveEmployee=saveEmployee;
+async function saveEmployee(){
+  _origSaveEmployee();
+  if(!db) return;
+  const code=editingCode||document.getElementById('f-code').value;
+  const e=gE(code);if(e.code) await fsSet('employees',code,e);
+}
+
+const _origApproveReq=approveReq;
+async function approveReq(id){
+  _origApproveReq(id);
+  if(!db){const r=REQUESTS.find(x=>x.id===id);if(r) await fsSet('requests',id,r);}
+}
+const _origRejectReq=rejectReq;
+async function rejectReq(id){
+  _origRejectReq(id);
+  if(!db){const r=REQUESTS.find(x=>x.id===id);if(r) await fsSet('requests',id,r);}
+}
+const _origAddTask=addTask;
+async function addTask(){
+  _origAddTask();
+  if(!db) return;
+  const t=TASKS[TASKS.length-1];if(t) await fsSet('tasks',t.id,t);
+}
+const _origCompleteTask=completeTask;
+async function completeTask(id){
+  _origCompleteTask(id);
+  const t=TASKS.find(x=>x.id===id);
+  if(db&&t) await fsSet('tasks',id,t);
+}
+const _origDeleteTask=deleteTask;
+async function deleteTask(id){
+  if(db) await fsDel('tasks',id);
+  else _origDeleteTask(id);
+}
+const _origSavePerfDetail=savePerfDetail;
+async function savePerfDetail(code){
+  _origSavePerfDetail(code);
+  const p=gP(code);if(db&&p) await fsSet('performance',code,p);
+}
+const _origSaveAttEdit=saveAttEdit;
+async function saveAttEdit(){
+  _origSaveAttEdit();
+  const a=gA(attEditCode);if(db&&a) await fsSet('attendance',attEditCode,a);
+}
+const _origAddPromotion=addPromotion;
+async function addPromotion(){
+  _origAddPromotion();
+  const p=PROMOTIONS[PROMOTIONS.length-1];
+  if(db&&p) await fsSet('promotions','P'+(PROMOTIONS.length-1),p);
+  const e=gE(document.getElementById('p-emp')?.value);
+  if(db&&e.code) await fsSet('employees',e.code,e);
+}
+const _origAddClaim=addClaim;
+async function addClaim(){
+  _origAddClaim();
+  const c=CLAIMS[CLAIMS.length-1];if(db&&c) await fsSet('claims','C'+(CLAIMS.length-1),c);
+  const ins=INSURANCE.find(i=>i.emp===c?.emp);if(db&&ins) await fsSet('insurance',ins.emp,ins);
+}
+const _origAddTermination=addTermination;
+async function addTermination(){
+  _origAddTermination();
+  const t=TERMINATIONS[TERMINATIONS.length-1];if(db&&t) await fsSet('terminations','T'+(TERMINATIONS.length-1),t);
+}
+const _origAddRequest=addRequest;
+async function addRequest(){
+  _origAddRequest();
+  const r=REQUESTS[REQUESTS.length-1];if(db&&r) await fsSet('requests',r.id,r);
+}
+
+// ── User management (admin panel) ───────────────────────
+async function createUserAccount(email, password, role, empCode){
+  if(!auth||!db) return showToast('❌ Firebase غير مُهيّأ');
+  try{
+    const cred=await auth.createUserWithEmailAndPassword(email,password);
+    await db.collection('users').doc(cred.user.uid).set({email,role,empCode:empCode||null,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+    showToast('✅ تم إنشاء حساب: '+email);
+  }catch(e){
+    const msgs={'auth/email-already-in-use':'البريد مستخدم مسبقاً','auth/weak-password':'كلمة المرور قصيرة جداً'};
+    showToast('❌ '+(msgs[e.code]||e.message));
+  }
+}
+
+// ═══════════════════════════════════
+// USERS PAGE
+// ═══════════════════════════════════
+function renderUsers(){
+  const tbody = document.getElementById('users-tbody');
+  const fbNotConn = document.getElementById('fb-not-connected');
+  if(!db){
+    if(fbNotConn) fbNotConn.style.display='block';
+    if(tbody) tbody.closest('.card').style.display='none';
+    return;
+  }
+  if(fbNotConn) fbNotConn.style.display='none';
+  if(tbody) tbody.closest('.card').style.display='';
+
+  // Show admin-only nav
+  const navU = document.getElementById('nav-users');
+  if(navU) navU.style.display = (currentRole==='admin')?'':'none';
+
+  // Populate emp dropdown in new-user modal
+  const nuEmp = document.getElementById('nu-emp');
+  if(nuEmp && nuEmp.options.length<=1){
+    EMP.forEach(e=>{ const o=document.createElement('option');o.value=e.code;o.textContent=e.name+' ('+e.code+')';nuEmp.appendChild(o); });
+  }
+
+  db.collection('users').orderBy('createdAt','desc').get().then(snap=>{
+    const count = document.getElementById('users-count');
+    if(count) count.textContent = snap.size;
+    if(!tbody) return;
+    tbody.innerHTML = snap.docs.map(d=>{
+      const u=d.data();
+      const roleMap={'admin':'مدير النظام','hr':'مدير HR','employee':'موظف'};
+      const roleClass={'admin':'role-admin','hr':'role-hr','employee':'role-emp'};
+      const empName = u.empCode ? (gE(u.empCode).name||u.empCode) : '—';
+      const created = u.createdAt ? new Date(u.createdAt.seconds*1000).toLocaleDateString('ar-SA') : '—';
+      return `<tr>
+        <td style="direction:ltr;text-align:left;font-family:monospace;font-size:12px">${u.email}</td>
+        <td><span class="role-badge ${roleClass[u.role]||'role-emp'}">${roleMap[u.role]||u.role}</span></td>
+        <td>${empName}</td>
+        <td>${created}</td>
+        <td>
+          <select style="font-size:11px;padding:4px 8px;border-radius:6px;border:1px solid var(--border)"
+            onchange="changeUserRole('${d.id}',this.value)">
+            <option value="admin" ${u.role==='admin'?'selected':''}>مدير النظام</option>
+            <option value="hr"    ${u.role==='hr'?'selected':''}>مدير HR</option>
+            <option value="employee" ${u.role==='employee'?'selected':''}>موظف</option>
+          </select>
+        </td>
+      </tr>`;
+    }).join('');
+  }).catch(e=>{ if(tbody) tbody.innerHTML=`<tr><td colspan="5" style="text-align:center;color:var(--red)">❌ ${e.message}</td></tr>`; });
+}
+
+async function changeUserRole(uid, newRole){
+  if(!db) return;
+  try{
+    await db.collection('users').doc(uid).update({role: newRole});
+    showToast('✅ تم تغيير الدور');
+    renderUsers();
+  }catch(e){ showToast('❌ '+e.message); }
+}
+
+async function submitNewUser(){
+  const email = document.getElementById('nu-email').value.trim();
+  const pass  = document.getElementById('nu-pass').value;
+  const role  = document.getElementById('nu-role').value;
+  const emp   = document.getElementById('nu-emp').value;
+  if(!email||!pass){ showToast('⚠️ أدخل البريد وكلمة المرور'); return; }
+  await createUserAccount(email, pass, role, emp||null);
+  closeModal('new-user-modal');
+  renderUsers();
+}
+
+
+// ═══════════════════════════════════════════════════════════
+// AI ASSISTANT
+// ═══════════════════════════════════════════════════════════
+let aiOpen = false;
+let aiHistory = [];
+const AI_MAX_HIST = 10;
+
+function toggleAI(){
+  aiOpen = !aiOpen;
+  document.getElementById('ai-panel').classList.toggle('open', aiOpen);
+  document.getElementById('ai-fab-icon').textContent = aiOpen ? '✕' : '🤖';
+}
+
+function askChip(btn){ 
+  document.getElementById('ai-input').value = btn.textContent; 
+  sendAI(); 
+}
+
+function buildContext(){
+  const totalSalary = EMP.reduce((s,e)=>s+netSal(e,gA(e.code)),0);
+  const avgPerf = EMP.map(e=>perfTotal(gP(e.code))/5).reduce((a,b)=>a+b,0)/EMP.length;
+  const topPerf = [...EMP].sort((a,b)=>perfTotal(gP(b.code))-perfTotal(gP(a.code))).slice(0,3);
+  const mostAbsent = [...EMP].sort((a,b)=>(gA(b.code).absent||0)-(gA(a.code).absent||0)).slice(0,3);
+  const depts = {};
+  EMP.forEach(e=>{ if(!depts[e.dept]) depts[e.dept]={count:0,sal:0,perf:0}; depts[e.dept].count++; depts[e.dept].sal+=gross(e); depts[e.dept].perf+=perfTotal(gP(e.code)); });
+  const pendingReqs = REQUESTS.filter(r=>r.status==='قيد المراجعة').length;
+  const pendingTasks = TASKS.filter(t=>t.status!=='مكتملة').length;
+  const expiring = EMP.filter(e=>{ 
+    if(!e.hire) return false;
+    const hired = new Date(e.hire.replace(/\//g,'-'));
+    const months = (new Date()-hired)/(1000*60*60*24*30);
+    return e.contract==='سنوي' && months>10;
+  });
+
+  return `أنت مساعد HR ذكي متخصص لنظام MAKSAB. أجب بالعربية بشكل موجز ومهني.
+
+=== بيانات النظام الحالية ===
+إجمالي الموظفين: ${EMP.length}
+الأقسام: ${[...new Set(EMP.map(e=>e.dept))].join('، ')}
+إجمالي الرواتب الشهرية: ${totalSalary.toLocaleString()} ريال
+متوسط الأداء: ${avgPerf.toFixed(1)}/20 نقطة
+الطلبات المعلقة: ${pendingReqs}
+المهام غير المكتملة: ${pendingTasks}
+موظفون بعقود قاربت الانتهاء: ${expiring.map(e=>e.name).join('، ')||'لا يوجد'}
+
+أعلى أداءً:
+${topPerf.map(e=>`- ${e.name} (${e.dept}): ${perfTotal(gP(e.code))}/20`).join('\n')}
+
+الأعلى غياباً:
+${mostAbsent.map(e=>`- ${e.name}: ${gA(e.code).absent||0} يوم`).join('\n')}
+
+الأقسام:
+${Object.entries(depts).map(([d,v])=>`- ${d}: ${v.count} موظف، متوسط الراتب ${Math.round(v.sal/v.count).toLocaleString()} ريال، متوسط الأداء ${(v.perf/v.count/5).toFixed(1)}/20`).join('\n')}
+
+قائمة الموظفين الكاملة:
+${EMP.slice(0,20).map(e=>{
+  const a=gA(e.code), p=gP(e.code);
+  return `${e.name} | ${e.dept} | ${e.title} | صافي: ${netSal(e,a).toLocaleString()} ر.س | أداء: ${perfTotal(p)}/20 | غياب: ${a.absent||0}`;
+}).join('\n')}`;
+}
+
+async function sendAI(){
+  const input = document.getElementById('ai-input');
+  const msg = input.value.trim();
+  if(!msg) return;
+
+  input.value = '';
+  input.style.height = 'auto';
+  document.getElementById('ai-send-btn').disabled = true;
+
+  // Add user message
+  appendAIMsg('user', msg);
+  aiHistory.push({role:'user', content:msg});
+  if(aiHistory.length > AI_MAX_HIST) aiHistory.shift();
+
+  // Typing indicator
+  const typingId = 'typing-'+Date.now();
+  const typingEl = document.createElement('div');
+  typingEl.id = typingId;
+  typingEl.className = 'ai-msg bot';
+  typingEl.innerHTML = '<div class="ai-bubble"><div class="ai-typing"><span></span><span></span><span></span></div></div>';
+  document.getElementById('ai-messages').appendChild(typingEl);
+  scrollAI();
+
+  try {
+    const sysPrompt = buildContext();
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: sysPrompt,
+        messages: aiHistory.slice(-AI_MAX_HIST),
+      })
+    });
+    const data = await response.json();
+    const reply = data.content?.[0]?.text || 'عذراً، لم أتمكن من معالجة طلبك.';
+    
+    typingEl.remove();
+    appendAIMsg('bot', reply);
+    aiHistory.push({role:'assistant', content:reply});
+    if(aiHistory.length > AI_MAX_HIST) aiHistory.shift();
+
+  } catch(e) {
+    typingEl.remove();
+    appendAIMsg('bot', '❌ خطأ في الاتصال. تأكد من الاتصال بالإنترنت وأعد المحاولة.');
+  }
+
+  document.getElementById('ai-send-btn').disabled = false;
+}
+
+function appendAIMsg(role, text){
+  const el = document.createElement('div');
+  el.className = 'ai-msg ' + role;
+  el.innerHTML = '<div class="ai-bubble">' + text.replace(/</g,'&lt;').replace(/>/g,'&gt;') + '</div>';
+  document.getElementById('ai-messages').appendChild(el);
+  scrollAI();
+}
+
+function scrollAI(){
+  const el = document.getElementById('ai-messages');
+  el.scrollTop = el.scrollHeight;
+}
+
+// Keyboard shortcut: Ctrl+Shift+A
+document.addEventListener('keydown', e=>{
+  if(e.ctrlKey && e.shiftKey && e.key==='A'){ e.preventDefault(); toggleAI(); }
+});
+
+window.onload=()=>{
+  setInterval(updateClock,1000); updateClock();
+  // Restore theme preference
+  const savedTheme = localStorage.getItem('theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  if(savedTheme==='dark' || (!savedTheme && prefersDark)){
+    isDark=true;
+    document.documentElement.setAttribute('data-theme','dark');
+    document.body.setAttribute('data-theme','dark');
+    document.getElementById('dark-btn').textContent='☀️';
+  }
+  // Try auto-init Firebase from saved config
+  const savedCfg = getStoredConfig();
+  if(savedCfg && savedCfg.apiKey){
+    initFirebaseWithConfig(savedCfg);
+    // listenAuthState() will handle rendering after login
+  } else {
+    // No Firebase config — show auth screen for demo mode
+    showAuthScreen();
+    initSelects();
+    renderReports();
+    updateAlertCount();
+  }
+};
+</script>
+
+<!-- ════════ AI ASSISTANT FAB ════════ -->
+<button id="ai-fab" onclick="toggleAI()" title="مساعد HR الذكي">
+  <span id="ai-fab-icon">🤖</span>
+  <span class="fab-dot"></span>
+</button>
+
+<!-- ════════ AI PANEL ════════ -->
+<div id="ai-panel">
+  <div class="ai-header">
+    <div class="ai-avatar">🤖</div>
+    <div class="ai-header-info">
+      <div class="ai-header-name">مساعد MAKSAB الذكي</div>
+      <div class="ai-header-status">متصل · يقرأ بيانات النظام</div>
+    </div>
+    <button class="ai-close" onclick="toggleAI()">×</button>
+  </div>
+
+  <div class="ai-messages" id="ai-messages">
+    <div class="ai-msg bot">
+      <div class="ai-bubble">مرحباً! أنا مساعدك الذكي لنظام MAKSAB HR 👋
+
+أستطيع تحليل بيانات موظفيك والإجابة على أسئلتك بالعربية. جرّب أحد الأسئلة أدناه أو اكتب سؤالك مباشرة.</div>
+    </div>
+  </div>
+
+  <div class="ai-chips">
+    <button class="ai-chip" onclick="askChip(this)">من أعلى أداءً؟</button>
+    <button class="ai-chip" onclick="askChip(this)">ملخص الرواتب</button>
+    <button class="ai-chip" onclick="askChip(this)">تحليل الحضور</button>
+    <button class="ai-chip" onclick="askChip(this)">موظفون بعقود تنتهي</button>
+    <button class="ai-chip" onclick="askChip(this)">أعلى غياباً</button>
+    <button class="ai-chip" onclick="askChip(this)">مقارنة الأقسام</button>
+  </div>
+
+  <div class="ai-input-row">
+    <textarea class="ai-input" id="ai-input" rows="1" placeholder="اسألني عن موظفيك..." 
+      onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendAI()}"
+      oninput="this.style.height='auto';this.style.height=Math.min(this.scrollHeight,100)+'px'"></textarea>
+    <button class="ai-send" id="ai-send-btn" onclick="sendAI()">➤</button>
+  </div>
+</div>
+
+</body>
+</html>
